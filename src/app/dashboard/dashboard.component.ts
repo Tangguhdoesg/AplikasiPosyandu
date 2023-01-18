@@ -4,7 +4,7 @@ import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 // import * as Chartist from 'chartist';
 
 @Component({
-  selector: 'dashboard',
+  selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
