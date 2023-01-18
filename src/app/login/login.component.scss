@@ -3,19 +3,22 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+  background-color: darkseagreen;
 }
 
 .text-align-last-center {
   text-align-last: center;
 }
 
-.border-style {
+.sign-in-style {
   border-radius: 8px;
   padding: 16px;
+  background-color: whitesmoke;
 }
 
 .btnLogin {
-  background-color: #04AA6D;
+  background-color: #AACB73;
+  font-weight: bold;
   color: white;
   padding: 8px 20px;
   margin: 8px 0;
