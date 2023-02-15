@@ -1,2 +1,13 @@
-<!--<app-login></app-login>-->
-<router-outlet></router-outlet>
+<ng-container *ngIf="!isLoginPage">
+  <div class="container-fluid g-0">
+    <app-nav-bar style="background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important"
+          (sideNavToggled)="sideNavStatus = $event;"
+    ></app-nav-bar>
+    <main>
+      <app-side-nav-bar [sideNavStatus]="sideNavStatus" [ngClass]="{'app-side-nav-open': sideNavStatus}">
+      </app-side-nav-bar>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</ng-container>
+<app-login *ngIf="isLoginPage" (toLoginPage)="isLoginPage=false"></app-login>

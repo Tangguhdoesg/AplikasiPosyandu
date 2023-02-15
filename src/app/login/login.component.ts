@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,10 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  @Output() toLoginPage = new EventEmitter<any>();
 
   constructor(private router: Router) { }
 
   onSubmit() {
+    this.toLoginPage.emit(false);
     this.router.navigateByUrl('/dashboard');
   }
 }
