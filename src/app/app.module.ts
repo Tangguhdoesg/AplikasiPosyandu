@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -7,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,11 @@ import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
     DashboardComponent,
     LoginComponent,
     NavBarComponent,
-    SideNavBarComponent
+    SideNavBarComponent,
+    EditProfileComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule
   ],
