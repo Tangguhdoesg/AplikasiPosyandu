@@ -26,6 +26,7 @@ import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
+import { ManageUserComponent } from './manage-user/manage-user.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
     LoginComponent,
     NavBarComponent,
     SideNavBarComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ManageUserComponent
   ],
   imports: [
     HttpClientModule,

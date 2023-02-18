@@ -19,8 +19,8 @@ export class SideNavBarComponent implements OnInit {
     {
       number: '2',
       name: 'Pengaturan Pengguna',
-      icon: 'fa-solid fa-user',
-      path: '/dashboard'
+      icon: 'fa-solid fa-users',
+      path: '/manage-user'
     },
     {
       number: '3',
@@ -49,9 +49,9 @@ export class SideNavBarComponent implements OnInit {
     
   }
 
-  goToHomePage() {
+  goToPage(url: any) {
     console.log('aa');
-    this.router.navigateByUrl('/dashboard');
+    this.router.navigateByUrl(url);
   }
 
 }
