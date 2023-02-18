@@ -4,7 +4,7 @@
           (sideNavToggled)="sideNavStatus = $event;"
           (toLoginPage)="isGoToLoginPage($event)"
     ></app-nav-bar>
-    <main>
+    <main class="px-3">
       <app-side-nav-bar [sideNavStatus]="sideNavStatus" [ngClass]="{'app-side-nav-open': sideNavStatus}">
       </app-side-nav-bar>
       <router-outlet></router-outlet>
