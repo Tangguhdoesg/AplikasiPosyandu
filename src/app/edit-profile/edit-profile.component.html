@@ -12,9 +12,9 @@
             class="form-control"
             formControlName="userName"
             required/>
-          <label mdbLabel class="form-label" for="userNameField">Nama user</label>
+          <label mdbLabel class="form-label" for="userNameField">Nama Pengguna</label>
           <mdb-error *ngIf="userName?.invalid && (userName?.dirty || userName?.touched)">
-            Nama User wajib diisi
+            Nama Pengguna wajib diisi
           </mdb-error>
         </mdb-form-control>
       </div>
@@ -28,9 +28,9 @@
             class="form-control"
             formControlName="nik"
             required/>
-          <label mdbLabel class="form-label" for="NIKField">NIK User</label>
+          <label mdbLabel class="form-label" for="NIKField">NIK Pengguna</label>
           <mdb-error *ngIf="nik?.invalid && (nik?.dirty || nik?.touched)">
-            NIK User wajib diisi
+            NIK Pengguna wajib diisi
           </mdb-error>
         </mdb-form-control>
       </div>
@@ -47,9 +47,9 @@
             class="form-control"
             formControlName="dob"
             required/>
-          <label mdbLabel class="form-label" for="dobField">Tanggal Lahir User</label>
+          <label mdbLabel class="form-label" for="dobField">Tanggal Lahir Pengguna</label>
           <mdb-error *ngIf="dob?.invalid && (dob?.dirty || dob?.touched)">
-            Tanggal Lahir User wajib diisi
+            Tanggal Lahir Pengguna wajib diisi
           </mdb-error>
         </mdb-form-control>
       </div>
@@ -63,9 +63,9 @@
             class="form-control"
             formControlName="address"
             required/>
-          <label mdbLabel class="form-label" for="addressField">Alamat User</label>
+          <label mdbLabel class="form-label" for="addressField">Alamat Pengguna</label>
           <mdb-error *ngIf="address?.invalid && (address?.dirty || address?.touched)">
-            Alamat User wajib diisi
+            Alamat Pengguna wajib diisi
           </mdb-error>
         </mdb-form-control>
       </div>
@@ -82,14 +82,14 @@
             class="form-control"
             formControlName="phoneNum"
             required/>
-          <label mdbLabel class="form-label" for="phoneNumField">No Telepon User</label>
+          <label mdbLabel class="form-label" for="phoneNumField">No Telepon Pengguna</label>
           <mdb-error *ngIf="phoneNum?.invalid && (phoneNum?.dirty || phoneNum?.touched)">
-            No Telepon User wajib diisi
+            No Telepon Pengguna wajib diisi
           </mdb-error>
         </mdb-form-control>
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+    <button type="submit" class="btn btn-primary mt-4">Selesai</button>
   </form>
 </div>
