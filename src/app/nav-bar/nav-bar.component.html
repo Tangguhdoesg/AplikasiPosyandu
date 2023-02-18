@@ -4,7 +4,7 @@
     <i class="fa-solid fa-bars"></i>
   </div>
 
-  <div class="container">
+  <div class="container mx-2">
     <a class="navbar-brand" href="/dashboard">
       <img
         src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.webp"
@@ -16,17 +16,27 @@
     </a>
   </div>
 
-<!--  <div class="navbar-collapse">-->
-<!--    <ul class="navbar-nav me-auto"></ul>-->
-<!--  </div>-->
-
-  <div class="dropstart">
-    <i class="fa-sharp fa-regular fa-user btn btn-outline-secondary dropdown-toggle-split" data-bs-toggle="dropdown"></i>
-    <ul class="dropdown-menu dropdown-menu-dark">
-      <li><a href="#" class="dropdown-item">Sign Up</a></li>
-      <li><a href="/edit-profile" class="dropdown-item">Profile</a></li>
-      <li><a href="#" class="dropdown-item" (click)="logout()">Log Out</a></li>
-    </ul>
-  </div>
+  
+  <ul class="navbar-nav d-flex flex-row">
+    <li mdbDropdown class="nav-item dropdown">
+      <a
+        class="nav-link dropdown-toggle"
+        id="navbarDropdownMenuLink"
+        role="button"
+        mdbDropdownToggle
+        aria-expanded="false"
+      >
+        <i class="fas fa-user"></i>
+      </a>
+      <ul
+        mdbDropdownMenu
+        class="dropdown-menu dropdown-menu-end dropdown-menu-dark"
+        aria-labelledby="navbarDropdownMenuLink">
+        <li><a href="#" class="dropdown-item">Sign Up</a></li>
+        <li><a href="/edit-profile" class="dropdown-item">Profile</a></li>
+        <li><a href="#" class="dropdown-item" (click)="logout()">Log Out</a></li>
+      </ul>
+    </li>
+  </ul>
 
 </nav>
