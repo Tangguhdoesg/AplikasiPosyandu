@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav-bar',
@@ -11,35 +12,46 @@ export class SideNavBarComponent implements OnInit {
   list = [
     {
       number: '1',
-      name: 'Home',
-      icon: 'fa-solid fa-house'
+      name: 'Halaman Awal',
+      icon: 'fa-solid fa-house',
+      path: '/dashboard'
     },
     {
       number: '2',
-      name: 'Analytics',
-      icon: 'fa-solid fa-chart-line'
+      name: 'Pengaturan Pengguna',
+      icon: 'fa-solid fa-user',
+      path: '/dashboard'
     },
     {
       number: '3',
-      name: 'Settings',
-      icon: 'fa-solid fa-gear'
+      name: 'Laporan',
+      icon: 'fa-solid fa-chart-line',
+      path: '/dashboard'
     },
     {
       number: '4',
-      name: 'About',
-      icon: 'fa-solid fa-circle-info'
+      name: 'Kegiatan',
+      icon: 'fa-solid fa-gear',
+      path: '/dashboard'
     },
     {
       number: '5',
-      name: 'Contact',
-      icon: 'fa-solid fa-phone'
+      name: 'Balita',
+      icon: 'fa-solid fa-baby',
+      path: '/dashboard'
     }
   ]
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
+    
+  }
+
+  goToHomePage() {
+    console.log('aa');
+    this.router.navigateByUrl('/dashboard');
   }
 
 }
