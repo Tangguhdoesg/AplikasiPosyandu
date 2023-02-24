@@ -11,7 +11,7 @@ import { Subject } from "rxjs"
 })
 export class LoginComponent implements OnInit{
   destroySubject$: Subject<void> = new Subject();
-  @Output() toLoginPage = new EventEmitter<any>();
+  @Output() userLogin = new EventEmitter<any>();
 
   constructor(private router: Router,
               private service: AppServiceService) { }
@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit{
   }
 
   onSubmit() {
-    this.toLoginPage.emit(false);
-    this.router.navigateByUrl('/dashboard');
+    this.userLogin.emit(['111']);
+    this.router.navigate(['/dashboard']);
   }
 
   getAllUser() {

@@ -1,8 +1,8 @@
 <!-- <ng-container *ngIf="!isLoginPage"> -->
-  <div class="container-fluid g-0">
-    <app-nav-bar style="background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important"
+  <div class="container-fluid g-0" *ngIf="user" else noUser>
+    <app-nav-bar
+    style="background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important"
           (sideNavToggled)="sideNavStatus = $event;"
-          (toLoginPage)="isGoToLoginPage($event)"
     ></app-nav-bar>
     <main class="px-3">
       <app-side-nav-bar [sideNavStatus]="sideNavStatus" [ngClass]="{'app-side-nav-open': sideNavStatus}">
@@ -10,5 +10,8 @@
       <router-outlet></router-outlet>
     </main>
   </div>
+  <ng-container *ngIf="user===undefined">
+    <app-login (userLogin)="user=$event"></app-login>
+  </ng-container>
 <!-- </ng-container> -->
 <!-- <app-login *ngIf="isLoginPage" (toLoginPage)="isGoToLoginPage($event)"></app-login> -->

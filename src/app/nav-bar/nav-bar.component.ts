@@ -28,5 +28,8 @@ export class NavBarComponent implements OnInit {
     // this.toLoginPage.emit(false);
     this.router.navigateByUrl('/login');
   }
-
+  
+  goToPage(url: any) {
+    this.router.navigateByUrl(url);
+  }
 }

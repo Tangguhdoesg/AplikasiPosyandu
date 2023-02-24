@@ -9,16 +9,20 @@ export class AppComponent implements OnInit{
 
   title = 'PELITA';
   sideNavStatus: boolean = false;
+  
+  user?: any;
 
-  isLoginPage!: boolean;
+  // isLoginPage!: boolean;
 
   ngOnInit(): void {
-    this.isLoginPage = true;
-    console.log(this.isLoginPage);
+    // this.isLoginPage = true;
+    // console.log(this.isLoginPage);
+    console.log(this.user);
+    
     
   }
 
-  isGoToLoginPage(e: boolean) {
-    this.isLoginPage = e;
-  }
+  // isGoToLoginPage(e: boolean) {
+  //   this.isLoginPage = e;
+  // }
 }

@@ -50,7 +50,6 @@ export class SideNavBarComponent implements OnInit {
   }
 
   goToPage(url: any) {
-    console.log('aa');
     this.router.navigateByUrl(url);
   }
 
