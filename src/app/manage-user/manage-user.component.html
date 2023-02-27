@@ -17,33 +17,34 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let i of idx">
+        <tr *ngFor="let user of allUsers">
             <td>
                 <div class="d-flex align-items-center">
-                    <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px"
-                        class="rounded-circle" />
-                    <div class="ms-3">
-                        <p class="fw-bold mb-1">John Doe</p>
-                        <p class="text-muted mb-0">john.doe@gmail.com</p>
-                    </div>
+                    <p class="fw-bold mb-1">{{user.namaUser}}</p>
                 </div>
             </td>
             <td>
-                <p class="fw-normal mb-1">1234567890123456</p>
+                <p class="fw-normal mb-1">{{user.nikUser}}</p>
             </td>
             <td>
-                <p class="fw-normal mb-1">085823485722</p>
+                <p class="fw-normal mb-1">{{user.noTeleponUser}}</p>
             </td>
             <td>
-                <p class="fw-normal mb-1">01/01/1990</p>
+                <p class="fw-normal mb-1">{{user.tanggalLahirUser}}</p>
             </td>
             <td>
-                <p class="fw-normal mb-1">Jalan Anggrek</p>
+                <p class="fw-normal mb-1">{{user.alamatUser}}</p>
             </td>
             <td>
-                <span class="badge badge-success rounded-pill d-inline">Admin</span>
-                <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
-                <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+                <ng-container *ngIf="user.userType===0">
+                    <span class="badge badge-success rounded-pill d-inline">Admin</span>
+                </ng-container>
+                <ng-container *ngIf="user.userType===1">
+                    <span class="badge badge-primary rounded-pill d-inline">Petugas</span>
+                </ng-container>
+                <ng-container *ngIf="user.userType===2">
+                    <span class="badge badge-warning rounded-pill d-inline">Orang Tua</span>
+                </ng-container>
             </td>
             <td class="">
                 <button type="button" class="btn btn-link btn-sm btn-rounded fa-solid fa-pen-to-square">

@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit{
               private service: AppServiceService) { }
 
   ngOnInit(): void {
-    this.getAllUser();
   }
 
   onSubmit() {
@@ -25,12 +24,4 @@ export class LoginComponent implements OnInit{
     this.router.navigate(['/dashboard']);
   }
 
-  getAllUser() {
-    this.service.getAllUser()
-      .pipe(takeUntil(this.destroySubject$))
-      .subscribe(data => {
-        console.log(data);
-        
-      })
-  }
 }

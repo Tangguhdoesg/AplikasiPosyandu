@@ -11,10 +11,9 @@ export class AppServiceService {
   constructor(private httpClient: HttpClient) { }
 
   getAllUser() {
-    return this.httpClient.get<userPosyandu>(`http://localhost:8083/user/all`)
+    return this.httpClient.get<userPosyandu[]>(`http://localhost:8083/user/all`)
       .pipe(
         map(data => {
-          console.log(data);
           return data;
         })
       );
