@@ -10,3 +10,9 @@ html, body {
 @import '@fortawesome/fontawesome-free/scss/brands.scss';
 
 @import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
+
+
+.loading-bg-size {
+  width: 100%;
+  height: calc(100vh - 4rem);
+}

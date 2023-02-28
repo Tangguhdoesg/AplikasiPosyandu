@@ -27,6 +27,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
+import { LoadingComponent } from './shared/loading/loading.component';
+import { ErrorTimeoutComponent } from './shared/error-timeout/error-timeout.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { ManageUserComponent } from './manage-user/manage-user.component';
     NavBarComponent,
     SideNavBarComponent,
     EditProfileComponent,
-    ManageUserComponent
+    ManageUserComponent,
+    LoadingComponent,
+    ErrorTimeoutComponent
   ],
   imports: [
     HttpClientModule,

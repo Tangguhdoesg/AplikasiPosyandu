@@ -13,6 +13,7 @@ export class ManageUserComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
   allUsers: userPosyandu[] = [];
   totalUsersData: number = 0;
+  isLoading: boolean = false;
 
   constructor(private service: AppServiceService) {
 
@@ -23,12 +24,16 @@ export class ManageUserComponent implements OnInit {
   }
 
   getAllUser() {
+    this.isLoading = true;
     this.service.getAllUser()
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
         console.log(data);
         this.allUsers = [...data];
         this.totalUsersData = data.length;
+        this.isLoading = false;
+      }, err => {
+        // this.isLoading = false;
       })
   }
 

@@ -1,57 +1,63 @@
-<div class="my-3">
-    <div class="fa-solid fa-users">
-        <span style="margin-left: 24px;">Pengaturan Pengguna</span>
-    </div>
-</div>
+<ng-container *ngIf="isLoading" else #app>
+    <app-loading></app-loading>
+</ng-container>
 
-<table class="table align-middle mb-0 bg-white">
-    <thead class="bg-light">
-        <tr>
-            <th>Nama Pengguna</th>
-            <th>NIK</th>
-            <th>No Telepon</th>
-            <th>Tanggal Lahir</th>
-            <th>Alamat Pengguna</th>
-            <th>Tipe Pengguna</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let user of allUsers">
-            <td>
-                <div class="d-flex align-items-center">
-                    <p class="fw-bold mb-1">{{user.namaUser}}</p>
-                </div>
-            </td>
-            <td>
-                <p class="fw-normal mb-1">{{user.nikUser}}</p>
-            </td>
-            <td>
-                <p class="fw-normal mb-1">{{user.noTeleponUser}}</p>
-            </td>
-            <td>
-                <p class="fw-normal mb-1">{{user.tanggalLahirUser}}</p>
-            </td>
-            <td>
-                <p class="fw-normal mb-1">{{user.alamatUser}}</p>
-            </td>
-            <td>
-                <ng-container *ngIf="user.userType===0">
-                    <span class="badge badge-success rounded-pill d-inline">Admin</span>
-                </ng-container>
-                <ng-container *ngIf="user.userType===1">
-                    <span class="badge badge-primary rounded-pill d-inline">Petugas</span>
-                </ng-container>
-                <ng-container *ngIf="user.userType===2">
-                    <span class="badge badge-warning rounded-pill d-inline">Orang Tua</span>
-                </ng-container>
-            </td>
-            <td class="">
-                <button type="button" class="btn btn-link btn-sm btn-rounded fa-solid fa-pen-to-square">
-                </button>
-                <button type="button" class="btn btn-link btn-sm btn-rounded fa-solid fa-trash">
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<ng-template #app>
+    <div class="my-3">
+        <div class="fa-solid fa-users">
+            <span style="margin-left: 24px;">Pengaturan Pengguna</span>
+        </div>
+    </div>
+
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+            <tr>
+                <th>Nama Pengguna</th>
+                <th>NIK</th>
+                <th>No Telepon</th>
+                <th>Tanggal Lahir</th>
+                <th>Alamat Pengguna</th>
+                <th>Tipe Pengguna</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of allUsers">
+                <td>
+                    <div class="d-flex align-items-center">
+                        <p class="fw-bold mb-1">{{user.namaUser}}</p>
+                    </div>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{user.nikUser}}</p>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{user.noTeleponUser}}</p>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{user.tanggalLahirUser}}</p>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{user.alamatUser}}</p>
+                </td>
+                <td>
+                    <ng-container *ngIf="user.userType===0">
+                        <span class="badge badge-success rounded-pill d-inline">Admin</span>
+                    </ng-container>
+                    <ng-container *ngIf="user.userType===1">
+                        <span class="badge badge-primary rounded-pill d-inline">Petugas</span>
+                    </ng-container>
+                    <ng-container *ngIf="user.userType===2">
+                        <span class="badge badge-warning rounded-pill d-inline">Orang Tua</span>
+                    </ng-container>
+                </td>
+                <td class="">
+                    <button type="button" class="btn btn-link btn-sm btn-rounded fa-solid fa-pen-to-square">
+                    </button>
+                    <button type="button" class="btn btn-link btn-sm btn-rounded fa-solid fa-trash">
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>
