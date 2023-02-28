@@ -2,6 +2,10 @@
     <app-loading></app-loading>
 </ng-container>
 
+<ng-container *ngIf="isError" else #app>
+    <app-error-timeout></app-error-timeout>
+</ng-container>
+
 <ng-template #app>
     <div class="my-3">
         <div class="fa-solid fa-users">

@@ -14,6 +14,7 @@ export class ManageUserComponent implements OnInit {
   allUsers: userPosyandu[] = [];
   totalUsersData: number = 0;
   isLoading: boolean = false;
+  isError: boolean = false;
 
   constructor(private service: AppServiceService) {
 
@@ -25,6 +26,7 @@ export class ManageUserComponent implements OnInit {
 
   getAllUser() {
     this.isLoading = true;
+    this.isError = false;
     this.service.getAllUser()
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
@@ -33,7 +35,8 @@ export class ManageUserComponent implements OnInit {
         this.totalUsersData = data.length;
         this.isLoading = false;
       }, err => {
-        // this.isLoading = false;
+        this.isError = true;
+        this.isLoading = false;
       })
   }
 
