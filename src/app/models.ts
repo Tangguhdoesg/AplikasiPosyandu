@@ -1,8 +1,8 @@
 export interface userPosyandu {
-    idUser: string,
+    idUser: number,
     namaUser: string,
     nikUser: string,
-    tanggalLahirUser: Date,
+    tanggalLahirUser: string,
     passwordUser: string,
     noTeleponUser: string,
     alamatUser: string,

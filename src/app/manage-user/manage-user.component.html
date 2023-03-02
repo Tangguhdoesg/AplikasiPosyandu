@@ -6,7 +6,7 @@
     <app-error-timeout></app-error-timeout>
 </ng-container>
 
-<ng-template #app>
+<ng-container *ngIf="!isLoading && !isError">
     <div class="my-3">
         <div class="fa-solid fa-users">
             <span style="margin-left: 24px;">Pengaturan Pengguna</span>
@@ -64,4 +64,4 @@
             </tr>
         </tbody>
     </table>
-</ng-template>
+</ng-container>
