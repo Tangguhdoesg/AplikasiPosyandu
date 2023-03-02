@@ -6,6 +6,7 @@ import { userPosyandu } from '../models';
 import * as dayjs from 'dayjs';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { DeleteUserModalComponent } from './delete-user-modal/delete-user-modal.component';
+import { AddUserModalComponent } from './add-user-modal/add-user-modal.component';
 
 @Component({
   selector: 'app-manage-user',
@@ -30,6 +31,7 @@ export class ManageUserComponent implements OnInit {
   isError: boolean = false;
 
   modalRef: MdbModalRef<DeleteUserModalComponent> | null = null;
+  modalRefAddEdit: MdbModalRef<DeleteUserModalComponent> | null = null;
 
   constructor(private service: AppServiceService,
               private modalService: MdbModalService) {
@@ -64,6 +66,19 @@ export class ManageUserComponent implements OnInit {
     });
     this.modalRef.onClose.subscribe((message: any) => {
       if (message === 'delete') {
+        // add delete function
+        this.getAllUser();
+      }
+    });
+  }
+
+  openDialogAddEditUser(user?: userPosyandu) {
+    this.modalRefAddEdit = this.modalService.open(AddUserModalComponent, {
+      modalClass: 'modal-lg',
+      data: {user}
+    });
+    this.modalRefAddEdit.onClose.subscribe((message: any) => {
+      if (message === 'add') {
         // add delete function
         this.getAllUser();
       }

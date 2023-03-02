@@ -13,6 +13,10 @@
         </div>
     </div>
 
+    <div class="mb-4 text-align-last-right">
+        <button class="btn btn-primary" (click)="openDialogAddEditUser()">Tambah Pengguna</button>
+    </div>
+
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
             <tr>
@@ -56,11 +60,15 @@
                     </ng-container>
                 </td>
                 <td class="">
-                    <button type="button" class="btn btn-link btn-sm btn-rounded fa-solid fa-pen-to-square">
+                    <button type="button" 
+                            class="btn btn-link btn-sm btn-rounded fa-solid fa-pen-to-square"
+                            (click)="openDialogAddEditUser(user)">
                     </button>
                     <button type="button" 
                             class="btn btn-link btn-sm btn-rounded fa-solid fa-trash"
-                            (click)="openDialogDeleteUser()">
+                            (click)="openDialogDeleteUser()"
+                            data-mdb-target="#exampleModal"
+                            data-mdb-whatever="user">
                     </button>
                 </td>
             </tr>
