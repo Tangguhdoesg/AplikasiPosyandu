@@ -29,6 +29,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { ErrorTimeoutComponent } from './shared/error-timeout/error-timeout.component';
+import { DeleteUserModalComponent } from './manage-user/delete-user-modal/delete-user-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ErrorTimeoutComponent } from './shared/error-timeout/error-timeout.comp
     EditProfileComponent,
     ManageUserComponent,
     LoadingComponent,
-    ErrorTimeoutComponent
+    ErrorTimeoutComponent,
+    DeleteUserModalComponent
   ],
   imports: [
     HttpClientModule,

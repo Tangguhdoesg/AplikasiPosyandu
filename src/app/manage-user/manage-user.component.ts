@@ -4,6 +4,8 @@ import { takeUntil } from "rxjs/operators"
 import { Subject } from "rxjs"
 import { userPosyandu } from '../models';
 import * as dayjs from 'dayjs';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { DeleteUserModalComponent } from './delete-user-modal/delete-user-modal.component';
 
 @Component({
   selector: 'app-manage-user',
@@ -12,12 +14,25 @@ import * as dayjs from 'dayjs';
 })
 export class ManageUserComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
-  allUsers: userPosyandu[] = [];
+  allUsers: userPosyandu[] = [
+      {"tanggalLahirUser":"2023-02-10T14:22:12.728+00:00",
+      "idUser":1,
+      "alamatUser":"Rumah Rafli",
+      "namaUser":"rafli",
+      "userType":0,
+      "noTeleponUser":"987654321",
+      "nikUser":"1627892910293332",
+      "passwordUser": ""
+    }
+  ];
   totalUsersData: number = 0;
   isLoading: boolean = false;
   isError: boolean = false;
 
-  constructor(private service: AppServiceService) {
+  modalRef: MdbModalRef<DeleteUserModalComponent> | null = null;
+
+  constructor(private service: AppServiceService,
+              private modalService: MdbModalService) {
 
   }
 
@@ -40,7 +55,19 @@ export class ManageUserComponent implements OnInit {
       }, err => {
         this.isError = true;
         this.isLoading = false;
-    })
+      })
+  }
+
+  openDialogDeleteUser() {
+    this.modalRef = this.modalService.open(DeleteUserModalComponent, {
+      modalClass: 'modal-dialog-centered'
+    });
+    this.modalRef.onClose.subscribe((message: any) => {
+      if (message === 'delete') {
+        // add delete function
+        this.getAllUser();
+      }
+    });
   }
 
 }
