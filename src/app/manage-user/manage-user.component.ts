@@ -31,7 +31,7 @@ export class ManageUserComponent implements OnInit {
   isError: boolean = false;
 
   modalRef: MdbModalRef<DeleteUserModalComponent> | null = null;
-  modalRefAddEdit: MdbModalRef<DeleteUserModalComponent> | null = null;
+  modalRefAddEdit: MdbModalRef<AddUserModalComponent> | null = null;
 
   constructor(private service: AppServiceService,
               private modalService: MdbModalService) {
@@ -75,7 +75,7 @@ export class ManageUserComponent implements OnInit {
   openDialogAddEditUser(user?: userPosyandu) {
     this.modalRefAddEdit = this.modalService.open(AddUserModalComponent, {
       modalClass: 'modal-lg',
-      data: {user}
+      data: {user: user}
     });
     this.modalRefAddEdit.onClose.subscribe((message: any) => {
       if (message === 'add') {

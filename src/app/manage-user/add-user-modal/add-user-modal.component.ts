@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { userPosyandu } from 'src/app/models';
 
 @Component({
@@ -9,10 +9,11 @@ import { userPosyandu } from 'src/app/models';
   styleUrls: ['./add-user-modal.component.scss']
 })
 export class AddUserModalComponent implements OnInit{
-  
+  user: userPosyandu | null = null;
   validationForm: FormGroup;
 
-  constructor(public modalRef: MdbModalRef<AddUserModalComponent>) {
+  constructor(public modalRef: MdbModalRef<AddUserModalComponent>,
+                                private modalService: MdbModalService) {
     this.validationForm = new FormGroup({
       userName: new FormControl(null, Validators.required),
       nik: new FormControl(null, Validators.required),
