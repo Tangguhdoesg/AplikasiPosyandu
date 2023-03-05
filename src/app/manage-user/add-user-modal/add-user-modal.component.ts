@@ -1,9 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import * as dayjs from 'dayjs';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { userPosyandu, userPosyanduRequestBody, userPosyanduType } from 'src/app/models';
 import { DatePipe } from '@angular/common';
+import { AppServiceService } from 'src/app/app-service.service';
+import { Subject } from "rxjs"
+import { takeUntil } from "rxjs/operators"
 
 @Component({
   selector: 'app-add-user-modal',
@@ -11,15 +14,18 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./add-user-modal.component.scss']
 })
 export class AddUserModalComponent implements OnInit{
+  destroySubject$: Subject<void> = new Subject();
   user: userPosyandu | null = null;
-  oldUser: userPosyandu | null = null;
   validationForm: FormGroup;
 
   modalTitle: any;
   selectedDate: any;
 
+  isLoading: boolean = false;
+  isError: boolean = false;
+
   constructor(public modalRef: MdbModalRef<AddUserModalComponent>,
-              private modalService: MdbModalService,
+              private service: AppServiceService,
               private datePipe: DatePipe) {
     this.validationForm = new FormGroup({
       userName: new FormControl(null, Validators.required),
@@ -34,7 +40,6 @@ export class AddUserModalComponent implements OnInit{
   ngOnInit(): void {
     console.log(this.user);
     this.modalTitle = this.user === undefined ? 'Tambah Pengguna' : 'Ubah Pengguna';
-    this.oldUser = this.user;
     if (this.user !== undefined) {
       this.validationForm.get('userName')?.setValue(this.user?.namaUser);
       this.validationForm.get('nik')?.setValue(this.user?.nikUser);
@@ -58,18 +63,56 @@ export class AddUserModalComponent implements OnInit{
   }
 
   onSubmit() {
-    console.log(this.oldUser);
+    console.log(this.user);
     let u: userPosyanduRequestBody = {
       namaUser: this.validationForm.get('userName')?.value,
       nikUser: this.validationForm.get('nik')?.value,
       tanggalLahirUser: this.validationForm.get('dob')?.value,
       noTeleponUser: this.validationForm.get('phoneNum')?.value,
       alamatUser: this.validationForm.get('address')?.value,
-      tipeUser: this.validationForm.get('userType')?.value
+      tipeUser: this.validationForm.get('userType')?.value === userPosyanduType.ADMIN ? 0 :
+                this.validationForm.get('userType')?.value === userPosyanduType.PETUGAS ? 1 : 2
     };
     console.log(u);
-    
+    if (this.user === undefined) {
+      this.addUser(u);
+    } else {
+      this.editUser(u, this.user?.idUser!);
+    }
   }
+
+  addUser(req: userPosyanduRequestBody) {
+    this.isLoading = true;
+    this.isError = false;
+    this.service.addUser(req)
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe(data => {
+        console.log(data);
+        this.isLoading = false;
+        this.modalRef.close(); 
+      }, err => {
+        this.isError = true;
+        this.isLoading = false;
+        // this.modalRef.close(); 
+      })
+  }
+
+  editUser(req: userPosyanduRequestBody, id: number) {
+    this.isLoading = true;
+    this.isError = false;
+    this.service.editUser(req, id)
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe(data => {
+        console.log(data);
+        this.isLoading = false;
+        this.modalRef.close(); 
+      }, err => {
+        this.isError = true;
+        this.isLoading = false;
+        // this.modalRef.close(); 
+      })
+  }
+
 
   get userName(): AbstractControl {
     return this.validationForm.get('userName')!;

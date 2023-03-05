@@ -1,3 +1,12 @@
+<ng-container *ngIf="isLoading">
+  <app-loading></app-loading>
+</ng-container>
+
+<ng-container *ngIf="isError">
+  <app-error-timeout></app-error-timeout>
+</ng-container>
+
+<ng-container *ngIf="!isLoading && !isError">
 <div class="modal-header">
     <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
     <button
@@ -123,5 +132,6 @@
     <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
       Batal
     </button>
-    <button type="button" class="btn btn-primary" (click)="modalRef.close(); onSubmit()" [disabled]="validationForm.invalid">Selesai</button>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="validationForm.invalid">Selesai</button>
   </div>
+  </ng-container>
