@@ -6,7 +6,7 @@
 <div class="border p-4">
   <form [formGroup]="validationForm">
     <div class="row">
-      <div class="col-md-6 mb-4">
+      <div class="col-md-6 mb-32px">
         <mdb-form-control>
           <input
             mdbValidate
@@ -22,7 +22,7 @@
           </mdb-error>
         </mdb-form-control>
       </div>
-      <div class="col-md-6  mb-4">
+      <div class="col-md-6 mb-32px">
         <mdb-form-control>
           <input
             mdbValidate
@@ -41,23 +41,23 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6 mb-4">
+      <div class="col-md-6 mb-32px">
         <mdb-form-control>
           <input
             mdbValidate
             mdbInput
-            type="text"
+            type="date"
             id="dobField"
             class="form-control"
             formControlName="dob"
             required/>
-          <label mdbLabel class="form-label" for="dobField">Tanggal Lahir Pengguna (DD-MM-YYYY)</label>
+          <label mdbLabel class="form-label" for="dobField">Tanggal Lahir Pengguna</label>
           <mdb-error *ngIf="dob?.invalid && (dob?.dirty || dob?.touched)">
             Tanggal Lahir Pengguna wajib diisi
           </mdb-error>
         </mdb-form-control>
       </div>
-      <div class="col-md-6 mb-4">
+      <div class="col-md-6 mb-32px">
         <mdb-form-control>
           <input
             mdbValidate
@@ -76,7 +76,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6 mb-4">
+      <div class="col-md-6 mb-32px">
         <mdb-form-control>
           <input
             mdbValidate
