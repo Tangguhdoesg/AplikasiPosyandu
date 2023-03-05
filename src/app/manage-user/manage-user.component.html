@@ -43,19 +43,19 @@
                     <p class="fw-normal mb-1">{{user.noTeleponUser}}</p>
                 </td>
                 <td>
-                    <p class="fw-normal mb-1">{{user.tanggalLahirUser}}</p>
+                    <p class="fw-normal mb-1">{{user.tanggalLahirUser | date:'dd-MM-yyyy'}}</p>
                 </td>
                 <td>
                     <p class="fw-normal mb-1">{{user.alamatUser}}</p>
                 </td>
                 <td>
-                    <ng-container *ngIf="user.userType===0">
+                    <ng-container *ngIf="user.tipeUser===0">
                         <span class="badge badge-success rounded-pill d-inline">Admin</span>
                     </ng-container>
-                    <ng-container *ngIf="user.userType===1">
+                    <ng-container *ngIf="user.tipeUser===1">
                         <span class="badge badge-primary rounded-pill d-inline">Petugas</span>
                     </ng-container>
-                    <ng-container *ngIf="user.userType===2">
+                    <ng-container *ngIf="user.tipeUser===2">
                         <span class="badge badge-warning rounded-pill d-inline">Orang Tua</span>
                     </ng-container>
                 </td>

@@ -20,7 +20,7 @@ export class ManageUserComponent implements OnInit {
       "idUser":1,
       "alamatUser":"Rumah Rafli",
       "namaUser":"rafli",
-      "userType":0,
+      "tipeUser":0,
       "noTeleponUser":"987654321",
       "nikUser":"1627892910293332",
       "passwordUser": ""
@@ -50,9 +50,6 @@ export class ManageUserComponent implements OnInit {
       .subscribe(data => {
         this.allUsers = [...data];
         this.totalUsersData = data.length;
-        this.allUsers.forEach(i => {
-          i.tanggalLahirUser = dayjs(i.tanggalLahirUser).format('DD-MM-YYYY').toString();
-        })
         this.isLoading = false;
       }, err => {
         this.isError = true;
