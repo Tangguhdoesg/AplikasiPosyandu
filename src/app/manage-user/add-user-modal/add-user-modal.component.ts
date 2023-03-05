@@ -62,7 +62,7 @@ export class AddUserModalComponent implements OnInit{
     let u: userPosyanduRequestBody = {
       namaUser: this.validationForm.get('userName')?.value,
       nikUser: this.validationForm.get('nik')?.value,
-      tanggalLahirUser: dayjs(this.validationForm.get('dob')?.value).format('YYYY-MM-DD'),
+      tanggalLahirUser: this.validationForm.get('dob')?.value,
       noTeleponUser: this.validationForm.get('phoneNum')?.value,
       alamatUser: this.validationForm.get('address')?.value,
       tipeUser: this.validationForm.get('userType')?.value
