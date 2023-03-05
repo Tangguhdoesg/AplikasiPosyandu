@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Tambah Pengguna</h5>
+    <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
     <button
       type="button"
       class="btn-close"
@@ -10,7 +10,7 @@
   <div class="modal-body text-align-last-center">
     <form [formGroup]="validationForm">
         <div class="row">
-          <div class="col-md-6 mb-4">
+          <div class="col-md-6 mb-32px">
             <mdb-form-control>
               <input
                 mdbValidate
@@ -26,7 +26,7 @@
               </mdb-error>
             </mdb-form-control>
           </div>
-          <div class="col-md-6  mb-4">
+          <div class="col-md-6 mb-32px">
             <mdb-form-control>
               <input
                 mdbValidate
@@ -45,15 +45,17 @@
         </div>
     
         <div class="row">
-          <div class="col-md-6 mb-4">
+          <div class="col-md-6 mb-32px">
             <mdb-form-control>
               <input
                 mdbValidate
                 mdbInput
-                type="text"
+                type="date"
+                placeholder="dd-mm-yyyy"
                 id="dobField"
                 class="form-control"
                 formControlName="dob"
+                [(ngModel)]="selectedDate"
                 required/>
               <label mdbLabel class="form-label" for="dobField">Tanggal Lahir Pengguna</label>
               <mdb-error *ngIf="dob?.invalid && (dob?.dirty || dob?.touched)">
@@ -61,7 +63,7 @@
               </mdb-error>
             </mdb-form-control>
           </div>
-          <div class="col-md-6 mb-4">
+          <div class="col-md-6 mb-32px">
             <mdb-form-control>
               <input
                 mdbValidate
@@ -80,7 +82,7 @@
         </div>
     
         <div class="row">
-          <div class="col-md-6 mb-4">
+          <div class="col-md-6 mb-32px">
             <mdb-form-control>
               <input
                 mdbValidate
@@ -96,6 +98,23 @@
               </mdb-error>
             </mdb-form-control>
           </div>
+
+          <div class="col-md-6 mb-32px">
+            <mdb-form-control>
+              <input
+                mdbValidate
+                mdbInput
+                type="text"
+                id="userTypeField"
+                class="form-control"
+                formControlName="userType"
+                required/>
+              <label mdbLabel class="form-label" for="userTypeField">Tipe Pengguna</label>
+              <mdb-error *ngIf="userType?.invalid && (userType?.dirty || userType?.touched)">
+                Tipe Pengguna wajib diisi
+              </mdb-error>
+            </mdb-form-control>
+          </div>
         </div>
     
       </form>
@@ -104,5 +123,5 @@
     <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
       Batal
     </button>
-    <button type="button" class="btn btn-primary" (click)="modalRef.close('edit')">Selesai</button>
+    <button type="button" class="btn btn-primary" (click)="modalRef.close(); onSubmit()" [disabled]="validationForm.invalid">Selesai</button>
   </div>

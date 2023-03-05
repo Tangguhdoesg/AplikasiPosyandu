@@ -31,6 +31,7 @@ import { LoadingComponent } from './shared/loading/loading.component';
 import { ErrorTimeoutComponent } from './shared/error-timeout/error-timeout.component';
 import { DeleteUserModalComponent } from './manage-user/delete-user-modal/delete-user-modal.component';
 import { AddUserModalComponent } from './manage-user/add-user-modal/add-user-modal.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,7 @@ import { AddUserModalComponent } from './manage-user/add-user-modal/add-user-mod
     MdbTabsModule,
     MdbTooltipModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
