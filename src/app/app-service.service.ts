@@ -38,7 +38,7 @@ export class AppServiceService {
       );
   }
 
-  deleteUser(id: string) {
+  deleteUser(id: number) {
     return this.httpClient.delete(`${environment.urlGateway}/user/${id}`)
       .pipe(
         map(data => {

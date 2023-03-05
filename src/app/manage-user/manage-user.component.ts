@@ -16,15 +16,15 @@ import { AddUserModalComponent } from './add-user-modal/add-user-modal.component
 export class ManageUserComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
   allUsers: userPosyandu[] = [
-      {"tanggalLahirUser":"2023-02-10T14:22:12.728+00:00",
-      "idUser":1,
-      "alamatUser":"Rumah Rafli",
-      "namaUser":"rafli",
-      "tipeUser":0,
-      "noTeleponUser":"987654321",
-      "nikUser":"1627892910293332",
-      "passwordUser": ""
-    }
+    //   {"tanggalLahirUser":"2023-02-10T14:22:12.728+00:00",
+    //   "idUser":1,
+    //   "alamatUser":"Rumah Rafli",
+    //   "namaUser":"rafli",
+    //   "tipeUser":0,
+    //   "noTeleponUser":"987654321",
+    //   "nikUser":"1627892910293332",
+    //   "passwordUser": ""
+    // }
   ];
   totalUsersData: number = 0;
   isLoading: boolean = false;
@@ -57,15 +57,13 @@ export class ManageUserComponent implements OnInit {
       })
   }
 
-  openDialogDeleteUser() {
+  openDialogDeleteUser(id: number) {
     this.modalRef = this.modalService.open(DeleteUserModalComponent, {
-      modalClass: 'modal-dialog-centered'
+      modalClass: 'modal-dialog-centered',
+      data: {id: id}
     });
     this.modalRef.onClose.subscribe((message: any) => {
-      if (message === 'delete') {
-        // add delete function
-        this.getAllUser();
-      }
+      this.getAllUser();
     });
   }
 
