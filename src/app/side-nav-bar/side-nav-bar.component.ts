@@ -26,7 +26,7 @@ export class SideNavBarComponent implements OnInit {
       number: '3',
       name: 'Laporan',
       icon: 'fa-solid fa-chart-line',
-      path: '/dashboard'
+      path: '/report'
     },
     {
       number: '4',

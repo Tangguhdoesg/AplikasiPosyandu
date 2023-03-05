@@ -32,6 +32,8 @@ import { ErrorTimeoutComponent } from './shared/error-timeout/error-timeout.comp
 import { DeleteUserModalComponent } from './manage-user/delete-user-modal/delete-user-modal.component';
 import { AddUserModalComponent } from './manage-user/add-user-modal/add-user-modal.component';
 import { DatePipe } from '@angular/common';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { DatePipe } from '@angular/common';
     LoadingComponent,
     ErrorTimeoutComponent,
     DeleteUserModalComponent,
-    AddUserModalComponent
+    AddUserModalComponent,
+    ReportComponent
   ],
   imports: [
     HttpClientModule,
@@ -68,7 +71,10 @@ import { DatePipe } from '@angular/common';
     MdbRippleModule,
     MdbScrollspyModule,
     MdbTabsModule,
-    MdbTooltipModule,
+    MdbTooltipModule, 
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

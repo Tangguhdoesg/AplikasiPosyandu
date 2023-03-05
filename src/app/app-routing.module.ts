@@ -4,6 +4,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { LoginComponent } from './login/login.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
   { 
@@ -27,6 +28,10 @@ const routes: Routes = [
         component: ManageUserComponent
         // loadChildren: () => import('./content/content.module').then(m => m.ContentModule)
       }, 
+      {
+        path: 'report',
+        component: ReportComponent
+      },
       {
         path: 'edit-profile',
         component: EditProfileComponent
