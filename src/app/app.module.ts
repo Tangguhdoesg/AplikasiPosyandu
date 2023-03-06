@@ -29,7 +29,6 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { ErrorTimeoutComponent } from './shared/error-timeout/error-timeout.component';
-import { DeleteUserModalComponent } from './manage-user/delete-user-modal/delete-user-modal.component';
 import { AddUserModalComponent } from './manage-user/add-user-modal/add-user-modal.component';
 import { DatePipe } from '@angular/common';
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -37,6 +36,7 @@ import { ReportComponent } from './report/report.component';
 import { ManageToddlerComponent } from './manage-toddler/manage-toddler.component';
 import { AddToddlerModalComponent } from './manage-toddler/add-toddler-modal/add-toddler-modal.component';
 import { DeleteToddlerModalComponent } from './manage-toddler/delete-toddler-modal/delete-toddler-modal.component';
+import { DeleteModalComponent } from './shared/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import { DeleteToddlerModalComponent } from './manage-toddler/delete-toddler-mod
     ManageUserComponent,
     LoadingComponent,
     ErrorTimeoutComponent,
-    DeleteUserModalComponent,
+    DeleteModalComponent,
     AddUserModalComponent,
     ReportComponent,
     ManageToddlerComponent,

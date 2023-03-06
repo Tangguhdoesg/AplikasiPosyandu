@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Hapus Pengguna</h5>
+    <h5 class="modal-title" id="exampleModalLabel">Hapus</h5>
     <button
       type="button"
       class="btn-close"
@@ -12,5 +12,5 @@
     <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
       Tidak
     </button>
-    <button type="button" class="btn btn-primary" (click)="onDelete()">Hapus</button>
+    <button type="button" class="btn btn-primary" (click)="modalRef.close('delete')">Hapus</button>
   </div>
