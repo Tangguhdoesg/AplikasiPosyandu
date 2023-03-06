@@ -1,0 +1,73 @@
+<ng-container *ngIf="isLoading">
+    <app-loading></app-loading>
+</ng-container>
+
+<ng-container *ngIf="isError">
+    <app-error-timeout></app-error-timeout>
+</ng-container>
+
+<ng-container *ngIf="!isLoading && !isError">
+    <div class="my-3">
+        <div class="fa-solid fa-baby">
+            <span style="margin-left: 24px;">Balita</span>
+        </div>
+    </div>
+
+    <div class="mb-4 text-align-last-right">
+        <button class="btn btn-primary" (click)="openDialogAddEditToddler()">Tambah Balita</button>
+    </div>
+
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+            <tr>
+                <th>Nama Balita</th>
+                <th>NIK Balita</th>
+                <th>Jenis Kelamin</th>
+                <th>Tempat Lahir</th>
+                <th>Tanggal Lahir</th>
+                <th>Tinggi Lahir (cm)</th>
+                <th>Berat Lahir (kg)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let toddler of allToddlers">
+                <td>
+                    <div class="d-flex align-items-center">
+                        <p class="fw-bold mb-1">{{toddler.namaBalita}}</p>
+                    </div>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{toddler.nikBalita}}</p>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{toddler.jenisKelaminBalita}}</p>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{toddler.tempatLahirBalita}}</p>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{toddler.tanggalLahirBalita  | date:'dd-MM-yyyy'}}</p>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{toddler.tinggiSaatLahirBalita}}</p>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{toddler.beratSaatLahirBalita}}</p>
+                </td>
+                <td class="">
+                    <button type="button" 
+                            class="btn btn-link btn-sm btn-rounded fa-solid fa-pen-to-square"
+                            (click)="openDialogAddEditToddler(toddler)">
+                    </button>
+                    <button type="button" 
+                            class="btn btn-link btn-sm btn-rounded fa-solid fa-trash"
+                            (click)="openDialogDeleteToddler(toddler.idBalita)"
+                            data-mdb-target="#exampleModal"
+                            data-mdb-whatever="toddler">
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

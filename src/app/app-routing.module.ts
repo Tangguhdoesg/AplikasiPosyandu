@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { LoginComponent } from './login/login.component';
+import { ManageToddlerComponent } from './manage-toddler/manage-toddler.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { ReportComponent } from './report/report.component';
 
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'report',
         component: ReportComponent
+      },
+      {
+        path: 'manage-toddler',
+        component: ManageToddlerComponent
       },
       {
         path: 'edit-profile',

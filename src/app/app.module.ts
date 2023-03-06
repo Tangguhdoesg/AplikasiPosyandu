@@ -34,6 +34,9 @@ import { AddUserModalComponent } from './manage-user/add-user-modal/add-user-mod
 import { DatePipe } from '@angular/common';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { ReportComponent } from './report/report.component';
+import { ManageToddlerComponent } from './manage-toddler/manage-toddler.component';
+import { AddToddlerModalComponent } from './manage-toddler/add-toddler-modal/add-toddler-modal.component';
+import { DeleteToddlerModalComponent } from './manage-toddler/delete-toddler-modal/delete-toddler-modal.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { ReportComponent } from './report/report.component';
     ErrorTimeoutComponent,
     DeleteUserModalComponent,
     AddUserModalComponent,
-    ReportComponent
+    ReportComponent,
+    ManageToddlerComponent,
+    AddToddlerModalComponent,
+    DeleteToddlerModalComponent
   ],
   imports: [
     HttpClientModule,

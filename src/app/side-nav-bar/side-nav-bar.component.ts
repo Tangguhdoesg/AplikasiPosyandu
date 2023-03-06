@@ -38,7 +38,7 @@ export class SideNavBarComponent implements OnInit {
       number: '5',
       name: 'Balita',
       icon: 'fa-solid fa-baby',
-      path: '/dashboard'
+      path: '/manage-toddler'
     }
   ]
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
 import { map, Observable } from 'rxjs';
-import { userPosyandu, userPosyanduRequestBody } from './models';
+import { balita, balitaAddRequestBody, balitaEditRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
 import { environment } from 'environment';
 
 @Injectable({
@@ -47,4 +47,58 @@ export class AppServiceService {
       );
   }
   
+  getAllToddler(): Observable<balita[]> {
+    return this.httpClient.get<balita[]>(`${environment.urlGateway}/balita/all`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  getAllUserToddler(userId: number): Observable<balita[]> {
+    return this.httpClient.get<balita[]>(`${environment.urlGateway}/balita/user/${userId}`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  getToddler(id: number): Observable<balita> {
+    return this.httpClient.get<balita>(`${environment.urlGateway}/balita/${id}`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  addToddler(request: balitaAddRequestBody) {
+    return this.httpClient.post<balita>(`${environment.urlGateway}/balita`, request)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  editToddler(request: balitaEditRequestBody, id: number) {
+    return this.httpClient.put<balita>(`${environment.urlGateway}/balita/${id}`, request)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  deleteToddler(id: number) {
+    return this.httpClient.delete(`${environment.urlGateway}/balita/${id}`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
 }
