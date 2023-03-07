@@ -73,7 +73,9 @@ export class ManageToddlerComponent implements OnInit {
       data: {toddler: toddler}
     });
     this.modalRefAddEdit.onClose.subscribe((message: any) => {
-      this.getAllToddler();
+      if (message === 'submit') {
+        this.getAllToddler();
+      }
     });
   }
 }

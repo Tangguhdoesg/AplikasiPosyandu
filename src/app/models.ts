@@ -36,22 +36,14 @@ export interface balita {
     beratSaatLahirBalita: number
 }
 
-export interface balitaAddRequestBody {
+export interface balitaAddEditRequestBody {
     nikBalita: string,
+    namaBalita: string,
     idOrangTua: number,
     jenisKelaminBalita: string,
     beratSaatLahirBalita: number,
     tinggiSaatLahirBalita: number,
     tempatLahirBalita: string,
-    tanggalLahirBalita: string,
-    namaBalita: string
+    tanggalLahirBalita: string
 }
 
-export interface balitaEditRequestBody {
-    namaBalita: string,
-    jenisKelaminBalita: string,
-    tanggalLahirBalita: string,
-    tempatLahirBalita: string,
-    tinggiSaatLahirBalita: number,
-    beratSaatLahirBalita: number
-}

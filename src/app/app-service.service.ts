@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
 import { map, Observable } from 'rxjs';
-import { balita, balitaAddRequestBody, balitaEditRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
+import { balita, balitaAddEditRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
 import { environment } from 'environment';
 
 @Injectable({
@@ -74,7 +74,7 @@ export class AppServiceService {
       );
   }
 
-  addToddler(request: balitaAddRequestBody) {
+  addToddler(request: balitaAddEditRequestBody) {
     return this.httpClient.post<balita>(`${environment.urlGateway}/balita`, request)
       .pipe(
         map(data => {
@@ -83,7 +83,7 @@ export class AppServiceService {
       );
   }
 
-  editToddler(request: balitaEditRequestBody, id: number) {
+  editToddler(request: balitaAddEditRequestBody, id: number) {
     return this.httpClient.put<balita>(`${environment.urlGateway}/balita/${id}`, request)
       .pipe(
         map(data => {
