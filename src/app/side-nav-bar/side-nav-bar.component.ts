@@ -36,9 +36,21 @@ export class SideNavBarComponent implements OnInit {
     },
     {
       number: '5',
+      name: 'Pengaturan Balita',
+      icon: 'fa-solid fa-person-breastfeeding',
+      path: '/manage-toddler'
+    },
+    {
+      number: '6',
       name: 'Balita',
       icon: 'fa-solid fa-baby',
-      path: '/manage-toddler'
+      path: '/dashboard'
+    },
+    {
+      number: '7',
+      name: 'Imunisasi',
+      icon: 'fa-solid fa-syringe',
+      path: '/dashboard'
     }
   ]
 
