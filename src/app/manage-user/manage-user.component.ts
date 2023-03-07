@@ -61,7 +61,6 @@ export class ManageUserComponent implements OnInit {
     this.service.deleteUser(id)
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
-        console.log(data);
         this.isLoading = false;
         this.getAllUser();
       }, err => {
@@ -72,8 +71,7 @@ export class ManageUserComponent implements OnInit {
 
   openDialogDeleteUser(id: number) {
     this.modalRef = this.modalService.open(DeleteModalComponent, {
-      modalClass: 'modal-dialog-centered',
-      data: {id: id}
+      modalClass: 'modal-dialog-centered'
     });
     this.modalRef.onClose.subscribe((message: any) => {
       if (message === 'delete') {

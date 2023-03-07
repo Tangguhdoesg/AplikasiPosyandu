@@ -35,7 +35,6 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { ReportComponent } from './report/report.component';
 import { ManageToddlerComponent } from './manage-toddler/manage-toddler.component';
 import { AddToddlerModalComponent } from './manage-toddler/add-toddler-modal/add-toddler-modal.component';
-import { DeleteToddlerModalComponent } from './manage-toddler/delete-toddler-modal/delete-toddler-modal.component';
 import { DeleteModalComponent } from './shared/delete-modal/delete-modal.component';
 
 @NgModule({
@@ -53,8 +52,7 @@ import { DeleteModalComponent } from './shared/delete-modal/delete-modal.compone
     AddUserModalComponent,
     ReportComponent,
     ManageToddlerComponent,
-    AddToddlerModalComponent,
-    DeleteToddlerModalComponent
+    AddToddlerModalComponent
   ],
   imports: [
     HttpClientModule,

@@ -3,8 +3,8 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { Subject, takeUntil } from 'rxjs';
 import { AppServiceService } from '../app-service.service';
 import { balita } from '../models';
+import { DeleteModalComponent } from '../shared/delete-modal/delete-modal.component';
 import { AddToddlerModalComponent } from './add-toddler-modal/add-toddler-modal.component';
-import { DeleteToddlerModalComponent } from './delete-toddler-modal/delete-toddler-modal.component';
 
 @Component({
   selector: 'app-manage-toddler',
@@ -18,7 +18,7 @@ export class ManageToddlerComponent implements OnInit {
   isLoading: boolean = false;
   isError: boolean = false;
 
-  modalRefDelete: MdbModalRef<DeleteToddlerModalComponent> | null = null;
+  modalRefDelete: MdbModalRef<DeleteModalComponent> | null = null;
   modalRefAddEdit: MdbModalRef<AddToddlerModalComponent> | null = null;
 
   constructor(private service: AppServiceService,
@@ -44,13 +44,26 @@ export class ManageToddlerComponent implements OnInit {
       })
   }
 
+  deleteToddler(id: number) {
+    this.service.deleteToddler(id)
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe(data => {
+        this.isLoading = false;
+        this.getAllToddler();
+      }, err => {
+        this.isError = true;
+        this.isLoading = false;
+      })
+  }
+
   openDialogDeleteToddler(id: number) {
-    this.modalRefDelete = this.modalService.open(DeleteToddlerModalComponent, {
-      modalClass: 'modal-dialog-centered',
-      data: {id: id}
+    this.modalRefDelete = this.modalService.open(DeleteModalComponent, {
+      modalClass: 'modal-dialog-centered'
     });
     this.modalRefDelete.onClose.subscribe((message: any) => {
-      this.getAllToddler();
+      if (message === 'delete') {
+        this.deleteToddler(id);
+      }
     });
   }
 
