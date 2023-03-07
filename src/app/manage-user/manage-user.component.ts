@@ -86,7 +86,9 @@ export class ManageUserComponent implements OnInit {
       data: {user: user}
     });
     this.modalRefAddEdit.onClose.subscribe((message: any) => {
-      this.getAllUser();
+      if (message === 'submit') {
+        this.getAllUser();
+      }
     });
   }
 

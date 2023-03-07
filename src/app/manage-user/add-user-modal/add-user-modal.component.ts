@@ -38,13 +38,10 @@ export class AddUserModalComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log(this.user);
     this.modalTitle = this.user === undefined ? 'Tambah Pengguna' : 'Ubah Pengguna';
     if (this.user !== undefined) {
       this.validationForm.get('userName')?.setValue(this.user?.namaUser);
       this.validationForm.get('nik')?.setValue(this.user?.nikUser);
-      // this.validationForm.get('dob')?.setValue(dayjs(this.user?.tanggalLahirUser));
-      console.log(dayjs(this.user?.tanggalLahirUser.toString()).format('DD-MM-YYYY'));
       this.selectedDate = this.datePipe.transform(dayjs(this.user?.tanggalLahirUser).format('MM-DD-YYYY'), "yyyy-MM-dd")
       this.validationForm.get('address')?.setValue(this.user?.alamatUser);
       this.validationForm.get('phoneNum')?.setValue(this.user?.noTeleponUser);
@@ -63,7 +60,6 @@ export class AddUserModalComponent implements OnInit{
   }
 
   onSubmit() {
-    console.log(this.user);
     let u: userPosyanduRequestBody = {
       namaUser: this.validationForm.get('userName')?.value,
       nikUser: this.validationForm.get('nik')?.value,
@@ -73,7 +69,6 @@ export class AddUserModalComponent implements OnInit{
       tipeUser: this.validationForm.get('userType')?.value === userPosyanduType.ADMIN ? 0 :
                 this.validationForm.get('userType')?.value === userPosyanduType.PETUGAS ? 1 : 2
     };
-    console.log(u);
     if (this.user === undefined) {
       this.addUser(u);
     } else {
@@ -87,13 +82,11 @@ export class AddUserModalComponent implements OnInit{
     this.service.addUser(req)
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
-        console.log(data);
         this.isLoading = false;
-        this.modalRef.close(); 
+        this.modalRef.close('submit'); 
       }, err => {
         this.isError = true;
         this.isLoading = false;
-        // this.modalRef.close(); 
       })
   }
 
@@ -105,11 +98,10 @@ export class AddUserModalComponent implements OnInit{
       .subscribe(data => {
         console.log(data);
         this.isLoading = false;
-        this.modalRef.close(); 
+        this.modalRef.close('submit'); 
       }, err => {
         this.isError = true;
         this.isLoading = false;
-        // this.modalRef.close(); 
       })
   }
 
