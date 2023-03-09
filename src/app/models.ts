@@ -27,6 +27,8 @@ export interface userPosyanduRequestBody {
 export interface balita {
     idBalita: number,
     idOrangTua: number,
+    namaOrangTua?: string,
+    nikOrangTua?: string,
     namaBalita: string,
     nikBalita: string,
     jenisKelaminBalita: string,
@@ -39,7 +41,7 @@ export interface balita {
 export interface balitaAddEditRequestBody {
     nikBalita: string,
     namaBalita: string,
-    idOrangTua: number,
+    nikOrangTua: number,
     jenisKelaminBalita: string,
     beratSaatLahirBalita: number,
     tinggiSaatLahirBalita: number,

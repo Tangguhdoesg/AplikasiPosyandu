@@ -9,7 +9,7 @@
 <ng-container *ngIf="!isLoading && !isError">
     <div class="my-3">
         <div class="fa-solid fa-baby">
-            <span style="margin-left: 24px;">Balita</span>
+            <span style="margin-left: 24px;">Pengaturan Balita</span>
         </div>
     </div>
 
@@ -27,6 +27,7 @@
                 <th>Tanggal Lahir</th>
                 <th>Tinggi Lahir (cm)</th>
                 <th>Berat Lahir (kg)</th>
+                <th>Nama Orang Tua</th>
                 <th></th>
             </tr>
         </thead>
@@ -54,6 +55,9 @@
                 </td>
                 <td>
                     <p class="fw-normal mb-1">{{toddler.beratSaatLahirBalita}}</p>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{toddler.namaOrangTua}}</p>
                 </td>
                 <td class="">
                     <button type="button" 

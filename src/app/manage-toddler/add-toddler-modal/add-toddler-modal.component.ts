@@ -43,7 +43,7 @@ export class AddToddlerModalComponent {
     if (this.toddler !== undefined) {
       this.validationForm.get('name')?.setValue(this.toddler?.namaBalita);
       this.validationForm.get('nik')?.setValue(this.toddler?.nikBalita);
-      this.validationForm.get('parentNik')?.setValue(this.toddler?.idOrangTua);
+      this.validationForm.get('parentNik')?.setValue(this.toddler?.nikOrangTua);
       this.validationForm.get('gender')?.setValue(this.toddler?.jenisKelaminBalita);
       this.validationForm.get('pob')?.setValue(this.toddler?.tempatLahirBalita);
       this.selectedDate = this.datePipe.transform(dayjs(this.toddler?.tanggalLahirBalita).format('MM-DD-YYYY'), "yyyy-MM-dd")
@@ -57,7 +57,7 @@ export class AddToddlerModalComponent {
     let t: balitaAddEditRequestBody = {
       namaBalita: this.validationForm.get('name')?.value,
       nikBalita: this.validationForm.get('nik')?.value,
-      idOrangTua: this.validationForm.get('parentNik')?.value,
+      nikOrangTua: this.validationForm.get('parentNik')?.value,
       jenisKelaminBalita: this.validationForm.get('gender')?.value,
       beratSaatLahirBalita: this.validationForm.get('wob')?.value,
       tinggiSaatLahirBalita: this.validationForm.get('hob')?.value,
@@ -80,7 +80,8 @@ export class AddToddlerModalComponent {
       .subscribe(data => {
         console.log(data);
         this.isLoading = false;
-        this.modalRef.close('submit'); 
+        this.modalRef.close('submit');
+        
       }, err => {
         this.isError = true;
         this.isLoading = false;
