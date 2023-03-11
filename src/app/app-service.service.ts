@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
 import { map, Observable } from 'rxjs';
-import { balita, balitaAddEditRequestBody, loginRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
+import { balita, balitaAddEditRequestBody, checkup, checkupAddEditRequestBody, loginRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
 import { environment } from 'environment';
 
 @Injectable({
@@ -12,8 +12,6 @@ export class AppServiceService {
   constructor(private httpClient: HttpClient) { }
 
   login(request: loginRequestBody): Observable<userPosyandu> {
-    console.log(request);
-    
     return this.httpClient.post<userPosyandu>(`${environment.urlGateway}/user/login`, request)
       .pipe(
         map(data => {
@@ -105,6 +103,51 @@ export class AppServiceService {
 
   deleteToddler(id: number) {
     return this.httpClient.delete(`${environment.urlGateway}/balita/${id}`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  getAllCheckup(): Observable<checkup[]> {
+    return this.httpClient.get<checkup[]>(`${environment.urlGateway}/checkup/all`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  getCheckup(id: number): Observable<checkup> {
+    return this.httpClient.get<checkup>(`${environment.urlGateway}/checkup/balita/${id}`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  addCheckup(request: checkupAddEditRequestBody) {
+    return this.httpClient.post<checkup>(`${environment.urlGateway}/checkup`, request)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  editCheckup(request: checkupAddEditRequestBody, id: number) {
+    return this.httpClient.put<checkup>(`${environment.urlGateway}/checkup/${id}`, request)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  deleteCheckup(id: number) {
+    return this.httpClient.delete(`${environment.urlGateway}/checkup/${id}`)
       .pipe(
         map(data => {
           return data;

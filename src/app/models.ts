@@ -54,3 +54,26 @@ export interface balitaAddEditRequestBody {
     tanggalLahirBalita: string
 }
 
+export interface checkup {
+    idCheckup: number,
+    tinggiBadan: number,
+    beratBadan: number,
+    lingkarKepala: number,
+    lingkarLengan: number,
+    catatan: string,
+    tanggalCheckup: string,
+    tanggalCheckupBerikutnya: string,
+    idBalita: number,
+    umurBalita: number
+}
+
+export interface checkupAddEditRequestBody {
+    tinggiBadan: number,
+    beratBadan: number,
+    lingkarKepala: number,
+    lingkarLengan: number,
+    catatan: string,
+    tanggalCheckup: string,
+    tanggalCheckupBerikutnya: string,
+    idBalita: number
+}
