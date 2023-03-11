@@ -4,6 +4,11 @@ export enum userPosyanduType {
     ORANGTUA = 'Orang Tua'
 }
 
+export interface loginRequestBody {
+    notelepon: string,
+    password: string
+}
+
 export interface userPosyandu {
     idUser: number,
     namaUser: string,

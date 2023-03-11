@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
 import { map, Observable } from 'rxjs';
-import { balita, balitaAddEditRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
+import { balita, balitaAddEditRequestBody, loginRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
 import { environment } from 'environment';
 
 @Injectable({
@@ -10,6 +10,17 @@ import { environment } from 'environment';
 export class AppServiceService {
 
   constructor(private httpClient: HttpClient) { }
+
+  login(request: loginRequestBody): Observable<userPosyandu> {
+    console.log(request);
+    
+    return this.httpClient.post<userPosyandu>(`${environment.urlGateway}/user/login`, request)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
 
   getAllUser(): Observable<userPosyandu[]> {
     return this.httpClient.get<userPosyandu[]>(`${environment.urlGateway}/user/all`)

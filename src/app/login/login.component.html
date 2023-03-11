@@ -1,36 +1,50 @@
-<div class="p-4 grid-container">
+<ng-container *ngIf="isLoading">
+  <app-loading></app-loading>
+</ng-container>
+
+<ng-container *ngIf="isError">
+  <app-error-timeout></app-error-timeout>
+</ng-container>
+
+<ng-container *ngIf="!isLoading && !isError">
+  <div class="p-4 grid-container">
     <div class="col-sm-7"></div>
     <div class="col-sm-5 border sign-in-style">
       <div class="mb-3">
         <h5>Masuk</h5>
       </div>
 
-      <div class="mb-3">
-        <label for="field-email" class="form-label">Email</label>
-        <div class="input-group">
-          <input type="text"
-                 class="form-control"
-                 id="field-email"
-                 placeholder="Masukan email Anda">
+      <form [formGroup]="validationForm">
+        <div class="mb-32px">
+          <mdb-form-control>
+            <input mdbValidate mdbInput type="text" id="phoneNumField" class="form-control" formControlName="phoneNum"
+              required />
+            <label mdbLabel class="form-label" for="phoneNumField">Nomor Telepon</label>
+            <mdb-error *ngIf="phoneNum?.invalid && (phoneNum?.dirty || phoneNum?.touched)">
+              Nomor Telepon wajib diisi
+            </mdb-error>
+          </mdb-form-control>
         </div>
-      </div>
+        <div class="mb-4">
+          <mdb-form-control>
+            <input mdbValidate mdbInput type="password" id="passwordField" class="form-control" formControlName="password"
+              required />
+            <label mdbLabel class="form-label" for="passwordField">Kata Sandi</label>
+            <mdb-error *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+              Kata Sandi wajib diisi
+            </mdb-error>
+          </mdb-form-control>
+        </div>
 
-      <div class="mb-3">
-        <label for="field-password" class="form-label">Kata Sandi</label>
-        <div class="input-group">
-          <input type="password"
-                 class="form-control"
-                 id="field-password"
-                 placeholder="Masukan kata sandi">
+        <div class="text-end mb-3">
+          <u style="font-size: 12px; color: blue; cursor: pointer;">Lupa Kata Sandi?</u>
         </div>
-      </div>
-      <div class="text-end mb-3">
-        <a href="#">Lupa Kata Sandi?</a>
-      </div>
-      <div class="text-align-last-center">
-        <button type="submit" class="btnLogin" (click)="onSubmit()">Masuk</button>
-      </div>
+
+        <button type="submit" class="btn btn-success w-100" [disabled]="validationForm.invalid" (click)="onSubmit()">
+          Masuk
+        </button>
+      </form>
 
     </div>
-</div>
-
+  </div>
+</ng-container>
