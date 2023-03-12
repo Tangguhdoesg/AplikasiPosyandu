@@ -70,7 +70,8 @@ export class ManageToddlerComponent implements OnInit {
   openDialogAddEditToddler(toddler?: balita) {
     this.modalRefAddEdit = this.modalService.open(AddToddlerModalComponent, {
       modalClass: 'modal-lg',
-      data: {toddler: toddler}
+      data: {toddler: toddler},
+      ignoreBackdropClick: true
     });
     this.modalRefAddEdit.onClose.subscribe((message: any) => {
       if (message === 'submit') {

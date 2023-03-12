@@ -83,7 +83,8 @@ export class ManageUserComponent implements OnInit {
   openDialogAddEditUser(user?: userPosyandu) {
     this.modalRefAddEdit = this.modalService.open(AddUserModalComponent, {
       modalClass: 'modal-lg',
-      data: {user: user}
+      data: {user: user},
+      ignoreBackdropClick: true
     });
     this.modalRefAddEdit.onClose.subscribe((message: any) => {
       if (message === 'submit') {
