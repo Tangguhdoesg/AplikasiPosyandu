@@ -88,7 +88,7 @@ export interface imunisasi {
     namaBalita: string,
     namaOrangTua: string
     namaImunisasi: string,
-    catatan: string,
+    catatanImunisasi: string,
     tanggalImunisasi: string,
     tanggalImunisasiBerikutnya: string,
 }
@@ -96,7 +96,7 @@ export interface imunisasi {
 export interface imunisasiAddEditRequestBody {
     nikBalita: string,
     namaImunisasi: string,
-    catatan: string,
+    catatanImunisasi: string,
     tanggalImunisasi: string,
     tanggalImunisasiBerikutnya: string,
 }

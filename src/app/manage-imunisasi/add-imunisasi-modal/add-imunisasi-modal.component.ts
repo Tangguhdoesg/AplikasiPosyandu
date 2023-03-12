@@ -31,7 +31,7 @@ export class AddImunisasiModalComponent {
       nik: new FormControl(null, Validators.required),
       imunisasiName: new FormControl(null, Validators.required),
       notes: new FormControl(null),
-      ImunisasiDate: new FormControl(null, Validators.required),
+      imunisasiDate: new FormControl(null, Validators.required),
       nextImunisasiDate: new FormControl(null, Validators.required)
     });
   }
@@ -41,7 +41,7 @@ export class AddImunisasiModalComponent {
     if (this.imunisasi !== undefined) {
       this.validationForm.get('nik')?.setValue(this.imunisasi?.nikBalita);
       this.validationForm.get('imunisasiName')?.setValue(this.imunisasi?.namaImunisasi);
-      this.validationForm.get('notes')?.setValue(this.imunisasi?.catatan);
+      this.validationForm.get('notes')?.setValue(this.imunisasi?.catatanImunisasi);
       this.selectedImunisasiDate = this.datePipe.transform(dayjs(this.imunisasi?.tanggalImunisasi).format('MM-DD-YYYY'), "yyyy-MM-dd")
       this.selectedNextImunisasiDate = this.datePipe.transform(dayjs(this.imunisasi?.tanggalImunisasiBerikutnya).format('MM-DD-YYYY'), "yyyy-MM-dd")
     }
@@ -52,7 +52,7 @@ export class AddImunisasiModalComponent {
     let i: imunisasiAddEditRequestBody = {
       nikBalita: this.validationForm.get('nik')?.value,
       namaImunisasi: this.validationForm.get('imunisasiName')?.value,
-      catatan: this.validationForm.get('notes')?.value,
+      catatanImunisasi: this.validationForm.get('notes')?.value,
       tanggalImunisasi: this.validationForm.get('imunisasiDate')?.value,
       tanggalImunisasiBerikutnya: this.validationForm.get('nextImunisasiDate')?.value
     };
