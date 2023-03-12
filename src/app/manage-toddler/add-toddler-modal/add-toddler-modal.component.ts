@@ -53,7 +53,6 @@ export class AddToddlerModalComponent {
   }
 
   onSubmit() {
-    console.log(this.toddler);
     let t: balitaAddEditRequestBody = {
       namaBalita: this.validationForm.get('name')?.value,
       nikBalita: this.validationForm.get('nik')?.value,
@@ -62,9 +61,8 @@ export class AddToddlerModalComponent {
       beratSaatLahirBalita: this.validationForm.get('wob')?.value,
       tinggiSaatLahirBalita: this.validationForm.get('hob')?.value,
       tempatLahirBalita: this.validationForm.get('pob')?.value,
-      tanggalLahirBalita: this.validationForm.get('dob')?.value
+      tanggalLahirBalita: this.selectedDate
     };
-    console.log(this.toddler);
     if (this.toddler === undefined) {
       this.addToddler(t);
     } else {
