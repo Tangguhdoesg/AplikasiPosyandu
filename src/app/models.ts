@@ -64,16 +64,19 @@ export interface checkup {
     tanggalCheckup: string,
     tanggalCheckupBerikutnya: string,
     idBalita: number,
+    nikBalita: string,
+    namaBalita: string,
+    namaOrangTua: string,
     umurBalita: number
 }
 
 export interface checkupAddEditRequestBody {
+    nikBalita?: string,
     tinggiBadan: number,
     beratBadan: number,
     lingkarKepala: number,
     lingkarLengan: number,
     catatan: string,
     tanggalCheckup: string,
-    tanggalCheckupBerikutnya: string,
-    idBalita: number
+    tanggalCheckupBerikutnya: string
 }

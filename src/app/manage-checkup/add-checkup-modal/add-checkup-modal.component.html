@@ -1,0 +1,129 @@
+<ng-container *ngIf="isLoading">
+    <app-loading></app-loading>
+</ng-container>
+
+<ng-container *ngIf="isError">
+    <app-error-timeout></app-error-timeout>
+</ng-container>
+
+<ng-container *ngIf="!isLoading && !isError">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body text-align-last-center">
+        <form [formGroup]="validationForm">
+            <div class="row">
+                <div class="mb-32px">
+                    <ng-container *ngIf="checkup !== undefined">
+                        <div class="row" style="text-align-last: start;">
+                            <div class="col-md-6">NIK Balita : {{checkup!.nikBalita}}</div>
+                            <div class="col-md-6">Nama Balita : {{checkup!.namaBalita}}</div>
+                        </div>
+                    </ng-container>
+                    
+                    <ng-container *ngIf="checkup === undefined">
+                        <mdb-form-control>
+                            <input mdbValidate mdbInput type="text" id="NIKField" class="form-control" formControlName="nik"
+                                required />
+                            <label mdbLabel class="form-label" for="NIKField">NIK Balita</label>
+                            <mdb-error *ngIf="nik?.invalid && (nik?.dirty || nik?.touched)">
+                                NIK Balita wajib diisi
+                            </mdb-error>
+                        </mdb-form-control>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="heightField" class="form-control"
+                            formControlName="height" required />
+                        <label mdbLabel class="form-label" for="heightField">Tinggi Balita</label>
+                        <mdb-error *ngIf="height?.invalid && (height?.dirty || height?.touched)">
+                            Tinggi Balita wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="weightField" class="form-control"
+                            formControlName="weight" required />
+                        <label mdbLabel class="form-label" for="weightField">Berat Balita (kg)</label>
+                        <mdb-error *ngIf="weight?.invalid && (weight?.dirty || weight?.touched)">
+                            Berat Balita wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="headCircumField" class="form-control"
+                            formControlName="headCircum" required />
+                        <label mdbLabel class="form-label" for="headCircumField">Lingkar Kepala (cm)</label>
+                        <mdb-error *ngIf="headCircum?.invalid && (headCircum?.dirty || headCircum?.touched)">
+                            Lingkar Kepala wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="armCircumField" class="form-control"
+                            formControlName="armCircum" required />
+                        <label mdbLabel class="form-label" for="armCircumField">Lingkar Lengan (cm)</label>
+                        <mdb-error *ngIf="armCircum?.invalid && (armCircum?.dirty || armCircum?.touched)">
+                            Lingkar Lengan wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="date" placeholder="dd-mm-yyyy" id="checkupDateField"
+                            class="form-control" formControlName="checkupDate" [(ngModel)]="selectedCheckupDate"
+                            required />
+                        <label mdbLabel class="form-label" for="checkupDateField">Tanggal Pemeriksaan</label>
+                        <mdb-error *ngIf="checkupDate?.invalid && (checkupDate?.dirty || checkupDate?.touched)">
+                            Tanggal Pemeriksaan wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="date" placeholder="dd-mm-yyyy" id="nextCheckupDateField"
+                            class="form-control" formControlName="nextCheckupDate" [(ngModel)]="selectedNextCheckupDate"
+                            required />
+                        <label mdbLabel class="form-label" for="nextCheckupDateField">Tgl Pemeriksaan
+                            Selanjutnya</label>
+                        <mdb-error
+                            *ngIf="nextCheckupDate?.invalid && (nextCheckupDate?.dirty || nextCheckupDate?.touched)">
+                            Tanggal Pemeriksaan Selanjutnya wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="notesField" class="form-control"
+                            formControlName="notes" required />
+                        <label mdbLabel class="form-label" for="notesField">Catatan</label>
+                    </mdb-form-control>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+            Batal
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()"
+            [disabled]="validationForm.invalid">Selesai</button>
+    </div>
+</ng-container>

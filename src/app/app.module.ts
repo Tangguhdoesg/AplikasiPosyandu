@@ -36,6 +36,8 @@ import { ReportComponent } from './report/report.component';
 import { ManageToddlerComponent } from './manage-toddler/manage-toddler.component';
 import { AddToddlerModalComponent } from './manage-toddler/add-toddler-modal/add-toddler-modal.component';
 import { DeleteModalComponent } from './shared/delete-modal/delete-modal.component';
+import { ManageCheckupComponent } from './manage-checkup/manage-checkup.component';
+import { AddCheckupModalComponent } from './manage-checkup/add-checkup-modal/add-checkup-modal.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { DeleteModalComponent } from './shared/delete-modal/delete-modal.compone
     AddUserModalComponent,
     ReportComponent,
     ManageToddlerComponent,
-    AddToddlerModalComponent
+    AddToddlerModalComponent,
+    ManageCheckupComponent,
+    AddCheckupModalComponent
   ],
   imports: [
     HttpClientModule,
