@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
 import { map, Observable } from 'rxjs';
-import { balita, balitaAddEditRequestBody, checkup, checkupAddEditRequestBody, imunisasi, imunisasiAddEditRequestBody, loginRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
+import { balita, balitaAddEditRequestBody, checkup, checkupAddEditRequestBody, imunisasi, imunisasiAddEditRequestBody, kegiatan, kegiatanAddEditRequestBody, loginRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
 import { environment } from 'environment';
 
 @Injectable({
@@ -194,6 +194,51 @@ export class AppServiceService {
 
   deleteImunisasi(id: number) {
     return this.httpClient.delete(`${environment.urlGateway}/imunisasi/${id}`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+  
+  getAllActivity(): Observable<kegiatan[]> {
+    return this.httpClient.get<kegiatan[]>(`${environment.urlGateway}/kegiatan/all`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  // getActivity(id: number): Observable<kegiatan> {
+  //   return this.httpClient.get<kegiatan>(`${environment.urlGateway}/kegiatan/balita/${id}`)
+  //     .pipe(
+  //       map(data => {
+  //         return data;
+  //       })
+  //     );
+  // }
+
+  addActivity(request: kegiatanAddEditRequestBody) {
+    return this.httpClient.post<kegiatan>(`${environment.urlGateway}/kegiatan`, request)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  editActivity(request: kegiatanAddEditRequestBody, id: number) {
+    return this.httpClient.put<kegiatan>(`${environment.urlGateway}/kegiatan/${id}`, request)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  deleteActivity(id: number) {
+    return this.httpClient.delete(`${environment.urlGateway}/kegiatan/${id}`)
       .pipe(
         map(data => {
           return data;

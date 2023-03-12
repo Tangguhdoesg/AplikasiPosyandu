@@ -1,0 +1,114 @@
+import { DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import * as dayjs from 'dayjs';
+import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
+import { Subject, takeUntil } from 'rxjs';
+import { AppServiceService } from 'src/app/app-service.service';
+import { kegiatan, kegiatanAddEditRequestBody } from 'src/app/models';
+
+@Component({
+  selector: 'app-add-activity-modal',
+  templateUrl: './add-activity-modal.component.html',
+  styleUrls: ['./add-activity-modal.component.scss']
+})
+export class AddActivityModalComponent {
+  destroySubject$: Subject<void> = new Subject();
+  activity: kegiatan | null = null;
+  validationForm: FormGroup;
+
+  modalTitle: any;
+  selectedActivityDate: any;
+
+  isLoading: boolean = false;
+  isError: boolean = false;
+
+  constructor(public modalRef: MdbModalRef<AddActivityModalComponent>,
+    private service: AppServiceService,
+    private datePipe: DatePipe) {
+    this.validationForm = new FormGroup({
+      name: new FormControl(null, Validators.required),
+      pic: new FormControl(null, Validators.required),
+      location: new FormControl(null, Validators.required),
+      activityDate: new FormControl(null, Validators.required),
+      poster: new FormControl(null)
+    });
+  }
+
+  ngOnInit(): void {
+    this.modalTitle = this.activity === undefined ? 'Tambah Kegiatan' : 'Ubah Kegiatan';
+    if (this.activity !== undefined) {
+      this.validationForm.get('name')?.setValue(this.activity?.namaKegiatan);
+      this.validationForm.get('pic')?.setValue(this.activity?.penanggungJawab);
+      this.validationForm.get('location')?.setValue(this.activity?.lokasiKegiatan);
+      this.selectedActivityDate = this.datePipe.transform(dayjs(this.activity?.tanggalKegiatan).format('MM-DD-YYYY'), "yyyy-MM-dd");
+      this.validationForm.get('poster')?.setValue(this.activity?.posterKegiatan);
+    }
+  }
+
+  onSubmit() {
+    let a: kegiatanAddEditRequestBody = {
+      namaKegiatan: this.validationForm.get('name')?.value,
+      penanggungJawab: this.validationForm.get('pic')?.value,
+      lokasiKegiatan: this.validationForm.get('location')?.value,
+      tanggalKegiatan: this.validationForm.get('activityDate')?.value,
+      posterKegiatan: this.validationForm.get('poster')?.value
+    };
+    if (this.activity === undefined) {
+      this.addActivity(a);
+    } else {
+      this.editActivity(a, this.activity?.idKegiatan!);
+    }
+  }
+
+  addActivity(req: kegiatanAddEditRequestBody) {
+    this.isLoading = true;
+    this.isError = false;
+    this.service.addActivity(req)
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe(data => {
+        console.log(data);
+        this.isLoading = false;
+        this.modalRef.close('submit');
+
+      }, err => {
+        this.isError = true;
+        this.isLoading = false;
+      })
+  }
+
+  editActivity(req: kegiatanAddEditRequestBody, id: number) {
+    this.isLoading = true;
+    this.isError = false;
+    this.service.editActivity(req, id)
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe(data => {
+        console.log(data);
+        this.isLoading = false;
+        this.modalRef.close('submit');
+      }, err => {
+        this.isError = true;
+        this.isLoading = false;
+      })
+  }
+
+  get name(): AbstractControl {
+    return this.validationForm.get('name')!;
+  }
+
+  get pic(): AbstractControl {
+    return this.validationForm.get('pic')!;
+  }
+
+  get location(): AbstractControl {
+    return this.validationForm.get('location')!;
+  }
+
+  get activityDate(): AbstractControl {
+    return this.validationForm.get('activityDate')!;
+  }
+
+  get poster(): AbstractControl {
+    return this.validationForm.get('poster')!;
+  }
+}

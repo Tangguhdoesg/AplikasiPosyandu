@@ -40,6 +40,8 @@ import { ManageCheckupComponent } from './manage-checkup/manage-checkup.componen
 import { AddCheckupModalComponent } from './manage-checkup/add-checkup-modal/add-checkup-modal.component';
 import { ManageImunisasiComponent } from './manage-imunisasi/manage-imunisasi.component';
 import { AddImunisasiModalComponent } from './manage-imunisasi/add-imunisasi-modal/add-imunisasi-modal.component';
+import { ManageActivityComponent } from './manage-activity/manage-activity.component';
+import { AddActivityModalComponent } from './manage-activity/add-activity-modal/add-activity-modal.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { AddImunisasiModalComponent } from './manage-imunisasi/add-imunisasi-mod
     ManageCheckupComponent,
     AddCheckupModalComponent,
     ManageImunisasiComponent,
-    AddImunisasiModalComponent
+    AddImunisasiModalComponent,
+    ManageActivityComponent,
+    AddActivityModalComponent
   ],
   imports: [
     HttpClientModule,

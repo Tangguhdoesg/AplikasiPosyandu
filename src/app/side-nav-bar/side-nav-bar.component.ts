@@ -30,9 +30,9 @@ export class SideNavBarComponent implements OnInit {
     },
     {
       number: '4',
-      name: 'Kegiatan',
+      name: 'Pengaturan Kegiatan',
       icon: 'fa-solid fa-gear',
-      path: '/dashboard'
+      path: '/manage-activity'
     },
     {
       number: '5',
@@ -42,21 +42,21 @@ export class SideNavBarComponent implements OnInit {
     },
     {
       number: '6',
-      name: 'Balita',
-      icon: 'fa-solid fa-baby',
-      path: '/dashboard'
-    },
-    {
-      number: '7',
       name: 'Pengaturan Imunisasi',
       icon: 'fa-solid fa-syringe',
       path: '/manage-imunisasi'
     },
     {
-      number: '8',
+      number: '7',
       name: 'Pengaturan Pemeriksaan',
       icon: 'fa-solid fa-stethoscope',
       path: '/manage-checkup'
+    },
+    {
+      number: '8',
+      name: 'Balita',
+      icon: 'fa-solid fa-baby',
+      path: '/dashboard'
     }
   ]
 

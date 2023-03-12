@@ -100,3 +100,20 @@ export interface imunisasiAddEditRequestBody {
     tanggalImunisasi: string,
     tanggalImunisasiBerikutnya: string,
 }
+
+export interface kegiatan {
+    idKegiatan: number,
+    namaKegiatan: string,
+    penanggungJawab: string
+    lokasiKegiatan: string,
+    tanggalKegiatan: string,
+    posterKegiatan: File
+}
+
+export interface kegiatanAddEditRequestBody {
+    namaKegiatan: string,
+    penanggungJawab: string
+    lokasiKegiatan: string,
+    tanggalKegiatan: string,
+    posterKegiatan: File
+}

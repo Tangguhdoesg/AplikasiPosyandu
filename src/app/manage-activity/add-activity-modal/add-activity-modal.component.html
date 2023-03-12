@@ -1,0 +1,82 @@
+<ng-container *ngIf="isLoading">
+    <app-loading></app-loading>
+</ng-container>
+
+<ng-container *ngIf="isError">
+    <app-error-timeout></app-error-timeout>
+</ng-container>
+
+<ng-container *ngIf="!isLoading && !isError">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body text-align-last-center">
+        <form [formGroup]="validationForm">
+            <div class="row">
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="nameField" class="form-control"
+                            formControlName="name" required />
+                        <label mdbLabel class="form-label" for="nameField">Nama Kegiatan</label>
+                        <mdb-error *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+                            Nama Kegiatan wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="picField" class="form-control"
+                            formControlName="pic" required />
+                        <label mdbLabel class="form-label" for="picField">Penanggung Jawab</label>
+                        <mdb-error *ngIf="pic?.invalid && (pic?.dirty || pic?.touched)">
+                            Penanggung Jawab wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="locationField" class="form-control"
+                            formControlName="location" required />
+                        <label mdbLabel class="form-label" for="locationField">Lokasi Kegiatan</label>
+                        <mdb-error *ngIf="location?.invalid && (location?.dirty || location?.touched)">
+                            Lokasi Kegiatan wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="date" placeholder="dd-mm-yyyy" id="activityDateField"
+                            class="form-control" formControlName="activityDate" [(ngModel)]="selectedActivityDate"
+                            required />
+                        <label mdbLabel class="form-label" for="activityDateField">Tanggal Kegiatan</label>
+                        <mdb-error *ngIf="activityDate?.invalid && (activityDate?.dirty || activityDate?.touched)">
+                            Tanggal Kegiatan wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="file" id="posterField" class="form-control"
+                            formControlName="poster" />
+                        <label mdbLabel class="form-label" for="posterField">Upload Poster Kegiatan</label>
+                    </mdb-form-control>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+            Batal
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()"
+            [disabled]="validationForm.invalid">Selesai</button>
+    </div>
+</ng-container>
