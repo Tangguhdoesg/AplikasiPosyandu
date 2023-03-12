@@ -30,52 +30,28 @@ export class SideNavBarComponent implements OnInit {
     },
     {
       number: '4',
-      name: 'Pengaturan Kegiatan',
+      name: 'Kegiatan',
       icon: 'fa-solid fa-person-skating',
       path: '/manage-activity'
     },
     {
       number: '5',
-      name: 'Pengaturan Balita',
-      icon: 'fa-solid fa-person-breastfeeding',
+      name: 'Balita',
+      icon: 'fa-solid fa-baby',
       path: '/manage-toddler'
     },
     {
       number: '6',
-      name: 'Pengaturan Imunisasi',
+      name: 'Imunisasi',
       icon: 'fa-solid fa-syringe',
       path: '/manage-imunisasi'
     },
     {
       number: '7',
-      name: 'Pengaturan Pemeriksaan',
-      icon: 'fa-solid fa-stethoscope',
-      path: '/manage-checkup'
-    },
-    {
-      number: '8',
-      name: 'Kegiatan',
-      icon: 'fa-solid fa-person-skating',
-      path: '/activity'
-    },
-    {
-      number: '9',
-      name: 'Balita',
-      icon: 'fa-solid fa-baby',
-      path: '/toddler'
-    },
-    {
-      number: '10',
-      name: 'Imunisasi',
-      icon: 'fa-solid fa-syringe',
-      path: '/imunisasi'
-    },
-    {
-      number: '11',
       name: 'Pemeriksaan',
       icon: 'fa-solid fa-stethoscope',
-      path: '/checkup'
-    },
+      path: '/manage-checkup'
+    }
   ]
 
   constructor(private router: Router) {

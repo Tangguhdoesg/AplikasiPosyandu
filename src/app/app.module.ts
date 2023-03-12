@@ -42,10 +42,6 @@ import { ManageImunisasiComponent } from './manage-imunisasi/manage-imunisasi.co
 import { AddImunisasiModalComponent } from './manage-imunisasi/add-imunisasi-modal/add-imunisasi-modal.component';
 import { ManageActivityComponent } from './manage-activity/manage-activity.component';
 import { AddActivityModalComponent } from './manage-activity/add-activity-modal/add-activity-modal.component';
-import { ActivityComponent } from './activity/activity.component';
-import { ToddlerComponent } from './toddler/toddler.component';
-import { ImunisasiComponent } from './imunisasi/imunisasi.component';
-import { CheckupComponent } from './checkup/checkup.component';
 
 @NgModule({
   declarations: [
@@ -68,11 +64,7 @@ import { CheckupComponent } from './checkup/checkup.component';
     ManageImunisasiComponent,
     AddImunisasiModalComponent,
     ManageActivityComponent,
-    AddActivityModalComponent,
-    ActivityComponent,
-    ToddlerComponent,
-    ImunisasiComponent,
-    CheckupComponent
+    AddActivityModalComponent
   ],
   imports: [
     HttpClientModule,
