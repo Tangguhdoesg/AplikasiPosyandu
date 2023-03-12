@@ -48,7 +48,7 @@
                 <div class="col-md-6 mb-32px">
                     <mdb-form-control>
                         <input mdbValidate mdbInput type="text" id="notesField" class="form-control"
-                            formControlName="notes" required />
+                            formControlName="notes" />
                         <label mdbLabel class="form-label" for="notesField">Catatan</label>
                     </mdb-form-control>
                 </div>
@@ -60,9 +60,9 @@
                         <input mdbValidate mdbInput type="date" placeholder="dd-mm-yyyy" id="imunisasiDateField"
                             class="form-control" formControlName="imunisasiDate" [(ngModel)]="selectedImunisasiDate"
                             required />
-                        <label mdbLabel class="form-label" for="imunisasiDateField">Tanggal Pemeriksaan</label>
+                        <label mdbLabel class="form-label" for="imunisasiDateField">Tanggal Imunisasi</label>
                         <mdb-error *ngIf="imunisasiDate?.invalid && (imunisasiDate?.dirty || imunisasiDate?.touched)">
-                            Tanggal Pemeriksaan wajib diisi
+                            Tanggal Imunisasi wajib diisi
                         </mdb-error>
                     </mdb-form-control>
                 </div>
@@ -71,11 +71,11 @@
                         <input mdbValidate mdbInput type="date" placeholder="dd-mm-yyyy" id="nextImunisasiDateField"
                             class="form-control" formControlName="nextImunisasiDate"
                             [(ngModel)]="selectedNextImunisasiDate" required />
-                        <label mdbLabel class="form-label" for="nextImunisasiDateField">Tgl Pemeriksaan
+                        <label mdbLabel class="form-label" for="nextImunisasiDateField">Tgl Imunisasi
                             Selanjutnya</label>
                         <mdb-error
                             *ngIf="nextImunisasiDate?.invalid && (nextImunisasiDate?.dirty || nextImunisasiDate?.touched)">
-                            Tanggal Pemeriksaan Selanjutnya wajib diisi
+                            Tanggal Imunisasi Selanjutnya wajib diisi
                         </mdb-error>
                     </mdb-form-control>
                 </div>

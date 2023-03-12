@@ -37,7 +37,7 @@ export class AddImunisasiModalComponent {
   }
 
   ngOnInit(): void {
-    this.modalTitle = this.imunisasi === undefined ? 'Tambah Pemeriksaan' : 'Ubah Pemeriksaan';
+    this.modalTitle = this.imunisasi === undefined ? 'Tambah Imunisasi' : 'Ubah Imunisasi';
     if (this.imunisasi !== undefined) {
       this.validationForm.get('nik')?.setValue(this.imunisasi?.nikBalita);
       this.validationForm.get('imunisasiName')?.setValue(this.imunisasi?.namaImunisasi);
