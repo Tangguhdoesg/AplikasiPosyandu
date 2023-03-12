@@ -38,6 +38,8 @@ import { AddToddlerModalComponent } from './manage-toddler/add-toddler-modal/add
 import { DeleteModalComponent } from './shared/delete-modal/delete-modal.component';
 import { ManageCheckupComponent } from './manage-checkup/manage-checkup.component';
 import { AddCheckupModalComponent } from './manage-checkup/add-checkup-modal/add-checkup-modal.component';
+import { ManageImunisasiComponent } from './manage-imunisasi/manage-imunisasi.component';
+import { AddImunisasiModalComponent } from './manage-imunisasi/add-imunisasi-modal/add-imunisasi-modal.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { AddCheckupModalComponent } from './manage-checkup/add-checkup-modal/add
     ManageToddlerComponent,
     AddToddlerModalComponent,
     ManageCheckupComponent,
-    AddCheckupModalComponent
+    AddCheckupModalComponent,
+    ManageImunisasiComponent,
+    AddImunisasiModalComponent
   ],
   imports: [
     HttpClientModule,

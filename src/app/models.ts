@@ -80,3 +80,23 @@ export interface checkupAddEditRequestBody {
     tanggalCheckup: string,
     tanggalCheckupBerikutnya: string
 }
+
+export interface imunisasi {
+    idImunisasi: number,
+    idBalita: number,
+    nikBalita: string,
+    namaBalita: string,
+    namaOrangTua: string
+    namaImunisasi: string,
+    catatan: string,
+    tanggalImunisasi: string,
+    tanggalImunisasiBerikutnya: string,
+}
+
+export interface imunisasiAddEditRequestBody {
+    nikBalita: string,
+    namaImunisasi: string,
+    catatan: string,
+    tanggalImunisasi: string,
+    tanggalImunisasiBerikutnya: string,
+}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
 import { map, Observable } from 'rxjs';
-import { balita, balitaAddEditRequestBody, checkup, checkupAddEditRequestBody, loginRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
+import { balita, balitaAddEditRequestBody, checkup, checkupAddEditRequestBody, imunisasi, imunisasiAddEditRequestBody, loginRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
 import { environment } from 'environment';
 
 @Injectable({
@@ -148,6 +148,52 @@ export class AppServiceService {
 
   deleteCheckup(id: number) {
     return this.httpClient.delete(`${environment.urlGateway}/checkup/${id}`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  
+  getAllImunisasi(): Observable<imunisasi[]> {
+    return this.httpClient.get<imunisasi[]>(`${environment.urlGateway}/imunisasi/all`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  getImunisasi(id: number): Observable<imunisasi> {
+    return this.httpClient.get<imunisasi>(`${environment.urlGateway}/imunisasi/balita/${id}`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  addImunisasi(request: imunisasiAddEditRequestBody) {
+    return this.httpClient.post<imunisasi>(`${environment.urlGateway}/imunisasi`, request)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  editImunisasi(request: imunisasiAddEditRequestBody, id: number) {
+    return this.httpClient.put<imunisasi>(`${environment.urlGateway}/imunisasi/${id}`, request)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  deleteImunisasi(id: number) {
+    return this.httpClient.delete(`${environment.urlGateway}/imunisasi/${id}`)
       .pipe(
         map(data => {
           return data;

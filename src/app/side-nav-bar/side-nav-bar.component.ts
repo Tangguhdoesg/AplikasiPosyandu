@@ -48,9 +48,9 @@ export class SideNavBarComponent implements OnInit {
     },
     {
       number: '7',
-      name: 'Imunisasi',
+      name: 'Pengaturan Imunisasi',
       icon: 'fa-solid fa-syringe',
-      path: '/dashboard'
+      path: '/manage-imunisasi'
     },
     {
       number: '8',

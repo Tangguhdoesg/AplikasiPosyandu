@@ -1,0 +1,92 @@
+<ng-container *ngIf="isLoading">
+    <app-loading></app-loading>
+</ng-container>
+
+<ng-container *ngIf="isError">
+    <app-error-timeout></app-error-timeout>
+</ng-container>
+
+<ng-container *ngIf="!isLoading && !isError">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body text-align-last-center">
+        <form [formGroup]="validationForm">
+            <div class="row">
+                <div class="mb-32px">
+                    <ng-container *ngIf="imunisasi !== undefined">
+                        <div class="row" style="text-align-last: start;">
+                            <div class="col-md-6">NIK Balita : {{imunisasi!.nikBalita}}</div>
+                            <div class="col-md-6">Nama Balita : {{imunisasi!.namaBalita}}</div>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="imunisasi === undefined">
+                        <mdb-form-control>
+                            <input mdbValidate mdbInput type="text" id="NIKField" class="form-control"
+                                formControlName="nik" required />
+                            <label mdbLabel class="form-label" for="NIKField">NIK Balita</label>
+                            <mdb-error *ngIf="nik?.invalid && (nik?.dirty || nik?.touched)">
+                                NIK Balita wajib diisi
+                            </mdb-error>
+                        </mdb-form-control>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="imunisasiNameField" class="form-control"
+                            formControlName="imunisasiName" required />
+                        <label mdbLabel class="form-label" for="imunisasiNameField">Nama Imunisasi</label>
+                        <mdb-error *ngIf="imunisasiName?.invalid && (imunisasiName?.dirty || imunisasiName?.touched)">
+                            Nama Imunisasi wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="notesField" class="form-control"
+                            formControlName="notes" required />
+                        <label mdbLabel class="form-label" for="notesField">Catatan</label>
+                    </mdb-form-control>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="date" placeholder="dd-mm-yyyy" id="imunisasiDateField"
+                            class="form-control" formControlName="imunisasiDate" [(ngModel)]="selectedImunisasiDate"
+                            required />
+                        <label mdbLabel class="form-label" for="imunisasiDateField">Tanggal Pemeriksaan</label>
+                        <mdb-error *ngIf="imunisasiDate?.invalid && (imunisasiDate?.dirty || imunisasiDate?.touched)">
+                            Tanggal Pemeriksaan wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="date" placeholder="dd-mm-yyyy" id="nextImunisasiDateField"
+                            class="form-control" formControlName="nextImunisasiDate"
+                            [(ngModel)]="selectedNextImunisasiDate" required />
+                        <label mdbLabel class="form-label" for="nextImunisasiDateField">Tgl Pemeriksaan
+                            Selanjutnya</label>
+                        <mdb-error
+                            *ngIf="nextImunisasiDate?.invalid && (nextImunisasiDate?.dirty || nextImunisasiDate?.touched)">
+                            Tanggal Pemeriksaan Selanjutnya wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+            Batal
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()"
+            [disabled]="validationForm.invalid">Selesai</button>
+    </div>
+</ng-container>
