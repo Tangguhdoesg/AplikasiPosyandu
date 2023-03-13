@@ -12,17 +12,11 @@ export class AppComponent implements OnInit{
   
   user?: any;
 
-  // isLoginPage!: boolean;
-
   ngOnInit(): void {
-    // this.isLoginPage = true;
-    // console.log(this.isLoginPage);
-    console.log(this.user);
-    
+    console.log(sessionStorage.getItem('token'));
+    if (sessionStorage.getItem('token') !== null) {
+      this.user = ['111'];
+    }
     
   }
-
-  // isGoToLoginPage(e: boolean) {
-  //   this.isLoginPage = e;
-  // }
 }
