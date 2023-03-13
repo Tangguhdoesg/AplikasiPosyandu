@@ -32,13 +32,11 @@ export class LoginComponent implements OnInit{
   }
 
   onSubmit() {
-    this.userLogin.emit(['111']);
     let req: loginRequestBody = {
       notelepon: this.validationForm.get('phoneNum')?.value,
       password: this.validationForm.get('password')?.value,
     }
     this.login(req);
-    this.router.navigate(['/dashboard']);
   }
 
   login(req: loginRequestBody) {
@@ -49,6 +47,8 @@ export class LoginComponent implements OnInit{
       .subscribe(data => {
         console.log(data);
         this.isLoading = false;
+        this.userLogin.emit(true);
+        this.router.navigate(['/dashboard']);
       }, err => {
         this.isError = true;
         this.isLoading = false;

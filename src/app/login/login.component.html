@@ -1,17 +1,15 @@
-<ng-container *ngIf="isLoading">
-  <app-loading></app-loading>
-</ng-container>
-
-<ng-container *ngIf="isError">
-  <app-error-timeout></app-error-timeout>
-</ng-container>
-
-<ng-container *ngIf="!isLoading && !isError">
+<ng-container>
   <div class="p-4 grid-container">
     <div class="col-sm-7"></div>
     <div class="col-sm-5 border sign-in-style">
       <div class="mb-3">
         <h5>Masuk</h5>
+      </div>
+
+      <div 
+        *ngIf="isError"
+        class="list-group-item px-3 border-0 rounded-3 list-group-item-danger mb-3">
+        Nomor Telepon atau Kata Sandi salah
       </div>
 
       <form [formGroup]="validationForm">
@@ -36,12 +34,18 @@
           </mdb-form-control>
         </div>
 
-        <div class="text-end mb-3">
+        <!-- <div class="text-end mb-3">
           <u style="font-size: 12px; color: blue; cursor: pointer;">Lupa Kata Sandi?</u>
-        </div>
+        </div> -->
 
-        <button type="submit" class="btn btn-success w-100" [disabled]="validationForm.invalid" (click)="onSubmit()">
-          Masuk
+        <button type="submit" class="btn btn-success w-100" [disabled]="validationForm.invalid || isLoading" (click)="onSubmit()">
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+            [hidden]="!isLoading"
+          ></span>
+          <span [hidden]="isLoading">Masuk</span>
         </button>
       </form>
 
