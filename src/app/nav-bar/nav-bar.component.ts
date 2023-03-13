@@ -25,7 +25,12 @@ export class NavBarComponent implements OnInit {
   }
   
   logout() {
-    // this.toLoginPage.emit(false);
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('nama');
+    sessionStorage.removeItem('id');
+    sessionStorage.removeItem('nik');
+    sessionStorage.removeItem('telp');
+    sessionStorage.removeItem('tipe');
     this.router.navigateByUrl('/login');
   }
   

@@ -4,7 +4,7 @@ import { AppServiceService } from '../app-service.service';
 import { takeUntil } from "rxjs/operators"
 import { Subject } from "rxjs"
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { loginRequestBody, userPosyandu } from '../models';
+import { loginRequestBody, userPosyandu, userPosyanduType } from '../models';
 
 @Component({
   selector: 'app-login',
@@ -46,6 +46,14 @@ export class LoginComponent implements OnInit{
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
         console.log(data);
+        sessionStorage.setItem('token', data.accessToken!);
+        sessionStorage.setItem('nama', data.namaUser!);
+        sessionStorage.setItem('nik', data.nikUser!);
+        sessionStorage.setItem('telp', data.noTeleponUser!);
+        sessionStorage.setItem('id', data.idUser!.toString());
+        let tipeUser = data.tipeUser === 0 ? userPosyanduType.ADMIN :
+                        data.tipeUser === 1 ? userPosyanduType.PETUGAS : userPosyanduType.ORANGTUA;
+        sessionStorage.setItem('tipe', tipeUser);
         this.isLoading = false;
         this.userLogin.emit(true);
         this.router.navigate(['/dashboard']);

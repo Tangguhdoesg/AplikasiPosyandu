@@ -10,11 +10,11 @@ export interface loginRequestBody {
 }
 
 export interface userPosyandu {
+    accessToken?: string,
     idUser: number,
     namaUser: string,
     nikUser: string,
     tanggalLahirUser: string,
-    passwordUser: string,
     noTeleponUser: string,
     alamatUser: string,
     tipeUser: number
