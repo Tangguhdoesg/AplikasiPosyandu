@@ -15,12 +15,15 @@ export class DashboardComponent {
   posterLen: number = 0;
   posterActivity: any[] = [];
 
+  username: string | undefined;
+
   isLoading: boolean = false;
 
   constructor(private service: AppServiceService) {
   }
 
   ngOnInit() {
+    this.username = sessionStorage.getItem('nama')!;
     this.getAllActivity();
   }
 
