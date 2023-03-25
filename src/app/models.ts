@@ -112,7 +112,7 @@ export interface kegiatan {
 
 export interface kegiatanAddEditRequestBody {
     namaKegiatan: string,
-    penanggungJawab: string
+    nikPenanggungjawab: string
     lokasiKegiatan: string,
     tanggalKegiatan: string,
     posterKegiatan: File

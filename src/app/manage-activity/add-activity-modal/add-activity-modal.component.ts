@@ -19,6 +19,8 @@ export class AddActivityModalComponent {
 
   modalTitle: any;
   selectedActivityDate: any;
+  selectedFiles: FileList | undefined;
+  currentFile: File | null | undefined;
 
   isLoading: boolean = false;
   isError: boolean = false;
@@ -30,8 +32,7 @@ export class AddActivityModalComponent {
       name: new FormControl(null, Validators.required),
       pic: new FormControl(null, Validators.required),
       location: new FormControl(null, Validators.required),
-      activityDate: new FormControl(null, Validators.required),
-      poster: new FormControl(null)
+      activityDate: new FormControl(null, Validators.required)
     });
   }
 
@@ -42,17 +43,17 @@ export class AddActivityModalComponent {
       this.validationForm.get('pic')?.setValue(this.activity?.penanggungJawab);
       this.validationForm.get('location')?.setValue(this.activity?.lokasiKegiatan);
       this.selectedActivityDate = this.datePipe.transform(dayjs(this.activity?.tanggalKegiatan).format('MM-DD-YYYY'), "yyyy-MM-dd");
-      this.validationForm.get('poster')?.setValue(this.activity?.posterKegiatan);
     }
   }
 
   onSubmit() {
+    this.currentFile = this.selectedFiles!.item(0);
     let a: kegiatanAddEditRequestBody = {
       namaKegiatan: this.validationForm.get('name')?.value,
-      penanggungJawab: this.validationForm.get('pic')?.value,
+      nikPenanggungjawab: this.validationForm.get('pic')?.value,
       lokasiKegiatan: this.validationForm.get('location')?.value,
       tanggalKegiatan: this.validationForm.get('activityDate')?.value,
-      posterKegiatan: this.validationForm.get('poster')?.value
+      posterKegiatan: this.currentFile!
     };
     if (this.activity === undefined) {
       this.addActivity(a);
@@ -90,6 +91,10 @@ export class AddActivityModalComponent {
         this.isError = true;
         this.isLoading = false;
       })
+  }
+
+  selectFile(event: any) {
+    this.selectedFiles = event.target.files;
   }
 
   get name(): AbstractControl {
