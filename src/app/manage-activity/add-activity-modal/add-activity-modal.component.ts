@@ -86,7 +86,6 @@ export class AddActivityModalComponent {
     this.service.editActivity(req, id)
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
-        console.log(data);
         this.isLoading = false;
         this.modalRef.close('submit');
       }, err => {
