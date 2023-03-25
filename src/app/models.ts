@@ -110,7 +110,7 @@ export interface kegiatan {
     lokasiKegiatan: string,
     tanggalKegiatan: string,
     namaPosterKegiatan: string,
-    posterKegiatan: File
+    posterKegiatan: any
 }
 
 export interface kegiatanAddEditRequestBody {
@@ -118,5 +118,5 @@ export interface kegiatanAddEditRequestBody {
     nikPetugas: string
     lokasiKegiatan: string,
     tanggalKegiatan: string,
-    posterKegiatan: File
+    posterKegiatan: any
 }

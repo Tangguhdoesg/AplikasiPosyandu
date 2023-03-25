@@ -220,6 +220,9 @@ export class AppServiceService {
   // }
 
   addActivity(request: kegiatanAddEditRequestBody) {
+    const formData: FormData = new FormData();
+    formData.append('file', request.posterKegiatan);
+    request.posterKegiatan = formData;
     return this.httpClient.post<kegiatan>(`${environment.urlGateway}/kegiatan`, request)
       .pipe(
         map(data => {
