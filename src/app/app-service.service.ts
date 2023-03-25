@@ -221,9 +221,14 @@ export class AppServiceService {
 
   addActivity(request: kegiatanAddEditRequestBody) {
     const formData: FormData = new FormData();
-    formData.append('file', request.posterKegiatan);
-    request.posterKegiatan = formData;
-    return this.httpClient.post<kegiatan>(`${environment.urlGateway}/kegiatan`, request)
+    formData.append('posterKegiatan', request.posterKegiatan);
+    formData.append('lokasiKegiatan',request.lokasiKegiatan)
+    formData.append('namaKegiatan', request.namaKegiatan)
+    formData.append('nikPetugas', request.nikPetugas)
+    formData.append('tanggalKegiatan',request.tanggalKegiatan)
+
+    // request.posterKegiatan = formData;
+    return this.httpClient.post<kegiatan>(`${environment.urlGateway}/kegiatan`, formData)
       .pipe(
         map(data => {
           return data;
