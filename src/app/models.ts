@@ -103,16 +103,19 @@ export interface imunisasiAddEditRequestBody {
 
 export interface kegiatan {
     idKegiatan: number,
+    idUser: number,
+    nikPetugas: string,
+    namaPetugas: string,
     namaKegiatan: string,
-    penanggungJawab: string
     lokasiKegiatan: string,
     tanggalKegiatan: string,
+    namaPosterKegiatan: string,
     posterKegiatan: File
 }
 
 export interface kegiatanAddEditRequestBody {
     namaKegiatan: string,
-    nikPenanggungjawab: string
+    nikPetugas: string
     lokasiKegiatan: string,
     tanggalKegiatan: string,
     posterKegiatan: File

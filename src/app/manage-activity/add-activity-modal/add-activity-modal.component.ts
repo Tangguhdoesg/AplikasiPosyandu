@@ -40,7 +40,7 @@ export class AddActivityModalComponent {
     this.modalTitle = this.activity === undefined ? 'Tambah Kegiatan' : 'Ubah Kegiatan';
     if (this.activity !== undefined) {
       this.validationForm.get('name')?.setValue(this.activity?.namaKegiatan);
-      this.validationForm.get('pic')?.setValue(this.activity?.penanggungJawab);
+      this.validationForm.get('pic')?.setValue(this.activity?.nikPetugas);
       this.validationForm.get('location')?.setValue(this.activity?.lokasiKegiatan);
       this.selectedActivityDate = this.datePipe.transform(dayjs(this.activity?.tanggalKegiatan).format('MM-DD-YYYY'), "yyyy-MM-dd");
     }
@@ -50,7 +50,7 @@ export class AddActivityModalComponent {
     this.currentFile = this.selectedFiles!.item(0);
     let a: kegiatanAddEditRequestBody = {
       namaKegiatan: this.validationForm.get('name')?.value,
-      nikPenanggungjawab: this.validationForm.get('pic')?.value,
+      nikPetugas: this.validationForm.get('pic')?.value,
       lokasiKegiatan: this.validationForm.get('location')?.value,
       tanggalKegiatan: this.validationForm.get('activityDate')?.value,
       posterKegiatan: this.currentFile!
