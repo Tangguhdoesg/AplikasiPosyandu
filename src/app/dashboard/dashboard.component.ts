@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
+import { AppServiceService } from '../app-service.service';
+import { kegiatan } from '../models';
+import { Subject, takeUntil } from 'rxjs';
 // import { LegendItem, ChartType } from '../lbd/lbd-chart/lbd-chart.component';
 // import * as Chartist from 'chartist';
 
@@ -9,6 +12,12 @@ import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+  destroySubject$: Subject<void> = new Subject();
+  allActivity: kegiatan[] = [];
+  posterLen: number = 0;
+  posterActivity: any[] = [];
+
+  isLoading: boolean = false;
 //     public emailChartType: ChartType;
 //     public emailChartData: any;
 //     public emailChartLegendItems: LegendItem[];
@@ -24,9 +33,11 @@ export class DashboardComponent {
 //     public activityChartOptions: any;
 //     public activityChartResponsive: any[];
 //     public activityChartLegendItems: LegendItem[];
-  constructor() { }
+  constructor(private service: AppServiceService) { 
+  }
 
   ngOnInit() {
+    this.getAllActivity();
 //       this.emailChartType = ChartType.Pie;
 //       this.emailChartData = {
 //         labels: ['62%', '32%', '6%'],
@@ -107,6 +118,24 @@ export class DashboardComponent {
 //       ];
 //
 //
+    }
+
+    getAllActivity() {
+      this.isLoading = true;
+      this.service.getAllActivity()
+        .pipe(takeUntil(this.destroySubject$))
+        .subscribe(data => {
+          this.allActivity = [...data];
+          this.allActivity.forEach(act => {
+            if (act.posterKegiatan !== null) {
+              this.posterActivity.push(act.posterKegiatan);
+            }
+            this.posterLen = this.posterActivity.length;
+          })
+          this.isLoading = false;
+        }, err => {
+          this.isLoading = false;
+        })
     }
 
 }
