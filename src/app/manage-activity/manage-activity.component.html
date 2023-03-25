@@ -24,6 +24,7 @@
                 <th>Penanggung Jawab</th>
                 <th>Lokasi Kegiatan</th>
                 <th>Tanggal Kegiatan</th>
+                <th>Poster</th>
                 <th></th>
             </tr>
         </thead>
@@ -42,6 +43,14 @@
                 </td>
                 <td>
                     <p class="fw-normal mb-1">{{activity.tanggalKegiatan | date:'dd-MM-yyyy'}}</p>
+                </td>
+                <td>
+                    <div *ngIf="activity.posterKegiatan !== null">
+                        <img width="500px" height="250px" src="data:image/png;base64,{{activity.posterKegiatan}}">
+                    </div>
+                    <div *ngIf="activity.posterKegiatan === null">
+                        Tidak ada poster
+                    </div>
                 </td>
                 <td class="">
                     <button type="button" class="btn btn-link btn-sm btn-rounded fa-solid fa-pen-to-square"
