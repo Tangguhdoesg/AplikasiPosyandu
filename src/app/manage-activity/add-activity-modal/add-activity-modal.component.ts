@@ -47,28 +47,30 @@ export class AddActivityModalComponent {
   }
 
   onSubmit() {
-    this.currentFile = this.selectedFiles!.item(0);
-    let a: kegiatanAddEditRequestBody = {
-      namaKegiatan: this.validationForm.get('name')?.value,
-      nikPetugas: this.validationForm.get('pic')?.value,
-      lokasiKegiatan: this.validationForm.get('location')?.value,
-      tanggalKegiatan: this.validationForm.get('activityDate')?.value,
-      posterKegiatan: this.currentFile!
-    };
+    if (this.selectedFiles) {
+      this.currentFile = this.selectedFiles!.item(0);
+    }
+
+    const formData: FormData = new FormData();
+    formData.append('lokasiKegiatan', this.validationForm.get('location')?.value);
+    formData.append('namaKegiatan', this.validationForm.get('name')?.value);
+    formData.append('nikPetugas', this.validationForm.get('pic')?.value);
+    formData.append('tanggalKegiatan', this.validationForm.get('activityDate')?.value);
+    formData.append('posterKegiatan', this.currentFile!);
+
     if (this.activity === undefined) {
-      this.addActivity(a);
+      this.addActivity(formData);
     } else {
-      this.editActivity(a, this.activity?.idKegiatan!);
+      this.editActivity(formData, this.activity?.idKegiatan!);
     }
   }
 
-  addActivity(req: kegiatanAddEditRequestBody) {
+  addActivity(req: FormData) {
     this.isLoading = true;
     this.isError = false;
     this.service.addActivity(req)
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
-        console.log(data);
         this.isLoading = false;
         this.modalRef.close('submit');
 
@@ -78,7 +80,7 @@ export class AddActivityModalComponent {
       })
   }
 
-  editActivity(req: kegiatanAddEditRequestBody, id: number) {
+  editActivity(req: FormData, id: number) {
     this.isLoading = true;
     this.isError = false;
     this.service.editActivity(req, id)

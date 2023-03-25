@@ -219,16 +219,8 @@ export class AppServiceService {
   //     );
   // }
 
-  addActivity(request: kegiatanAddEditRequestBody) {
-    const formData: FormData = new FormData();
-    formData.append('posterKegiatan', request.posterKegiatan);
-    formData.append('lokasiKegiatan',request.lokasiKegiatan)
-    formData.append('namaKegiatan', request.namaKegiatan)
-    formData.append('nikPetugas', request.nikPetugas)
-    formData.append('tanggalKegiatan',request.tanggalKegiatan)
-
-    // request.posterKegiatan = formData;
-    return this.httpClient.post<kegiatan>(`${environment.urlGateway}/kegiatan`, formData)
+  addActivity(request: FormData) {
+    return this.httpClient.post<kegiatan>(`${environment.urlGateway}/kegiatan`, request)
       .pipe(
         map(data => {
           return data;
@@ -236,7 +228,7 @@ export class AppServiceService {
       );
   }
 
-  editActivity(request: kegiatanAddEditRequestBody, id: number) {
+  editActivity(request: FormData, id: number) {
     return this.httpClient.put<kegiatan>(`${environment.urlGateway}/kegiatan/${id}`, request)
       .pipe(
         map(data => {
