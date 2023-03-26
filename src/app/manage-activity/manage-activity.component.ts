@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { Subject, takeUntil } from 'rxjs';
 import { AppServiceService } from '../app-service.service';
-import { kegiatan } from '../models';
+import { kegiatan, userPosyanduType } from '../models';
 import { DeleteModalComponent } from '../shared/delete-modal/delete-modal.component';
 import { AddActivityModalComponent } from './add-activity-modal/add-activity-modal.component';
 
@@ -17,6 +17,8 @@ export class ManageActivityComponent {
   totalActivityData: number = 0;
   isLoading: boolean = false;
   isError: boolean = false;
+
+  userRole = sessionStorage.getItem('tipe');
 
   modalRefDelete: MdbModalRef<DeleteModalComponent> | null = null;
   modalRefAddEdit: MdbModalRef<AddActivityModalComponent> | null = null;
@@ -78,5 +80,9 @@ export class ManageActivityComponent {
         this.getAllActivity();
       }
     });
+  }
+
+  checkAddEditAccess(): boolean {
+    return this.userRole === userPosyanduType.PETUGAS;
   }
 }
