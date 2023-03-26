@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { userPosyanduType } from '../models';
 
 @Component({
   selector: 'app-side-nav-bar',
@@ -8,49 +9,57 @@ import { Router } from '@angular/router';
 })
 export class SideNavBarComponent implements OnInit {
   @Input() sideNavStatus: boolean = false;
+  userRole = sessionStorage.getItem('tipe');
 
   list = [
     {
       number: '1',
       name: 'Halaman Awal',
       icon: 'fa-solid fa-house',
-      path: '/dashboard'
+      path: '/dashboard',
+      access: [userPosyanduType.ADMIN, userPosyanduType.PETUGAS, userPosyanduType.ORANGTUA]
     },
     {
       number: '2',
       name: 'Pengaturan Pengguna',
       icon: 'fa-solid fa-users',
-      path: '/manage-user'
+      path: '/manage-user',
+      access: [userPosyanduType.ADMIN]
     },
     {
       number: '3',
       name: 'Laporan',
       icon: 'fa-solid fa-chart-line',
-      path: '/report'
+      path: '/report',
+      access: [userPosyanduType.PETUGAS, userPosyanduType.ORANGTUA]
     },
     {
       number: '4',
       name: 'Kegiatan',
       icon: 'fa-solid fa-person-skating',
-      path: '/manage-activity'
+      path: '/manage-activity',
+      access: [userPosyanduType.PETUGAS, userPosyanduType.ORANGTUA]
     },
     {
       number: '5',
       name: 'Balita',
       icon: 'fa-solid fa-baby',
-      path: '/manage-toddler'
+      path: '/manage-toddler',
+      access: [userPosyanduType.PETUGAS, userPosyanduType.ORANGTUA]
     },
     {
       number: '6',
       name: 'Imunisasi',
       icon: 'fa-solid fa-syringe',
-      path: '/manage-imunisasi'
+      path: '/manage-imunisasi',
+      access: [userPosyanduType.PETUGAS, userPosyanduType.ORANGTUA]
     },
     {
       number: '7',
       name: 'Pemeriksaan',
       icon: 'fa-solid fa-stethoscope',
-      path: '/manage-checkup'
+      path: '/manage-checkup',
+      access: [userPosyanduType.PETUGAS, userPosyanduType.ORANGTUA]
     }
   ]
 
@@ -63,6 +72,10 @@ export class SideNavBarComponent implements OnInit {
 
   goToPage(url: any) {
     this.router.navigateByUrl(url);
+  }
+
+  checkAccess(access: any): boolean {
+    return access.includes(this.userRole);
   }
 
 }
