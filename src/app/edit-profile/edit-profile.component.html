@@ -1,103 +1,36 @@
 <div class="my-3">
-  <div class="fa-solid fa-pen-to-square">
-      <span style="margin-left: 24px;">Ubah Profil</span>
+  <div class="fa-solid fa-user">
+    <span style="margin-left: 24px;">Profil</span>
   </div>
 </div>
-<div class="border p-4">
-  <form [formGroup]="validationForm">
-    <div class="row">
-      <div class="col-md-6 mb-32px">
-        <mdb-form-control>
-          <input
-            mdbValidate
-            mdbInput
-            type="text"
-            id="userNameField"
-            class="form-control"
-            formControlName="userName"
-            required/>
-          <label mdbLabel class="form-label" for="userNameField">Nama Pengguna</label>
-          <mdb-error *ngIf="userName?.invalid && (userName?.dirty || userName?.touched)">
-            Nama Pengguna wajib diisi
-          </mdb-error>
-        </mdb-form-control>
-      </div>
-      <div class="col-md-6 mb-32px">
-        <mdb-form-control>
-          <input
-            mdbValidate
-            mdbInput
-            type="text"
-            id="NIKField"
-            class="form-control"
-            formControlName="nik"
-            required/>
-          <label mdbLabel class="form-label" for="NIKField">NIK Pengguna</label>
-          <mdb-error *ngIf="nik?.invalid && (nik?.dirty || nik?.touched)">
-            NIK Pengguna wajib diisi
-          </mdb-error>
-        </mdb-form-control>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-6 mb-32px">
-        <mdb-form-control>
-          <input
-            mdbValidate
-            mdbInput
-            type="date"
-            id="dobField"
-            class="form-control"
-            formControlName="dob"
-            required/>
-          <label mdbLabel class="form-label" for="dobField">Tanggal Lahir Pengguna</label>
-          <mdb-error *ngIf="dob?.invalid && (dob?.dirty || dob?.touched)">
-            Tanggal Lahir Pengguna wajib diisi
-          </mdb-error>
-        </mdb-form-control>
-      </div>
-      <div class="col-md-6 mb-32px">
-        <mdb-form-control>
-          <input
-            mdbValidate
-            mdbInput
-            type="text"
-            id="addressField"
-            class="form-control"
-            formControlName="address"
-            required/>
-          <label mdbLabel class="form-label" for="addressField">Alamat Pengguna</label>
-          <mdb-error *ngIf="address?.invalid && (address?.dirty || address?.touched)">
-            Alamat Pengguna wajib diisi
-          </mdb-error>
-        </mdb-form-control>
-      </div>
-    </div>
+<div class="border m-4 p-4" style="border-radius: 8px;">
+  <div class="row mb-3">
+    <div class="col-sm-4">Nama</div>
+    <div class="col-sm-8">{{user.namaUser}}</div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-4">NIK</div>
+    <div class="col-sm-8">{{user.nikUser}}</div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-4">Tanggal Lahir</div>
+    <div class="col-sm-8">{{user.tanggalLahirUser | date:'dd-MM-yyyy'}}</div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-4">Alamat</div>
+    <div class="col-sm-8">{{user.alamatUser}}</div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-4">Nomor Telepon</div>
+    <div class="col-sm-8">{{user.noTeleponUser}}</div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-4">Tipe Pengguna</div>
+    <div class="col-sm-8">{{userType}}</div>
+  </div>
+</div>
 
-    <div class="row">
-      <div class="col-md-6 mb-32px">
-        <mdb-form-control>
-          <input
-            mdbValidate
-            mdbInput
-            type="text"
-            id="phoneNumField"
-            class="form-control"
-            formControlName="phoneNum"
-            required/>
-          <label mdbLabel class="form-label" for="phoneNumField">No Telepon Pengguna</label>
-          <mdb-error *ngIf="phoneNum?.invalid && (phoneNum?.dirty || phoneNum?.touched)">
-            No Telepon Pengguna wajib diisi
-          </mdb-error>
-        </mdb-form-control>
-      </div>
-    </div>
-
-    <button type="submit" 
-            class="btn btn-primary mt-4" 
-            [disabled]="validationForm.invalid">
-            Selesai
-    </button>
-  </form>
+<div class="mb-4 text-align-last-right">
+  <button class="btn btn-primary" (click)="openDialogEditProfile(user)">Ubah Profil</button>
 </div>

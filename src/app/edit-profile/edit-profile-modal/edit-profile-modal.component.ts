@@ -1,102 +1,76 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import * as dayjs from 'dayjs';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { userPosyandu, userPosyanduRequestBody, userPosyanduType } from 'src/app/models';
 import { DatePipe } from '@angular/common';
+import * as dayjs from 'dayjs';
 import { AppServiceService } from 'src/app/app-service.service';
-import { Subject } from "rxjs"
-import { takeUntil } from "rxjs/operators"
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'app-add-user-modal',
-  templateUrl: './add-user-modal.component.html',
-  styleUrls: ['./add-user-modal.component.scss']
+  selector: 'app-edit-profile-modal',
+  templateUrl: './edit-profile-modal.component.html',
+  styleUrls: ['./edit-profile-modal.component.scss']
 })
-export class AddUserModalComponent implements OnInit{
+export class EditProfileModalComponent {
   destroySubject$: Subject<void> = new Subject();
-  user: userPosyandu | null = null;
-  validationForm: FormGroup;
-
-  modalTitle: any;
-  selectedDate: any;
-
   isLoading: boolean = false;
   isError: boolean = false;
 
-  constructor(public modalRef: MdbModalRef<AddUserModalComponent>,
-              private service: AppServiceService,
-              private datePipe: DatePipe) {
+  user: userPosyandu | null = null;
+  selectedDate: any;
+
+  validationForm: FormGroup;
+
+  constructor(public modalRef: MdbModalRef<EditProfileModalComponent>,
+              private datePipe: DatePipe,
+              private service: AppServiceService) {
     this.validationForm = new FormGroup({
       userName: new FormControl(null, Validators.required),
       nik: new FormControl(null, Validators.required),
       dob: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
-      phoneNum: new FormControl(null, Validators.required),
-      userType: new FormControl(null, Validators.required)
+      phoneNum: new FormControl(null, Validators.required)
     });
   }
 
   ngOnInit(): void {
-    this.modalTitle = this.user === undefined ? 'Tambah Pengguna' : 'Ubah Pengguna';
     if (this.user !== undefined) {
       this.validationForm.get('userName')?.setValue(this.user?.namaUser);
       this.validationForm.get('nik')?.setValue(this.user?.nikUser);
       this.selectedDate = this.datePipe.transform(dayjs(this.user?.tanggalLahirUser).format('MM-DD-YYYY'), "yyyy-MM-dd")
       this.validationForm.get('address')?.setValue(this.user?.alamatUser);
       this.validationForm.get('phoneNum')?.setValue(this.user?.noTeleponUser);
-      this.validationForm.get('userType')?.setValue(this.setUserType(this.user?.tipeUser));
-    }
-  }
-
-  setUserType(type: number | undefined) {
-    if (type === 0) {
-      return userPosyanduType.ADMIN;
-    } else if (type === 1) {
-      return userPosyanduType.PETUGAS;
-    } else {
-      return userPosyanduType.ORANGTUA;
     }
   }
 
   onSubmit() {
-    let u: userPosyanduRequestBody = {
+    let request: userPosyanduRequestBody = {
       namaUser: this.validationForm.get('userName')?.value,
       nikUser: this.validationForm.get('nik')?.value,
       tanggalLahirUser: this.validationForm.get('dob')?.value,
       noTeleponUser: this.validationForm.get('phoneNum')?.value,
       alamatUser: this.validationForm.get('address')?.value,
-      tipeUser: this.validationForm.get('userType')?.value === userPosyanduType.ADMIN ? 0 :
-                this.validationForm.get('userType')?.value === userPosyanduType.PETUGAS ? 1 : 2
-    };
-    if (this.user === undefined) {
-      this.addUser(u);
-    } else {
-      this.editUser(u, this.user?.idUser!);
+      tipeUser: this.user?.tipeUser!
     }
+    this.editProfile(request);
   }
 
-  addUser(req: userPosyanduRequestBody) {
+  editProfile(req: userPosyanduRequestBody) {
     this.isLoading = true;
     this.isError = false;
-    this.service.addUser(req)
-      .pipe(takeUntil(this.destroySubject$))
-      .subscribe(data => {
-        this.isLoading = false;
-        this.modalRef.close('submit'); 
-      }, err => {
-        this.isError = true;
-        this.isLoading = false;
-      })
-  }
-
-  editUser(req: userPosyanduRequestBody, id: any) {
-    this.isLoading = true;
-    this.isError = false;
-    this.service.editUser(req, id)
+    this.service.editUser(req, this.user?.idUser)
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
         console.log(data);
+        sessionStorage.setItem('nama', data.namaUser!);
+        sessionStorage.setItem('nik', data.nikUser!);
+        sessionStorage.setItem('telp', data.noTeleponUser!);
+        let tipeUser = data.tipeUser === 0 ? userPosyanduType.ADMIN :
+                        data.tipeUser === 1 ? userPosyanduType.PETUGAS : userPosyanduType.ORANGTUA;
+        sessionStorage.setItem('tipe', tipeUser);
+        sessionStorage.setItem('alamat', data.alamatUser!);
+        sessionStorage.setItem('lahir', data.tanggalLahirUser!);
         this.isLoading = false;
         this.modalRef.close('submit'); 
       }, err => {
@@ -104,8 +78,7 @@ export class AddUserModalComponent implements OnInit{
         this.isLoading = false;
       })
   }
-
-
+  
   get userName(): AbstractControl {
     return this.validationForm.get('userName')!;
   }
@@ -126,7 +99,4 @@ export class AddUserModalComponent implements OnInit{
     return this.validationForm.get('phoneNum')!;
   }
 
-  get userType(): AbstractControl {
-    return this.validationForm.get('userType')!;
-  }
 }

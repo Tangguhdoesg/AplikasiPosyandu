@@ -54,6 +54,8 @@ export class LoginComponent implements OnInit{
         let tipeUser = data.tipeUser === 0 ? userPosyanduType.ADMIN :
                         data.tipeUser === 1 ? userPosyanduType.PETUGAS : userPosyanduType.ORANGTUA;
         sessionStorage.setItem('tipe', tipeUser);
+        sessionStorage.setItem('alamat', data.alamatUser!);
+        sessionStorage.setItem('lahir', data.tanggalLahirUser!);
         this.isLoading = false;
         this.userLogin.emit(true);
         this.router.navigate(['/dashboard']);

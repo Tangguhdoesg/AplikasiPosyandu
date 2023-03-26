@@ -11,7 +11,7 @@ export interface loginRequestBody {
 
 export interface userPosyandu {
     accessToken?: string,
-    idUser: number,
+    idUser: string,
     namaUser: string,
     nikUser: string,
     tanggalLahirUser: string,

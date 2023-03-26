@@ -38,8 +38,8 @@ export class AppServiceService {
       );
   }
 
-  editUser(request: userPosyanduRequestBody, id: number) {
-    return this.httpClient.put<userPosyandu[]>(`${environment.urlGateway}/user/${id}`, request)
+  editUser(request: userPosyanduRequestBody, id: any) {
+    return this.httpClient.put<userPosyandu>(`${environment.urlGateway}/user/${id}`, request)
       .pipe(
         map(data => {
           return data;

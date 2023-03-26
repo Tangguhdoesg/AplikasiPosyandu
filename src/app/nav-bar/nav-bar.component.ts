@@ -31,6 +31,8 @@ export class NavBarComponent implements OnInit {
     sessionStorage.removeItem('nik');
     sessionStorage.removeItem('telp');
     sessionStorage.removeItem('tipe');
+    sessionStorage.removeItem('alamat');
+    sessionStorage.removeItem('lahir');
     this.router.navigateByUrl('/login');
   }
   

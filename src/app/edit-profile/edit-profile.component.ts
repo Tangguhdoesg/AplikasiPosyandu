@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { userPosyandu, userPosyanduType } from '../models';
+import { EditProfileModalComponent } from './edit-profile-modal/edit-profile-modal.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -7,35 +10,35 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent {
-  validationForm: FormGroup;
+  
+  modalRefAddEdit: MdbModalRef<EditProfileModalComponent> | null = null;
+  userType = sessionStorage.getItem('tipe');
+  user: userPosyandu = {
+    idUser: sessionStorage.getItem('id')!,
+    namaUser: sessionStorage.getItem('nama')!,
+    nikUser: sessionStorage.getItem('nik')!,
+    tanggalLahirUser: sessionStorage.getItem('lahir')!,
+    alamatUser: sessionStorage.getItem('alamat')!,
+    noTeleponUser: sessionStorage.getItem('telp')!,
+    tipeUser: this.userType === userPosyanduType.ADMIN ? 0 :
+              this.userType === userPosyanduType.PETUGAS ? 1 : 2
+  }
 
-  constructor() {
-    this.validationForm = new FormGroup({
-      userName: new FormControl(null, Validators.required),
-      nik: new FormControl(null, Validators.required),
-      dob: new FormControl(null, Validators.required),
-      address: new FormControl(null, Validators.required),
-      phoneNum: new FormControl(null, Validators.required)
+  constructor(private modalService: MdbModalService) {
+
+  }
+
+  openDialogEditProfile(user: userPosyandu) {
+    this.modalRefAddEdit = this.modalService.open(EditProfileModalComponent, {
+      modalClass: 'modal-lg',
+      data: {user: user},
+      ignoreBackdropClick: true
+    });
+    this.modalRefAddEdit.onClose.subscribe((message: any) => {
+      if (message === 'submit') {
+        location.reload();
+      }
     });
   }
 
-  get userName(): AbstractControl {
-    return this.validationForm.get('userName')!;
-  }
-
-  get nik(): AbstractControl {
-    return this.validationForm.get('nik')!;
-  }
-
-  get dob(): AbstractControl {
-    return this.validationForm.get('dob')!;
-  }
-
-  get address(): AbstractControl {
-    return this.validationForm.get('address')!;
-  }
-
-  get phoneNum(): AbstractControl {
-    return this.validationForm.get('phoneNum')!;
-  }
 }

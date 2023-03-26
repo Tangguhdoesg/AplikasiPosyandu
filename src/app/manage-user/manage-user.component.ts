@@ -69,7 +69,7 @@ export class ManageUserComponent implements OnInit {
       })
   }
 
-  openDialogDeleteUser(id: number) {
+  openDialogDeleteUser(id: any) {
     this.modalRef = this.modalService.open(DeleteModalComponent, {
       modalClass: 'modal-dialog-centered'
     });

@@ -42,6 +42,7 @@ import { ManageImunisasiComponent } from './manage-imunisasi/manage-imunisasi.co
 import { AddImunisasiModalComponent } from './manage-imunisasi/add-imunisasi-modal/add-imunisasi-modal.component';
 import { ManageActivityComponent } from './manage-activity/manage-activity.component';
 import { AddActivityModalComponent } from './manage-activity/add-activity-modal/add-activity-modal.component';
+import { EditProfileModalComponent } from './edit-profile/edit-profile-modal/edit-profile-modal.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { AddActivityModalComponent } from './manage-activity/add-activity-modal/
     ManageImunisasiComponent,
     AddImunisasiModalComponent,
     ManageActivityComponent,
-    AddActivityModalComponent
+    AddActivityModalComponent,
+    EditProfileModalComponent
   ],
   imports: [
     HttpClientModule,

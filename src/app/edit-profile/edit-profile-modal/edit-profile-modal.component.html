@@ -1,0 +1,81 @@
+<ng-container *ngIf="isLoading">
+    <app-loading></app-loading>
+</ng-container>
+
+<ng-container *ngIf="isError">
+    <app-error-timeout></app-error-timeout>
+</ng-container>
+
+<ng-container *ngIf="!isLoading && !isError">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ubah Profil</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+    </div>
+
+    <div class="p-4">
+        <form [formGroup]="validationForm">
+            <div class="row">
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="userNameField" class="form-control"
+                            formControlName="userName" required />
+                        <label mdbLabel class="form-label" for="userNameField">Nama Pengguna</label>
+                        <mdb-error *ngIf="userName?.invalid && (userName?.dirty || userName?.touched)">
+                            Nama Pengguna wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="NIKField" class="form-control" formControlName="nik"
+                            required />
+                        <label mdbLabel class="form-label" for="NIKField">NIK Pengguna</label>
+                        <mdb-error *ngIf="nik?.invalid && (nik?.dirty || nik?.touched)">
+                            NIK Pengguna wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="date" placeholder="dd-mm-yyyy" id="dobField"
+                            class="form-control" formControlName="dob" [(ngModel)]="selectedDate" required />
+                        <label mdbLabel class="form-label" for="dobField">Tanggal Lahir Pengguna</label>
+                        <mdb-error *ngIf="dob?.invalid && (dob?.dirty || dob?.touched)">
+                            Tanggal Lahir Pengguna wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="addressField" class="form-control"
+                            formControlName="address" required />
+                        <label mdbLabel class="form-label" for="addressField">Alamat Pengguna</label>
+                        <mdb-error *ngIf="address?.invalid && (address?.dirty || address?.touched)">
+                            Alamat Pengguna wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-32px">
+                    <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="phoneNumField" class="form-control"
+                            formControlName="phoneNum" required />
+                        <label mdbLabel class="form-label" for="phoneNumField">No Telepon Pengguna</label>
+                        <mdb-error *ngIf="phoneNum?.invalid && (phoneNum?.dirty || phoneNum?.touched)">
+                            No Telepon Pengguna wajib diisi
+                        </mdb-error>
+                    </mdb-form-control>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-4" [disabled]="validationForm.invalid" (click)="onSubmit()">
+                Selesai
+            </button>
+        </form>
+    </div>
+</ng-container>
