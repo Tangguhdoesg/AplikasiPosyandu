@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { Subject, takeUntil } from 'rxjs';
 import { AppServiceService } from '../app-service.service';
-import { imunisasi } from '../models';
+import { imunisasi, userPosyanduType } from '../models';
 import { DeleteModalComponent } from '../shared/delete-modal/delete-modal.component';
 import { AddImunisasiModalComponent } from './add-imunisasi-modal/add-imunisasi-modal.component';
 
@@ -18,6 +18,8 @@ export class ManageImunisasiComponent {
   isLoading: boolean = false;
   isError: boolean = false;
 
+  userRole = sessionStorage.getItem('tipe');
+
   modalRefDelete: MdbModalRef<DeleteModalComponent> | null = null;
   modalRefAddEdit: MdbModalRef<AddImunisasiModalComponent> | null = null;
 
@@ -26,13 +28,28 @@ export class ManageImunisasiComponent {
   }
 
   ngOnInit(): void {
-    this.getAllImunisasi();
+    this.userRole === userPosyanduType.PETUGAS ? this.getAllImunisasi() : this.getAllUserImunisasi();
   }
 
   getAllImunisasi() {
     this.isLoading = true;
     this.isError = false;
     this.service.getAllImunisasi()
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe(data => {
+        this.allImunisasi = [...data];
+        this.totalImunisasiData = data.length;
+        this.isLoading = false;
+      }, err => {
+        this.isError = true;
+        this.isLoading = false;
+      })
+  }
+
+  getAllUserImunisasi() {
+    this.isLoading = true;
+    this.isError = false;
+    this.service.getAllUserImunisasi(sessionStorage.getItem('id'))
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
         this.allImunisasi = [...data];
@@ -78,5 +95,9 @@ export class ManageImunisasiComponent {
         this.getAllImunisasi();
       }
     });
+  }
+
+  checkAddEditAccess(): boolean {
+    return this.userRole === userPosyanduType.PETUGAS;
   }
 }

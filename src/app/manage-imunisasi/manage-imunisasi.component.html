@@ -13,21 +13,27 @@
         </div>
     </div>
 
-    <div class="mb-4 text-align-last-right">
-        <button class="btn btn-primary" (click)="openDialogAddEditImunisasi()">Tambah Imunisasi</button>
-    </div>
+    <ng-container *ngIf="checkAddEditAccess()">
+        <div class="mb-4 text-align-last-right">
+            <button class="btn btn-primary" (click)="openDialogAddEditImunisasi()">Tambah Imunisasi</button>
+        </div>
+    </ng-container>
 
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
             <tr>
                 <th>Nama Balita</th>
                 <th>NIK Balita</th>
-                <th>Nama Orang Tua</th>
+                <ng-container *ngIf="checkAddEditAccess()">
+                    <th>Nama Orang Tua</th>
+                </ng-container>
                 <th>Nama Imunisasi</th>
                 <th>Tanggal Imunisasi</th>
                 <th>Tanggal Imunisasi Berikutnya</th>
                 <th>Catatan</th>
-                <th></th>
+                <ng-container *ngIf="checkAddEditAccess()">
+                    <th></th>
+                </ng-container>
             </tr>
         </thead>
         <tbody>
@@ -40,9 +46,11 @@
                 <td>
                     <p class="fw-normal mb-1">{{imunisasi.nikBalita}}</p>
                 </td>
-                <td>
-                    <p class="fw-normal mb-1">{{imunisasi.namaOrangTua}}</p>
-                </td>
+                <ng-container *ngIf="checkAddEditAccess()">
+                    <td>
+                        <p class="fw-normal mb-1">{{imunisasi.namaOrangTua}}</p>
+                    </td>
+                </ng-container>
                 <td>
                     <p class="fw-normal mb-1">{{imunisasi.namaImunisasi}}</p>
                 </td>
@@ -55,18 +63,20 @@
                 <td>
                     <p class="fw-normal mb-1">{{imunisasi.catatanImunisasi}}</p>
                 </td>
-                <td class="">
-                    <button type="button" 
-                            class="btn btn-link btn-sm btn-rounded fa-solid fa-pen-to-square"
-                            (click)="openDialogAddEditImunisasi(imunisasi)">
-                    </button>
-                    <button type="button" 
-                            class="btn btn-link btn-sm btn-rounded fa-solid fa-trash"
-                            (click)="openDialogDeleteImunisasi(imunisasi.idImunisasi)"
-                            data-mdb-target="#exampleModal"
-                            data-mdb-whatever="imunisasi">
-                    </button>
-                </td>
+                <ng-container *ngIf="checkAddEditAccess()">
+                    <td class="">
+                        <button type="button" 
+                                class="btn btn-link btn-sm btn-rounded fa-solid fa-pen-to-square"
+                                (click)="openDialogAddEditImunisasi(imunisasi)">
+                        </button>
+                        <button type="button" 
+                                class="btn btn-link btn-sm btn-rounded fa-solid fa-trash"
+                                (click)="openDialogDeleteImunisasi(imunisasi.idImunisasi)"
+                                data-mdb-target="#exampleModal"
+                                data-mdb-whatever="imunisasi">
+                        </button>
+                    </td>
+                </ng-container>
             </tr>
         </tbody>
     </table>

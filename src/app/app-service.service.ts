@@ -165,8 +165,8 @@ export class AppServiceService {
       );
   }
 
-  getImunisasi(id: number): Observable<imunisasi> {
-    return this.httpClient.get<imunisasi>(`${environment.urlGateway}/imunisasi/balita/${id}`)
+  getAllUserImunisasi(id: any): Observable<imunisasi[]> {
+    return this.httpClient.get<imunisasi[]>(`${environment.urlGateway}/imunisasi/balita/${id}`)
       .pipe(
         map(data => {
           return data;
