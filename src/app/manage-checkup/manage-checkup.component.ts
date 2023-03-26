@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { Subject, takeUntil } from 'rxjs';
 import { AppServiceService } from '../app-service.service';
-import { checkup } from '../models';
+import { checkup, userPosyanduType } from '../models';
 import { DeleteModalComponent } from '../shared/delete-modal/delete-modal.component';
 import { AddCheckupModalComponent } from './add-checkup-modal/add-checkup-modal.component';
 
@@ -18,6 +18,8 @@ export class ManageCheckupComponent {
   isLoading: boolean = false;
   isError: boolean = false;
 
+  userRole = sessionStorage.getItem('tipe');
+
   modalRefDelete: MdbModalRef<DeleteModalComponent> | null = null;
   modalRefAddEdit: MdbModalRef<AddCheckupModalComponent> | null = null;
 
@@ -26,7 +28,22 @@ export class ManageCheckupComponent {
   }
 
   ngOnInit(): void {
-    this.getAllCheckup();
+    this.userRole === userPosyanduType.PETUGAS ? this.getAllCheckup() : this.getAllUserCheckup();
+  }
+
+  getAllUserCheckup() {
+    this.isLoading = true;
+    this.isError = false;
+    this.service.getAllUserCheckup(sessionStorage.getItem('id'))
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe(data => {
+        this.allCheckup = [...data];
+        this.totalCheckupData = data.length;
+        this.isLoading = false;
+      }, err => {
+        this.isError = true;
+        this.isLoading = false;
+      })
   }
 
   getAllCheckup() {
@@ -79,4 +96,9 @@ export class ManageCheckupComponent {
       }
     });
   }
+
+  checkAddEditAccess(): boolean {
+    return this.userRole === userPosyanduType.PETUGAS;
+  }
+
 }

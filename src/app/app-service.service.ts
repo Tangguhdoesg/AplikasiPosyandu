@@ -119,8 +119,8 @@ export class AppServiceService {
       );
   }
 
-  getCheckup(id: number): Observable<checkup> {
-    return this.httpClient.get<checkup>(`${environment.urlGateway}/checkup/balita/${id}`)
+  getAllUserCheckup(id: any): Observable<checkup[]> {
+    return this.httpClient.get<checkup[]>(`${environment.urlGateway}/checkup/balita/${id}`)
       .pipe(
         map(data => {
           return data;

@@ -13,15 +13,19 @@
         </div>
     </div>
 
-    <div class="mb-4 text-align-last-right">
-        <button class="btn btn-primary" (click)="openDialogAddEditCheckup()">Tambah Pemeriksaan</button>
-    </div>
+    <ng-container *ngIf="checkAddEditAccess()">
+        <div class="mb-4 text-align-last-right">
+            <button class="btn btn-primary" (click)="openDialogAddEditCheckup()">Tambah Pemeriksaan</button>
+        </div>
+    </ng-container>
 
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
             <tr>
                 <th>Nama Balita</th>
-                <th>Nama Orang Tua</th>
+                <ng-container *ngIf="checkAddEditAccess()">
+                    <th>Nama Orang Tua</th>
+                </ng-container>
                 <th>Umur Balita (bulan)</th>
                 <th>Tanggal Pemeriksaan</th>
                 <th>Tanggal Pemeriksaan Berikutnya</th>
@@ -30,7 +34,9 @@
                 <th>Lingkar Kepala (cm)</th>
                 <th>Lingkar Lengan (cm)</th>
                 <th>Catatan</th>
-                <th></th>
+                <ng-container *ngIf="checkAddEditAccess()">
+                    <th></th>
+                </ng-container>
             </tr>
         </thead>
         <tbody>
@@ -40,9 +46,11 @@
                         <p class="fw-bold mb-1">{{checkup.namaBalita}}</p>
                     </div>
                 </td>
-                <td>
-                    <p class="fw-normal mb-1">{{checkup.namaOrangTua}}</p>
-                </td>
+                <ng-container *ngIf="checkAddEditAccess()">
+                    <td>
+                        <p class="fw-normal mb-1">{{checkup.namaOrangTua}}</p>
+                    </td>
+                </ng-container>
                 <td>
                     <p class="fw-normal mb-1">{{checkup.umurBalita}}</p>
                 </td>
@@ -67,18 +75,20 @@
                 <td>
                     <p class="fw-normal mb-1">{{checkup.catatan}}</p>
                 </td>
-                <td class="">
-                    <button type="button" 
-                            class="btn btn-link btn-sm btn-rounded fa-solid fa-pen-to-square"
-                            (click)="openDialogAddEditCheckup(checkup)">
-                    </button>
-                    <button type="button" 
-                            class="btn btn-link btn-sm btn-rounded fa-solid fa-trash"
-                            (click)="openDialogDeleteCheckup(checkup.idCheckup)"
-                            data-mdb-target="#exampleModal"
-                            data-mdb-whatever="checkup">
-                    </button>
-                </td>
+                <ng-container *ngIf="checkAddEditAccess()">
+                    <td class="">
+                        <button type="button" 
+                                class="btn btn-link btn-sm btn-rounded fa-solid fa-pen-to-square"
+                                (click)="openDialogAddEditCheckup(checkup)">
+                        </button>
+                        <button type="button" 
+                                class="btn btn-link btn-sm btn-rounded fa-solid fa-trash"
+                                (click)="openDialogDeleteCheckup(checkup.idCheckup)"
+                                data-mdb-target="#exampleModal"
+                                data-mdb-whatever="checkup">
+                        </button>
+                    </td>
+                </ng-container>
             </tr>
         </tbody>
     </table>
