@@ -65,7 +65,7 @@ export class AppServiceService {
       );
   }
 
-  getAllUserToddler(userId: number): Observable<balita[]> {
+  getAllUserToddler(userId: any): Observable<balita[]> {
     return this.httpClient.get<balita[]>(`${environment.urlGateway}/balita/user/${userId}`)
       .pipe(
         map(data => {

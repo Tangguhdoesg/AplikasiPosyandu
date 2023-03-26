@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { Subject, takeUntil } from 'rxjs';
 import { AppServiceService } from '../app-service.service';
-import { balita } from '../models';
+import { balita, userPosyanduType } from '../models';
 import { DeleteModalComponent } from '../shared/delete-modal/delete-modal.component';
 import { AddToddlerModalComponent } from './add-toddler-modal/add-toddler-modal.component';
 
@@ -18,6 +18,8 @@ export class ManageToddlerComponent implements OnInit {
   isLoading: boolean = false;
   isError: boolean = false;
 
+  userRole = sessionStorage.getItem('tipe');
+
   modalRefDelete: MdbModalRef<DeleteModalComponent> | null = null;
   modalRefAddEdit: MdbModalRef<AddToddlerModalComponent> | null = null;
 
@@ -26,7 +28,22 @@ export class ManageToddlerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllToddler();
+    this.userRole === userPosyanduType.PETUGAS ? this.getAllToddler() : this.getAllUserToddler();
+  }
+
+  getAllUserToddler() {
+    this.isLoading = true;
+    this.isError = false;
+    this.service.getAllUserToddler(sessionStorage.getItem('id'))
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe(data => {
+        this.allToddlers = [...data];
+        this.totalToddlersData = data.length;
+        this.isLoading = false;
+      }, err => {
+        this.isError = true;
+        this.isLoading = false;
+      })
   }
 
   getAllToddler() {
@@ -78,5 +95,9 @@ export class ManageToddlerComponent implements OnInit {
         this.getAllToddler();
       }
     });
+  }
+
+  checkAddEditAccess(): boolean {
+    return this.userRole === userPosyanduType.PETUGAS;
   }
 }
