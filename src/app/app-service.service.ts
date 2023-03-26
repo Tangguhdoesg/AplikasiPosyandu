@@ -120,7 +120,7 @@ export class AppServiceService {
   }
 
   getAllUserCheckup(id: any): Observable<checkup[]> {
-    return this.httpClient.get<checkup[]>(`${environment.urlGateway}/checkup/balita/${id}`)
+    return this.httpClient.get<checkup[]>(`${environment.urlGateway}/checkup/user/${id}`)
       .pipe(
         map(data => {
           return data;
