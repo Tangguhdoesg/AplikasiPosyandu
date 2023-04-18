@@ -1,54 +1,60 @@
-<ng-container>
-  <div class="p-4 grid-container">
-    <div class="col-sm-7"></div>
-    <div class="col-sm-5 border sign-in-style">
-      <div class="mb-3">
-        <h5>Masuk</h5>
-      </div>
-
-      <div 
-        *ngIf="isError"
-        class="list-group-item px-3 border-0 rounded-3 list-group-item-danger mb-3">
-        Nomor Telepon atau Kata Sandi salah
-      </div>
-
-      <form [formGroup]="validationForm">
-        <div class="mb-32px">
-          <mdb-form-control>
-            <input mdbValidate mdbInput type="text" id="phoneNumField" class="form-control" formControlName="phoneNum"
-              required />
-            <label mdbLabel class="form-label" for="phoneNumField">Nomor Telepon</label>
-            <mdb-error *ngIf="phoneNum?.invalid && (phoneNum?.dirty || phoneNum?.touched)">
-              Nomor Telepon wajib diisi
-            </mdb-error>
-          </mdb-form-control>
-        </div>
-        <div class="mb-4">
-          <mdb-form-control>
-            <input mdbValidate mdbInput type="password" id="passwordField" class="form-control" formControlName="password"
-              required />
-            <label mdbLabel class="form-label" for="passwordField">Kata Sandi</label>
-            <mdb-error *ngIf="password?.invalid && (password?.dirty || password?.touched)">
-              Kata Sandi wajib diisi
-            </mdb-error>
-          </mdb-form-control>
-        </div>
-
-        <!-- <div class="text-end mb-3">
-          <u style="font-size: 12px; color: blue; cursor: pointer;">Lupa Kata Sandi?</u>
-        </div> -->
-
-        <button type="submit" class="btn btn-success w-100" [disabled]="validationForm.invalid || isLoading" (click)="onSubmit()">
-          <span
-            class="spinner-border spinner-border-sm"
-            role="status"
-            aria-hidden="true"
-            [hidden]="!isLoading"
-          ></span>
-          <span [hidden]="isLoading">Masuk</span>
-        </button>
-      </form>
-
-    </div>
+<div class="p-4 grid-container">
+  <div class="d-none d-sm-flex col-sm-7 justify-content-center">
+    <img
+      src="assets/img/logo.png"
+      height="250"
+      width="250"
+      alt=""
+    />
   </div>
-</ng-container>
+
+  <div class="col-12 col-sm-5 border sign-in-style">
+    <div class="mb-3">
+      <h5>Masuk</h5>
+    </div>
+
+    <div 
+      *ngIf="isError"
+      class="list-group-item px-3 border-0 rounded-3 list-group-item-danger mb-3">
+      Nomor Telepon atau Kata Sandi salah
+    </div>
+
+    <form [formGroup]="validationForm">
+      <div class="mb-32px">
+        <mdb-form-control>
+          <input mdbValidate mdbInput type="text" id="phoneNumField" class="form-control" formControlName="phoneNum"
+            required />
+          <label mdbLabel class="form-label" for="phoneNumField">Nomor Telepon</label>
+          <mdb-error *ngIf="phoneNum?.invalid && (phoneNum?.dirty || phoneNum?.touched)">
+            Nomor Telepon wajib diisi
+          </mdb-error>
+        </mdb-form-control>
+      </div>
+      <div class="mb-4">
+        <mdb-form-control>
+          <input mdbValidate mdbInput type="password" id="passwordField" class="form-control" formControlName="password"
+            required />
+          <label mdbLabel class="form-label" for="passwordField">Kata Sandi</label>
+          <mdb-error *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+            Kata Sandi wajib diisi
+          </mdb-error>
+        </mdb-form-control>
+      </div>
+
+      <!-- <div class="text-end mb-3">
+        <u style="font-size: 12px; color: blue; cursor: pointer;">Lupa Kata Sandi?</u>
+      </div> -->
+
+      <button type="submit" class="btn btn-success w-100" [disabled]="validationForm.invalid || isLoading" (click)="onSubmit()">
+        <span
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+          [hidden]="!isLoading"
+        ></span>
+        <span [hidden]="isLoading">Masuk</span>
+      </button>
+    </form>
+
+  </div>
+</div>
