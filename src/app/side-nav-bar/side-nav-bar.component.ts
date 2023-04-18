@@ -28,10 +28,17 @@ export class SideNavBarComponent implements OnInit {
     },
     {
       number: '3',
+      name: 'Informasi Kesehatan',
+      icon: 'fa-solid fa-chart-line',
+      path: '/health-info',
+      access: [userPosyanduType.ORANGTUA]
+    },
+    {
+      number: '3',
       name: 'Laporan',
       icon: 'fa-solid fa-chart-line',
       path: '/report',
-      access: [userPosyanduType.PETUGAS, userPosyanduType.ORANGTUA]
+      access: [userPosyanduType.PETUGAS]
     },
     {
       number: '4',
@@ -56,7 +63,7 @@ export class SideNavBarComponent implements OnInit {
     },
     {
       number: '7',
-      name: 'Pemeriksaan',
+      name: 'Checkup',
       icon: 'fa-solid fa-stethoscope',
       path: '/manage-checkup',
       access: [userPosyanduType.PETUGAS, userPosyanduType.ORANGTUA]

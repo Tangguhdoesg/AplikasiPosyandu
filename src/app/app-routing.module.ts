@@ -8,7 +8,7 @@ import { ManageCheckupComponent } from './manage-checkup/manage-checkup.componen
 import { ManageImunisasiComponent } from './manage-imunisasi/manage-imunisasi.component';
 import { ManageToddlerComponent } from './manage-toddler/manage-toddler.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
-import { ReportComponent } from './report/report.component';
+import { HealthInfoComponent } from './health-info/health-info.component';
 
 const routes: Routes = [
   { 
@@ -33,9 +33,13 @@ const routes: Routes = [
         // loadChildren: () => import('./content/content.module').then(m => m.ContentModule)
       }, 
       {
-        path: 'report',
-        component: ReportComponent
+        path: 'health-info',
+        component: HealthInfoComponent
       },
+      // {
+      //   path: 'report',
+      //   component: ReportComponent
+      // },
       {
         path: 'manage-toddler',
         component: ManageToddlerComponent

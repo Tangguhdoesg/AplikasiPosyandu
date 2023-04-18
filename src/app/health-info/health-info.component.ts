@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { EChartsOption } from 'echarts';
 
 @Component({
-  selector: 'app-report',
-  templateUrl: './report.component.html',
-  styleUrls: ['./report.component.scss']
+  selector: 'app-health-info',
+  templateUrl: './health-info.component.html',
+  styleUrls: ['./health-info.component.scss']
 })
-export class ReportComponent {
+export class HealthInfoComponent {
   options: any;
   updateOptions: any;
 

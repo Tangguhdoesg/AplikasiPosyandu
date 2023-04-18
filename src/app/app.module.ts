@@ -32,7 +32,7 @@ import { ErrorTimeoutComponent } from './shared/error-timeout/error-timeout.comp
 import { AddUserModalComponent } from './manage-user/add-user-modal/add-user-modal.component';
 import { DatePipe } from '@angular/common';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { ReportComponent } from './report/report.component';
+import { HealthInfoComponent } from './health-info/health-info.component';
 import { ManageToddlerComponent } from './manage-toddler/manage-toddler.component';
 import { AddToddlerModalComponent } from './manage-toddler/add-toddler-modal/add-toddler-modal.component';
 import { DeleteModalComponent } from './shared/delete-modal/delete-modal.component';
@@ -57,7 +57,7 @@ import { EditProfileModalComponent } from './edit-profile/edit-profile-modal/edi
     ErrorTimeoutComponent,
     DeleteModalComponent,
     AddUserModalComponent,
-    ReportComponent,
+    HealthInfoComponent,
     ManageToddlerComponent,
     AddToddlerModalComponent,
     ManageCheckupComponent,
