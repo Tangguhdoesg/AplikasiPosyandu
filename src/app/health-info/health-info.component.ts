@@ -11,7 +11,7 @@ import { healthInfoGraph } from '../models';
 })
 export class HealthInfoComponent {
   destroySubject$: Subject<void> = new Subject();
-  graphData: healthInfoGraph[] | undefined;
+  graphData: healthInfoGraph[] = [];
   graphDataLen: number = 0;
 
   optionx: any;
@@ -202,13 +202,14 @@ export class HealthInfoComponent {
     });
     console.log(this.optionWeight);
     console.log(this.optionWeight[0]);
+    console.log(this.graphData);
     
   }
 
   setHeigthGraph(data: healthInfoGraph) {
     this.optionHeight.push({
       title: {
-        text: 'Tinggi Badan '+ data.namaBalita
+        text: 'Panjang Badan '+ data.namaBalita
       },
       tooltip: {
         trigger: 'axis',
@@ -237,7 +238,7 @@ export class HealthInfoComponent {
         }
       ],
       yAxis: {
-        name: 'tinggi badan (cm)',
+        name: 'Panjang badan (cm)',
         type: 'value'
       },
       series: [
