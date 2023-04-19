@@ -1,24 +1,34 @@
-<div class="my-3">
-    <div class="fa-solid fa-chart-line">
-        <span style="margin-left: 24px;">Informasi Kesehatan Balita</span>
-    </div>
-</div>
-<ng-container *ngFor="let o of optionWeight; let idx=index">
-    <div class="py-5">
-        <div echarts [options]="o" class="demo-chart"></div>
-        <div class="pt-3">
-            <b>Catatan: </b>
-            <p>{{graphData[idx].kesehatanBasedOnWeight}}</p>
-        </div>
-    </div>
+<ng-container *ngIf="isLoading">
+    <app-loading></app-loading>
 </ng-container>
 
-<ng-container *ngFor="let o of optionHeight; let idx=index">
-    <div class="py-5">
-        <div echarts [options]="o" class="demo-chart"></div>
-        <div class="pt-3">
-            <b>Catatan: </b>
-            <p>{{graphData[idx].kesehatanBasedOnLength}}</p>
+<ng-container *ngIf="isError">
+    <app-error-timeout></app-error-timeout>
+</ng-container>
+
+<ng-container *ngIf="!isLoading && !isError">
+    <div class="my-3">
+        <div class="fa-solid fa-chart-line">
+            <span style="margin-left: 24px;">Informasi Kesehatan Balita</span>
         </div>
     </div>
+    <ng-container *ngFor="let o of optionWeight; let idx=index">
+        <div class="py-5">
+            <div echarts [options]="o" class="demo-chart"></div>
+            <div class="pt-3">
+                <b>Catatan: </b>
+                <p>{{graphData[idx].kesehatanBasedOnWeight}}</p>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngFor="let o of optionHeight; let idx=index">
+        <div class="py-5">
+            <div echarts [options]="o" class="demo-chart"></div>
+            <div class="pt-3">
+                <b>Catatan: </b>
+                <p>{{graphData[idx].kesehatanBasedOnLength}}</p>
+            </div>
+        </div>
+    </ng-container>
 </ng-container>
