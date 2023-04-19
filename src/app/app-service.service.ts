@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
 import { map, Observable } from 'rxjs';
-import { balita, balitaAddEditRequestBody, checkup, checkupAddEditRequestBody, imunisasi, imunisasiAddEditRequestBody, kegiatan, kegiatanAddEditRequestBody, loginRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
+import { balita, balitaAddEditRequestBody, checkup, checkupAddEditRequestBody, healthInfoGraph, imunisasi, imunisasiAddEditRequestBody, kegiatan, kegiatanAddEditRequestBody, loginRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
 import { environment } from 'environment';
 
 @Injectable({
@@ -239,6 +239,15 @@ export class AppServiceService {
 
   deleteActivity(id: number) {
     return this.httpClient.delete(`${environment.urlGateway}/kegiatan/${id}`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  getAllUserGraph(id: any): Observable<healthInfoGraph[]> {
+    return this.httpClient.get<healthInfoGraph[]>(`${environment.urlGateway}/checkup/graph/balita/${id}`)
       .pipe(
         map(data => {
           return data;

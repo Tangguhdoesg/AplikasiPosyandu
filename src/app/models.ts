@@ -120,3 +120,24 @@ export interface kegiatanAddEditRequestBody {
     tanggalKegiatan: string,
     posterKegiatan: any
 }
+
+export interface healthInfoGraph {
+    lingkarKepala: any,
+    namaBalita: string,
+	umurBalita: string,
+    kesehatanBasedOnLength:	string,
+	beratBalita: any,
+    idBalita: number,
+    namaOrangTua: string,
+    kesehatanBasedOnWeight: string,
+	tinggiBalita: any,
+    nikBalita: number,
+	lingkarLengan: any,
+    medianLength: any,
+    medianWeight: any,
+    umurMedian: any,
+    batasBawahBerat: any,
+    batasAtasBerat: any,
+    batasBawahPanjang: any,
+    batasAtasPanjang: any
+}

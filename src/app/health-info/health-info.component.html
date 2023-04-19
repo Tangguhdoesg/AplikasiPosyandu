@@ -3,4 +3,14 @@
         <span style="margin-left: 24px;">Laporan</span>
     </div>
 </div>
-<div echarts [options]="options" [merge]="updateOptions" class="demo-chart"></div>
+<ng-container *ngFor="let o of optionWeight">
+    <div class="py-5">
+        <div echarts [options]="o" class="demo-chart"></div>
+    </div>
+</ng-container>
+
+<ng-container *ngFor="let o of optionHeight">
+    <div class="py-5">
+        <div echarts [options]="o" class="demo-chart"></div>
+    </div>
+</ng-container>
