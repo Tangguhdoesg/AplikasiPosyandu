@@ -9,6 +9,7 @@ import { ManageImunisasiComponent } from './manage-imunisasi/manage-imunisasi.co
 import { ManageToddlerComponent } from './manage-toddler/manage-toddler.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { HealthInfoComponent } from './health-info/health-info.component';
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
   { 
@@ -36,10 +37,10 @@ const routes: Routes = [
         path: 'health-info',
         component: HealthInfoComponent
       },
-      // {
-      //   path: 'report',
-      //   component: ReportComponent
-      // },
+      {
+        path: 'report',
+        component: ReportComponent
+      },
       {
         path: 'manage-toddler',
         component: ManageToddlerComponent

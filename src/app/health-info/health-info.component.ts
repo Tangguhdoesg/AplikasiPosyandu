@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { EChartsOption } from 'echarts';
 import { Subject, takeUntil } from 'rxjs';
 import { AppServiceService } from '../app-service.service';
 import { healthInfoGraph } from '../models';

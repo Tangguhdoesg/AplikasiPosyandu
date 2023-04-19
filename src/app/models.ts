@@ -141,3 +141,14 @@ export interface healthInfoGraph {
     batasBawahPanjang: any,
     batasAtasPanjang: any
 }
+
+export interface downloadExcelRequestBody {
+    tanggalAwal: string,
+    tanggalAkhir: string
+}
+
+export interface sendExcelRequestBody {
+    tanggalAwal: string,
+    tanggalAkhir: string,
+    email: string
+}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
 import { map, Observable } from 'rxjs';
-import { balita, balitaAddEditRequestBody, checkup, checkupAddEditRequestBody, healthInfoGraph, imunisasi, imunisasiAddEditRequestBody, kegiatan, kegiatanAddEditRequestBody, loginRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
+import { balita, balitaAddEditRequestBody, checkup, checkupAddEditRequestBody, downloadExcelRequestBody, healthInfoGraph, imunisasi, imunisasiAddEditRequestBody, kegiatan, kegiatanAddEditRequestBody, loginRequestBody, sendExcelRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
 import { environment } from 'environment';
 
 @Injectable({
@@ -248,6 +248,33 @@ export class AppServiceService {
 
   getAllUserGraph(id: any): Observable<healthInfoGraph[]> {
     return this.httpClient.get<healthInfoGraph[]>(`${environment.urlGateway}/checkup/graph/balita/${id}`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  getExcelCheckup(request: downloadExcelRequestBody): Observable<any> {
+    return this.httpClient.post<any>(`${environment.urlGateway}/report/excelCheckup`, request)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  getExcelImunisasi(request: downloadExcelRequestBody): Observable<any> {
+    return this.httpClient.post<any>(`${environment.urlGateway}/report/excelImunisasi`, request)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
+  sendReport(request: sendExcelRequestBody): Observable<any> {
+    return this.httpClient.post<any>(`${environment.urlGateway}/report/send`, request)
       .pipe(
         map(data => {
           return data;
