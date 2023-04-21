@@ -1,16 +1,21 @@
 <div class="p-4 grid-container">
-  <div class="d-none d-sm-flex col-sm-7 justify-content-center">
+  <div class="d-none d-md-flex col-md-8 justify-content-center">
     <img
-      src="assets/img/logo.png"
-      height="250"
-      width="250"
+      src="assets/img/login_bg.png"
+      height="80%"
+      width="80%"
       alt=""
     />
   </div>
 
-  <div class="col-12 col-sm-5 border sign-in-style">
-    <div class="mb-3">
-      <h5>Masuk</h5>
+  <div class="col-12 col-md-4 sign-in-style">
+    <div class="mb-4 d-flex justify-content-center">
+      <img
+        src="assets/img/logo.png"
+        height="90"
+        width="90"
+        alt=""
+      />
     </div>
 
     <div 
@@ -45,7 +50,7 @@
         <u style="font-size: 12px; color: blue; cursor: pointer;">Lupa Kata Sandi?</u>
       </div> -->
 
-      <button type="submit" class="btn btn-success w-100" [disabled]="validationForm.invalid || isLoading" (click)="onSubmit()">
+      <button type="submit" class="btn btn-primary w-100" [disabled]="validationForm.invalid || isLoading" (click)="onSubmit()">
         <span
           class="spinner-border spinner-border-sm"
           role="status"
