@@ -255,13 +255,14 @@ export class AppServiceService {
       );
   }
 
-  getExcelCheckup(request: downloadExcelRequestBody): Observable<any> {
-    return this.httpClient.post<any>(`${environment.urlGateway}/report/excelCheckup`, request)
-      .pipe(
-        map(data => {
-          return data;
-        })
-      );
+  getExcelCheckup(request: downloadExcelRequestBody) {
+    return this.httpClient.post(`${environment.urlGateway}/report/excelCheckup`, request,
+    {observe:'response', responseType:'blob'})
+      // .pipe(
+      //   map(data => {
+      //     return data;
+      //   })
+      // );
   }
 
   getExcelImunisasi(request: downloadExcelRequestBody): Observable<any> {

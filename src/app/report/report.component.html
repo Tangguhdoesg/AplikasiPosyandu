@@ -12,14 +12,40 @@
             <span style="margin-left: 24px;">Laporan Balita</span>
         </div>
     </div>
-    <div class="mb-4">
-        <button class="btn btn-primary" (click)="getExcelCheckup()">Download Excel Checkup</button>
-    </div>
-    <div class="mb-4">
-        <button class="btn btn-secondary" (click)="getExcelImunisasi()">Download Excel Imunisasi</button>
-    </div>
-    <div class="mb-4">
-        <button class="btn btn-primary" (click)="sendReport()">Kirim Report</button>
+
+    <div class="pt-4 row" style="gap: 32px">
+        <div class="card col-12 col-sm-3">
+            <img src="assets/img/send.png" class="card-img-top" alt="Chicago Skyscrapers"/>
+            <div class="card-body">
+                <h5 class="card-link">Download Laporan Checkup</h5>
+                <p class="card-text">Anda dapat mendownload laporan checkup balita yang ada dengan format excel.</p>
+            </div>  
+            <div class="card-body">
+                <a class="card-link" (click)="getExcelCheckup()">Download Checkup</a>
+            </div>
+        </div>
+
+        <div class="card col-12 col-sm-3">
+            <img src="assets/img/imunisasi.png" class="card-img-top" alt="Chicago Skyscrapers"/>
+            <div class="card-body">
+                <h5 class="card-link">Download Laporan Imunisasi</h5>
+                <p class="card-text">Anda dapat mendownload laporan imunisasi balita yang ada dengan format excel.</p>
+            </div>  
+            <div class="card-body">
+                <a class="card-link" (click)="getExcelImunisasi()">Download Imunisasi</a>
+            </div>
+        </div>
+        
+        <div class="card col-12 col-sm-3">
+            <img src="assets/img/send.png" class="card-img-top" alt="Chicago Skyscrapers"/>
+            <div class="card-body">
+                <h5 class="card-link">Kirim Laporan</h5>
+                <p class="card-text">Anda dapat mengirim laporan yang ada ke email yang Anda inginkan.</p>
+            </div>  
+            <div class="card-body">
+                <a class="card-link" (click)="sendReport()">Kirim Laporan</a>
+            </div>
+        </div>
     </div>
 
 </ng-container>

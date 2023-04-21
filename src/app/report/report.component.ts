@@ -35,8 +35,24 @@ export class ReportComponent {
     this.isError = false;
     this.service.getExcelCheckup(this.request)
       .pipe(takeUntil(this.destroySubject$))
-      .subscribe(datas => {
-        console.log(datas);
+      .subscribe(response => {
+        console.log(response);
+        let filename = response.headers.get('content-disposition');
+        let blob: Blob = response.body as Blob;
+        console.log(filename);
+        console.log(blob);
+        
+
+        // let dataType = response.type;
+        //     let binaryData = [];
+        //     binaryData.push(response);
+        //     let downloadLink = document.createElement('a');
+        //     downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, {type: dataType}));
+        //     // if (filename)
+        //     //     downloadLink.setAttribute('download', filename);
+        //     document.body.appendChild(downloadLink);
+        //     downloadLink.click();
+
         
         this.isLoading = false;
       }, err => {
