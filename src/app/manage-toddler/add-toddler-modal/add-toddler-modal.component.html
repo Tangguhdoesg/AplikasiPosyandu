@@ -44,10 +44,11 @@
                   id="NIKField"
                   class="form-control"
                   formControlName="nik"
+                  pattern="[0-9]+"
                   required/>
                 <label mdbLabel class="form-label" for="NIKField">NIK Balita</label>
                 <mdb-error *ngIf="nik?.invalid && (nik?.dirty || nik?.touched)">
-                  NIK Balita wajib diisi
+                  NIK Balita wajib diisi angka
                 </mdb-error>
               </mdb-form-control>
             </div>
@@ -63,10 +64,11 @@
                   id="parentNikField"
                   class="form-control"
                   formControlName="parentNik"
+                  pattern="[0-9]+"
                   required/>
                 <label mdbLabel class="form-label" for="parentNikField">NIK Orang Tua</label>
                 <mdb-error *ngIf="parentNik?.invalid && (parentNik?.dirty || parentNik?.touched)">
-                  NIK Orang Tua wajib diisi
+                  NIK Orang Tua wajib diisi angka
                 </mdb-error>
               </mdb-form-control>
             </div>
@@ -131,14 +133,15 @@
                 <input
                   mdbValidate
                   mdbInput
-                  type="text"
+                  type="number"
                   id="hobField"
                   class="form-control"
                   formControlName="hob"
+                  min="0"
                   required/>
                 <label mdbLabel class="form-label" for="hobField">Tinggi Saat Lahir (cm)</label>
                 <mdb-error *ngIf="hob?.invalid && (hob?.dirty || hob?.touched)">
-                  Tinggi Saat Lahir wajib diisi
+                  Tinggi Saat Lahir wajib diisi angka
                 </mdb-error>
               </mdb-form-control>
             </div>
@@ -148,14 +151,15 @@
                 <input
                   mdbValidate
                   mdbInput
-                  type="text"
+                  type="number"
                   id="wobField"
                   class="form-control"
                   formControlName="wob"
+                  min="0"
                   required/>
                 <label mdbLabel class="form-label" for="wobField">Berat Saat Lahir (kg)</label>
                 <mdb-error *ngIf="wob?.invalid && (wob?.dirty || wob?.touched)">
-                    Berat Saat Lahir wajib diisi
+                    Berat Saat Lahir wajib diisi angka
                 </mdb-error>
               </mdb-form-control>
             </div>

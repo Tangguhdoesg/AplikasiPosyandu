@@ -25,10 +25,11 @@
                     <ng-container *ngIf="imunisasi === undefined">
                         <mdb-form-control>
                             <input mdbValidate mdbInput type="text" id="NIKField" class="form-control"
-                                formControlName="nik" required />
+                                formControlName="nik" 
+                                pattern="[0-9]+" required />
                             <label mdbLabel class="form-label" for="NIKField">NIK Balita</label>
                             <mdb-error *ngIf="nik?.invalid && (nik?.dirty || nik?.touched)">
-                                NIK Balita wajib diisi
+                                NIK Balita wajib diisi angka
                             </mdb-error>
                         </mdb-form-control>
                     </ng-container>

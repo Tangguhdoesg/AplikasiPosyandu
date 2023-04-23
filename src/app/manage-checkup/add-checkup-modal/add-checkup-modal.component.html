@@ -25,10 +25,10 @@
                     <ng-container *ngIf="checkup === undefined">
                         <mdb-form-control>
                             <input mdbValidate mdbInput type="text" id="NIKField" class="form-control" formControlName="nik"
-                                required />
+                                pattern="[0-9]+" required />
                             <label mdbLabel class="form-label" for="NIKField">NIK Balita</label>
                             <mdb-error *ngIf="nik?.invalid && (nik?.dirty || nik?.touched)">
-                                NIK Balita wajib diisi
+                                NIK Balita wajib diisi angka
                             </mdb-error>
                         </mdb-form-control>
                     </ng-container>
@@ -37,21 +37,21 @@
             <div class="row">
                 <div class="col-md-6 mb-32px">
                     <mdb-form-control>
-                        <input mdbValidate mdbInput type="text" id="heightField" class="form-control"
-                            formControlName="height" required />
+                        <input mdbValidate mdbInput type="number" id="heightField" class="form-control"
+                            formControlName="height" min="0" required />
                         <label mdbLabel class="form-label" for="heightField">Tinggi Balita</label>
                         <mdb-error *ngIf="height?.invalid && (height?.dirty || height?.touched)">
-                            Tinggi Balita wajib diisi
+                            Tinggi Balita wajib diisi angka
                         </mdb-error>
                     </mdb-form-control>
                 </div>
                 <div class="col-md-6 mb-32px">
                     <mdb-form-control>
-                        <input mdbValidate mdbInput type="text" id="weightField" class="form-control"
-                            formControlName="weight" required />
+                        <input mdbValidate mdbInput type="number" id="weightField" class="form-control"
+                            formControlName="weight" min="0" required />
                         <label mdbLabel class="form-label" for="weightField">Berat Balita (kg)</label>
                         <mdb-error *ngIf="weight?.invalid && (weight?.dirty || weight?.touched)">
-                            Berat Balita wajib diisi
+                            Berat Balita wajib diisi angka
                         </mdb-error>
                     </mdb-form-control>
                 </div>
@@ -60,21 +60,21 @@
             <div class="row">
                 <div class="col-md-6 mb-32px">
                     <mdb-form-control>
-                        <input mdbValidate mdbInput type="text" id="headCircumField" class="form-control"
-                            formControlName="headCircum" required />
+                        <input mdbValidate mdbInput type="number" id="headCircumField" class="form-control"
+                            formControlName="headCircum" min="0" required />
                         <label mdbLabel class="form-label" for="headCircumField">Lingkar Kepala (cm)</label>
                         <mdb-error *ngIf="headCircum?.invalid && (headCircum?.dirty || headCircum?.touched)">
-                            Lingkar Kepala wajib diisi
+                            Lingkar Kepala wajib diisi angka
                         </mdb-error>
                     </mdb-form-control>
                 </div>
                 <div class="col-md-6 mb-32px">
                     <mdb-form-control>
-                        <input mdbValidate mdbInput type="text" id="armCircumField" class="form-control"
-                            formControlName="armCircum" required />
+                        <input mdbValidate mdbInput type="number" id="armCircumField" class="form-control"
+                            formControlName="armCircum" min="0" required />
                         <label mdbLabel class="form-label" for="armCircumField">Lingkar Lengan (cm)</label>
                         <mdb-error *ngIf="armCircum?.invalid && (armCircum?.dirty || armCircum?.touched)">
-                            Lingkar Lengan wajib diisi
+                            Lingkar Lengan wajib diisi angka
                         </mdb-error>
                     </mdb-form-control>
                 </div>

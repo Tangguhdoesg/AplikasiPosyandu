@@ -27,11 +27,11 @@
                 </div>
                 <div class="col-md-6 mb-32px">
                     <mdb-form-control>
-                        <input mdbValidate mdbInput type="text" id="NIKField" class="form-control" formControlName="nik"
-                            required />
+                        <input mdbValidate mdbInput type="text" id="NIKField" class="form-control" formControlName="nik"  
+                            pattern="[0-9]+" required />
                         <label mdbLabel class="form-label" for="NIKField">NIK Pengguna</label>
                         <mdb-error *ngIf="nik?.invalid && (nik?.dirty || nik?.touched)">
-                            NIK Pengguna wajib diisi
+                            NIK Pengguna wajib diisi angka
                         </mdb-error>
                     </mdb-form-control>
                 </div>
@@ -64,10 +64,10 @@
                 <div class="col-md-6 mb-32px">
                     <mdb-form-control>
                         <input mdbValidate mdbInput type="text" id="phoneNumField" class="form-control"
-                            formControlName="phoneNum" required />
+                            formControlName="phoneNum" pattern="[0-9]+" required />
                         <label mdbLabel class="form-label" for="phoneNumField">No Telepon Pengguna</label>
                         <mdb-error *ngIf="phoneNum?.invalid && (phoneNum?.dirty || phoneNum?.touched)">
-                            No Telepon Pengguna wajib diisi
+                            No Telepon Pengguna wajib diisi angka
                         </mdb-error>
                     </mdb-form-control>
                 </div>
