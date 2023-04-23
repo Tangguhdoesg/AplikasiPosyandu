@@ -21,7 +21,7 @@
                 <p class="card-text">Anda dapat mendownload laporan checkup balita yang ada dengan format excel.</p>
             </div>  
             <div class="card-body">
-                <a class="card-link" (click)="getExcelCheckup()">Download Checkup</a>
+                <a class="card-link" (click)="openDialogDownload('checkup')">Download Checkup</a>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
                 <p class="card-text">Anda dapat mendownload laporan imunisasi balita yang ada dengan format excel.</p>
             </div>  
             <div class="card-body">
-                <a class="card-link" (click)="getExcelImunisasi()">Download Imunisasi</a>
+                <a class="card-link" (click)="openDialogDownload('imunisasi')">Download Imunisasi</a>
             </div>
         </div>
         
@@ -43,7 +43,7 @@
                 <p class="card-text">Anda dapat mengirim laporan yang ada ke email yang Anda inginkan.</p>
             </div>  
             <div class="card-body">
-                <a class="card-link" (click)="sendReport()">Kirim Laporan</a>
+                <a class="card-link" (click)="openDialogSend()">Kirim Laporan</a>
             </div>
         </div>
     </div>

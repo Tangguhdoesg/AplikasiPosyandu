@@ -44,6 +44,8 @@ import { ManageActivityComponent } from './manage-activity/manage-activity.compo
 import { AddActivityModalComponent } from './manage-activity/add-activity-modal/add-activity-modal.component';
 import { EditProfileModalComponent } from './edit-profile/edit-profile-modal/edit-profile-modal.component';
 import { ReportComponent } from './report/report.component';
+import { DownloadModalComponent } from './report/download-modal/download-modal.component';
+import { SendModalComponent } from './report/send-modal/send-modal.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { ReportComponent } from './report/report.component';
     ManageActivityComponent,
     AddActivityModalComponent,
     EditProfileModalComponent,
-    ReportComponent
+    ReportComponent,
+    DownloadModalComponent,
+    SendModalComponent
   ],
   imports: [
     HttpClientModule,

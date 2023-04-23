@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { AppServiceService } from '../app-service.service';
 import { Subject, takeUntil } from 'rxjs';
+import { saveAs } from 'file-saver';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { DownloadModalComponent } from './download-modal/download-modal.component';
+import { SendModalComponent } from './send-modal/send-modal.component';
 
 @Component({
   selector: 'app-report',
@@ -13,81 +17,50 @@ export class ReportComponent {
   isLoading: boolean = false;
   isError: boolean = false;
 
-  request = {
-    "tanggalAwal":"2023-01-01",
-    "tanggalAkhir":"2023-04-11"
-  };
+  modalRefDownload: MdbModalRef<DownloadModalComponent> | null = null;
+  modalRefSend: MdbModalRef<SendModalComponent> | null = null;
 
-  requestSend = {
-    "tanggalAwal":"2023-01-01",
-    "tanggalAkhir":"2023-04-11",
-    "email":"tangguhdoesgaming@gmail.com"
-  };
+  // request = {
+  //   "tanggalAwal":"2023-01-01",
+  //   "tanggalAkhir":"2023-04-11"
+  // };
 
-  constructor(private service: AppServiceService) { }
+  // requestSend = {
+  //   "tanggalAwal":"2023-01-01",
+  //   "tanggalAkhir":"2023-04-11",
+  //   "email":"tangguhdoesgaming@gmail.com"
+  // };
+
+  constructor(private service: AppServiceService,
+    private modalService: MdbModalService) { }
 
   ngOnInit(): void {
 
   }
 
-  getExcelCheckup() {
-    this.isLoading = true;
-    this.isError = false;
-    this.service.getExcelCheckup(this.request)
-      .pipe(takeUntil(this.destroySubject$))
-      .subscribe(response => {
-        console.log(response);
-        let filename = response.headers.get('content-disposition');
-        let blob: Blob = response.body as Blob;
-        console.log(filename);
-        console.log(blob);
+  openDialogDownload(type: string) {
+    this.modalRefDownload = this.modalService.open(DownloadModalComponent, {
+      modalClass: 'modal-lg',
+      data: { type: type },
+      ignoreBackdropClick: true
+    });
+    this.modalRefDownload.onClose.subscribe((message: any) => {
+      if (message === 'submit') {
         
-
-        // let dataType = response.type;
-        //     let binaryData = [];
-        //     binaryData.push(response);
-        //     let downloadLink = document.createElement('a');
-        //     downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, {type: dataType}));
-        //     // if (filename)
-        //     //     downloadLink.setAttribute('download', filename);
-        //     document.body.appendChild(downloadLink);
-        //     downloadLink.click();
-
-        
-        this.isLoading = false;
-      }, err => {
-        // this.isError = true;
-        this.isLoading = false;
-      })
+      }
+    });
   }
 
-  getExcelImunisasi() {
-    this.isLoading = true;
-    this.isError = false;
-    this.service.getExcelImunisasi(this.request)
-      .pipe(takeUntil(this.destroySubject$))
-      .subscribe(datas => {
-        console.log(datas);
-        
-        this.isLoading = false;
-      }, err => {
-        // this.isError = true;
-        this.isLoading = false;
-      })
+  openDialogSend() {
+    this.modalRefSend = this.modalService.open(SendModalComponent, {
+      modalClass: 'modal-lg',
+      ignoreBackdropClick: true
+    });
+    this.modalRefSend.onClose.subscribe((message: any) => {
+      if (message === 'submit') {
+
+      }
+    });
   }
 
-  sendReport() {
-    this.isLoading = true;
-    this.isError = false;
-    this.service.sendReport(this.requestSend)
-      .pipe(takeUntil(this.destroySubject$))
-      .subscribe(datas => {
-        console.log(datas);
-        
-        this.isLoading = false;
-      }, err => {
-        // this.isError = true;
-        this.isLoading = false;
-      })
-  }
 }
