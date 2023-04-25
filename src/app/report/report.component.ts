@@ -16,6 +16,8 @@ export class ReportComponent {
 
   isLoading: boolean = false;
   isError: boolean = false;
+  showSuccessMessage: boolean = false;
+  successMessage: string = 'a';
 
   modalRefDownload: MdbModalRef<DownloadModalComponent> | null = null;
   modalRefSend: MdbModalRef<SendModalComponent> | null = null;
@@ -47,6 +49,8 @@ export class ReportComponent {
     this.modalRefDownload.onClose.subscribe((message: any) => {
       if (message === 'submit') {
         
+      } else {
+        this.showSuccessMessage = false;
       }
     });
   }
@@ -58,7 +62,10 @@ export class ReportComponent {
     });
     this.modalRefSend.onClose.subscribe((message: any) => {
       if (message === 'submit') {
-
+        this.showSuccessMessage = true;
+        this.successMessage = 'Laporan berhasil dikirim.'
+      } else {
+        this.showSuccessMessage = false;
       }
     });
   }

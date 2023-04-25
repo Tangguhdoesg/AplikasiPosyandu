@@ -10,6 +10,8 @@ import { EditProfileModalComponent } from './edit-profile-modal/edit-profile-mod
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent {
+
+  showSuccessMessage: boolean = false;
   
   modalRefAddEdit: MdbModalRef<EditProfileModalComponent> | null = null;
   userType = sessionStorage.getItem('tipe');
@@ -36,7 +38,12 @@ export class EditProfileComponent {
     });
     this.modalRefAddEdit.onClose.subscribe((message: any) => {
       if (message === 'submit') {
-        location.reload();
+        this.showSuccessMessage = true;
+        user.namaUser = sessionStorage.getItem('nama')!;
+        user.nikUser = sessionStorage.getItem('nik')!;
+        user.tanggalLahirUser = sessionStorage.getItem('lahir')!;
+        user.alamatUser = sessionStorage.getItem('alamat')!;
+        user.noTeleponUser = sessionStorage.getItem('telp')!;
       }
     });
   }

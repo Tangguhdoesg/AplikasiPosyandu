@@ -80,6 +80,7 @@ export class DownloadModalComponent {
 
         
         this.isLoading = false;
+        this.modalRef.close('submit'); 
       }, err => {
         this.isError = true;
         this.isLoading = false;

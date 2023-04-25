@@ -17,6 +17,8 @@ export class ManageActivityComponent {
   totalActivityData: number = 0;
   isLoading: boolean = false;
   isError: boolean = false;
+  showSuccessMessage: boolean = false;
+  successMessage: string = '';
 
   userRole = sessionStorage.getItem('tipe');
 
@@ -64,7 +66,11 @@ export class ManageActivityComponent {
     });
     this.modalRefDelete.onClose.subscribe((message: any) => {
       if (message === 'delete') {
+        this.showSuccessMessage = true;
+        this.successMessage = 'Data berhasil dihapus.'
         this.deleteActivity(id);
+      } else {
+        this.showSuccessMessage = false;
       }
     });
   }
@@ -77,7 +83,11 @@ export class ManageActivityComponent {
     });
     this.modalRefAddEdit.onClose.subscribe((message: any) => {
       if (message === 'submit') {
+        this.showSuccessMessage = true;
+        this.successMessage = 'Data berhasil disimpan.'
         this.getAllActivity();
+      } else {
+        this.showSuccessMessage = false;
       }
     });
   }

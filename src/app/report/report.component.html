@@ -13,6 +13,10 @@
         </div>
     </div>
 
+    <ng-container *ngIf="showSuccessMessage">
+        <div class="py-2 px-4 m-4 bg-success bg-gradient text-white" style="border-radius: 8px;">{{successMessage}}</div>
+    </ng-container>
+
     <div class="pt-4 row" style="justify-content: space-evenly">
         <div class="card col-12 col-sm-3">
             <img src="assets/img/checkup.png" class="card-img-top" alt="Chicago Skyscrapers"/>

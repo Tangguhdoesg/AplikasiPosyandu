@@ -53,6 +53,7 @@ export class SendModalComponent {
         console.log(datas);
         
         this.isLoading = false;
+        this.modalRef.close('submit'); 
       }, err => {
         this.isError = true;
         this.isLoading = false;

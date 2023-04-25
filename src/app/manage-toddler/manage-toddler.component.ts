@@ -17,6 +17,8 @@ export class ManageToddlerComponent implements OnInit {
   totalToddlersData: number = 0;
   isLoading: boolean = false;
   isError: boolean = false;
+  showSuccessMessage: boolean = false;
+  successMessage: string = '';
 
   userRole = sessionStorage.getItem('tipe');
 
@@ -79,7 +81,11 @@ export class ManageToddlerComponent implements OnInit {
     });
     this.modalRefDelete.onClose.subscribe((message: any) => {
       if (message === 'delete') {
+        this.showSuccessMessage = true;
+        this.successMessage = 'Data berhasil dihapus.'
         this.deleteToddler(id);
+      } else {
+        this.showSuccessMessage = false;
       }
     });
   }
@@ -92,7 +98,11 @@ export class ManageToddlerComponent implements OnInit {
     });
     this.modalRefAddEdit.onClose.subscribe((message: any) => {
       if (message === 'submit') {
+        this.showSuccessMessage = true;
+        this.successMessage = 'Data berhasil disimpan.'
         this.getAllToddler();
+      } else {
+        this.showSuccessMessage = false;
       }
     });
   }

@@ -29,6 +29,8 @@ export class ManageUserComponent implements OnInit {
   totalUsersData: number = 0;
   isLoading: boolean = false;
   isError: boolean = false;
+  showSuccessMessage: boolean = false;
+  successMessage: string = '';
 
   modalRef: MdbModalRef<DeleteModalComponent> | null = null;
   modalRefAddEdit: MdbModalRef<AddUserModalComponent> | null = null;
@@ -75,7 +77,11 @@ export class ManageUserComponent implements OnInit {
     });
     this.modalRef.onClose.subscribe((message: any) => {
       if (message === 'delete') {
+        this.showSuccessMessage = true;
+        this.successMessage = 'Data berhasil dihapus.'
         this.deleteUser(id);
+      } else {
+        this.showSuccessMessage = false;
       }
     });
   }
@@ -88,7 +94,11 @@ export class ManageUserComponent implements OnInit {
     });
     this.modalRefAddEdit.onClose.subscribe((message: any) => {
       if (message === 'submit') {
+        this.showSuccessMessage = true;
+        this.successMessage = 'Data berhasil disimpan.'
         this.getAllUser();
+      } else {
+        this.showSuccessMessage = false;
       }
     });
   }
