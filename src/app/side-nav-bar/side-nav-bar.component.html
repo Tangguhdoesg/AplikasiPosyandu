@@ -1,5 +1,5 @@
 <div class="side-nav-content">
-  <ul class="nav-list" [ngClass]="{'nav-list-open': sideNavStatus}">
+  <ul class="nav-list nav-list-open">
     <ng-container *ngFor="let item of list">
       <ng-container *ngIf="checkAccess(item.access)">
         <li class="nav-list-item" (click)="goToPage(item.path)">

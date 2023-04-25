@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ export class NavBarComponent implements OnInit {
   @Output() sideNavToggled = new EventEmitter<boolean>();
   @Output() toLoginPage = new EventEmitter<any>();
 
-  menuStatus: boolean = false;
+  @Input() menuStatus: boolean = false;
 
   constructor(private router: Router) {
   }
@@ -22,6 +22,8 @@ export class NavBarComponent implements OnInit {
   sideNavToggle() {
     this.menuStatus = !this.menuStatus;
     this.sideNavToggled.emit(this.menuStatus);
+    console.log(this.menuStatus);
+    
   }
   
   logout() {

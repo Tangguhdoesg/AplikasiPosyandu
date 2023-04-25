@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Output, OnInit, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
 import { userPosyanduType } from '../models';
 
@@ -8,7 +8,8 @@ import { userPosyanduType } from '../models';
   styleUrls: ['./side-nav-bar.component.scss']
 })
 export class SideNavBarComponent implements OnInit {
-  @Input() sideNavStatus: boolean = false;
+  // @Input() sideNavStatus: boolean = false;
+  @Output() sideNavToggled = new EventEmitter<boolean>();
   userRole = sessionStorage.getItem('tipe');
 
   list = [
@@ -78,6 +79,8 @@ export class SideNavBarComponent implements OnInit {
   }
 
   goToPage(url: any) {
+    // this.sideNavStatus = false;
+    this.sideNavToggled.emit(false);
     this.router.navigateByUrl(url);
   }
 

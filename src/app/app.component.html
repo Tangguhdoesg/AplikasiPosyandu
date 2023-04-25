@@ -3,9 +3,10 @@
     <app-nav-bar
     style="background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important"
           (sideNavToggled)="sideNavStatus = $event;"
+          [menuStatus]="sideNavStatus"
     ></app-nav-bar>
     <main class="px-3">
-      <app-side-nav-bar [sideNavStatus]="sideNavStatus" [ngClass]="{'app-side-nav-open': sideNavStatus}">
+      <app-side-nav-bar (sideNavToggled)="sideNavStatus = $event" [ngClass]="{'app-side-nav-open': sideNavStatus}">
       </app-side-nav-bar>
       <router-outlet></router-outlet>
     </main>
