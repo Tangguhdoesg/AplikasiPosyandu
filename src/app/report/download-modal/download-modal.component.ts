@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { saveAs } from 'file-saver';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { Subject, takeUntil } from 'rxjs';
 import { AppServiceService } from 'src/app/app-service.service';
@@ -60,10 +61,11 @@ export class DownloadModalComponent {
         response => {
           console.log(response);
           // saveAs(response, 'a')
-        let filename = response.headers.get('content-disposition');
+        let filename= response.headers.get('content-disposition');
         let blob: Blob = response.body as Blob;
         console.log(filename);
         console.log(blob);
+        saveAs(blob,filename!);
         
 
         // let dataType = response.type;
