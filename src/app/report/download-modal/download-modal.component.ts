@@ -92,10 +92,16 @@ export class DownloadModalComponent {
     this.isError = false;
     this.service.getExcelImunisasi(request)
       .pipe(takeUntil(this.destroySubject$))
-      .subscribe(datas => {
-        console.log(datas);
+      .subscribe(response => {
+        console.log(response);
+        let filename= response.headers.get('content-disposition');
+        let blob: Blob = response.body as Blob;
+        console.log(filename);
+        console.log(blob);
+        saveAs(blob, filename!);
         
         this.isLoading = false;
+        this.modalRef.close('submit'); 
       }, err => {
         this.isError = true;
         this.isLoading = false;
