@@ -265,7 +265,7 @@ export class AppServiceService {
       // );
   }
 
-  getExcelImunisasi(request: downloadExcelRequestBody): Observable<any> {
+  getExcelImunisasi(request: downloadExcelRequestBody) {
     return this.httpClient.post<any>(`${environment.urlGateway}/report/excelImunisasi`, request,
       {observe:'response', responseType:'blob'})
 //       .pipe(
