@@ -266,12 +266,13 @@ export class AppServiceService {
   }
 
   getExcelImunisasi(request: downloadExcelRequestBody): Observable<any> {
-    return this.httpClient.post<any>(`${environment.urlGateway}/report/excelImunisasi`, request)
-      .pipe(
-        map(data => {
-          return data;
-        })
-      );
+    return this.httpClient.post<any>(`${environment.urlGateway}/report/excelImunisasi`, request,
+      {observe:'response', responseType:'blob'})
+//       .pipe(
+//         map(data => {
+//           return data;
+//         })
+//       );
   }
 
   sendReport(request: sendExcelRequestBody): Observable<any> {
