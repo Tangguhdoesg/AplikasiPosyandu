@@ -22,6 +22,9 @@ export class AddToddlerModalComponent {
 
   isLoading: boolean = false;
   isError: boolean = false;
+  showErrorMessage: boolean = false;
+  errMessage: string = '';
+
 
   constructor(public modalRef: MdbModalRef<AddToddlerModalComponent>,
               private service: AppServiceService,
@@ -53,6 +56,7 @@ export class AddToddlerModalComponent {
   }
 
   onSubmit() {
+    this.showErrorMessage = false;
     let t: balitaAddEditRequestBody = {
       namaBalita: this.validationForm.get('name')?.value,
       nikBalita: this.validationForm.get('nik')?.value,
@@ -81,8 +85,13 @@ export class AddToddlerModalComponent {
         this.modalRef.close('submit');
         
       }, err => {
-        this.isError = true;
         this.isLoading = false;
+        if (err.status === 404) {
+          this.showErrorMessage = true;
+          this.errMessage = 'NIK tidak terdaftar dalam sistem.'
+        } else {
+          this.isError = true;
+        }
       })
   }
 
@@ -96,8 +105,13 @@ export class AddToddlerModalComponent {
         this.isLoading = false;
         this.modalRef.close('submit'); 
       }, err => {
-        this.isError = true;
         this.isLoading = false;
+        if (err.status === 404) {
+          this.showErrorMessage = true;
+          this.errMessage = 'NIK tidak terdaftar dalam sistem.'
+        } else {
+          this.isError = true;
+        }
       })
   }
 

@@ -24,6 +24,8 @@ export class AddActivityModalComponent {
 
   isLoading: boolean = false;
   isError: boolean = false;
+  showErrorMessage: boolean = false;
+  errMessage: string = '';
 
   constructor(public modalRef: MdbModalRef<AddActivityModalComponent>,
     private service: AppServiceService,
@@ -47,6 +49,7 @@ export class AddActivityModalComponent {
   }
 
   onSubmit() {
+    this.showErrorMessage = false;
     if (this.selectedFiles) {
       this.currentFile = this.selectedFiles!.item(0);
     }
@@ -73,10 +76,14 @@ export class AddActivityModalComponent {
       .subscribe(data => {
         this.isLoading = false;
         this.modalRef.close('submit');
-
       }, err => {
-        this.isError = true;
         this.isLoading = false;
+        if (err.status === 404) {
+          this.showErrorMessage = true;
+          this.errMessage = 'NIK tidak terdaftar dalam sistem.'
+        } else {
+          this.isError = true;
+        }
       })
   }
 
@@ -89,8 +96,13 @@ export class AddActivityModalComponent {
         this.isLoading = false;
         this.modalRef.close('submit');
       }, err => {
-        this.isError = true;
         this.isLoading = false;
+        if (err.status === 404) {
+          this.showErrorMessage = true;
+          this.errMessage = 'NIK tidak terdaftar dalam sistem.'
+        } else {
+          this.isError = true;
+        }
       })
   }
 

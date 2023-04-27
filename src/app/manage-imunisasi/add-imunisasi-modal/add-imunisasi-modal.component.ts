@@ -23,6 +23,8 @@ export class AddImunisasiModalComponent {
 
   isLoading: boolean = false;
   isError: boolean = false;
+  showErrorMessage: boolean = false;
+  errMessage: string = '';
 
   constructor(public modalRef: MdbModalRef<AddImunisasiModalComponent>,
               private service: AppServiceService,
@@ -50,6 +52,7 @@ export class AddImunisasiModalComponent {
   }
 
   onSubmit() {
+    this.showErrorMessage = false;
     console.log(this.imunisasi);
     let i: imunisasiAddEditRequestBody = {
       nikBalita: this.validationForm.get('nik')?.value,
@@ -77,8 +80,13 @@ export class AddImunisasiModalComponent {
         this.modalRef.close('submit');
         
       }, err => {
-        this.isError = true;
         this.isLoading = false;
+        if (err.status === 404) {
+          this.showErrorMessage = true;
+          this.errMessage = 'NIK tidak terdaftar dalam sistem.'
+        } else {
+          this.isError = true;
+        }
       })
   }
 

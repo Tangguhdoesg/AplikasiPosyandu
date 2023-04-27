@@ -23,6 +23,8 @@ export class AddCheckupModalComponent {
 
   isLoading: boolean = false;
   isError: boolean = false;
+  showErrorMessage: boolean = false;
+  errMessage: string = '';
 
   constructor(public modalRef: MdbModalRef<AddCheckupModalComponent>,
               private service: AppServiceService,
@@ -57,6 +59,7 @@ export class AddCheckupModalComponent {
 
   onSubmit() {
     console.log(this.checkup);
+    this.showErrorMessage = false;
     let t: checkupAddEditRequestBody = {
       nikBalita: this.validationForm.get('nik')?.value,
       tinggiBadan: this.validationForm.get('height')?.value,
@@ -86,8 +89,13 @@ export class AddCheckupModalComponent {
         this.modalRef.close('submit');
         
       }, err => {
-        this.isError = true;
         this.isLoading = false;
+        if (err.status === 404) {
+          this.showErrorMessage = true;
+          this.errMessage = 'NIK tidak terdaftar dalam sistem.'
+        } else {
+          this.isError = true;
+        }
       })
   }
 

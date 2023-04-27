@@ -11,6 +11,11 @@
         <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
         <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
     </div>
+
+    <ng-container *ngIf="showErrorMessage">
+        <div class="py-2 px-4 m-3 bg-danger bg-gradient text-white" style="border-radius: 8px;">{{errMessage}}</div>
+    </ng-container>
+
     <div class="modal-body text-align-last-center">
         <form [formGroup]="validationForm">
             <div class="row">
