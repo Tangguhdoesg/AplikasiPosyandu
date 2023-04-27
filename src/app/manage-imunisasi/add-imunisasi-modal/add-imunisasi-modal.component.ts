@@ -32,7 +32,7 @@ export class AddImunisasiModalComponent {
       imunisasiName: new FormControl(null, Validators.required),
       notes: new FormControl(null),
       imunisasiDate: new FormControl(null, Validators.required),
-      nextImunisasiDate: new FormControl(null, Validators.required)
+      nextImunisasiDate: new FormControl(null)
     });
   }
 
