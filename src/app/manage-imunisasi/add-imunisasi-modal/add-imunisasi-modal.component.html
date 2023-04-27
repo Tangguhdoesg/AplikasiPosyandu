@@ -71,13 +71,9 @@
                     <mdb-form-control>
                         <input mdbValidate mdbInput type="date" placeholder="dd-mm-yyyy" id="nextImunisasiDateField"
                             class="form-control" formControlName="nextImunisasiDate"
-                            [(ngModel)]="selectedNextImunisasiDate" required />
+                            [(ngModel)]="selectedNextImunisasiDate"/>
                         <label mdbLabel class="form-label" for="nextImunisasiDateField">Tgl Imunisasi
                             Selanjutnya</label>
-                        <mdb-error
-                            *ngIf="nextImunisasiDate?.invalid && (nextImunisasiDate?.dirty || nextImunisasiDate?.touched)">
-                            Tanggal Imunisasi Selanjutnya wajib diisi
-                        </mdb-error>
                     </mdb-form-control>
                 </div>
             </div>
