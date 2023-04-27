@@ -35,7 +35,7 @@ export class AddCheckupModalComponent {
       armCircum: new FormControl(null, Validators.required),
       notes: new FormControl(null),
       checkupDate: new FormControl(null, Validators.required),
-      nextCheckupDate: new FormControl(null, Validators.required)
+      nextCheckupDate: new FormControl(null)
     });
   }
 
