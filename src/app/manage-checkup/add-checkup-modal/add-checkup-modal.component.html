@@ -95,14 +95,9 @@
                 <div class="col-md-6 mb-32px">
                     <mdb-form-control>
                         <input mdbValidate mdbInput type="date" placeholder="dd-mm-yyyy" id="nextCheckupDateField"
-                            class="form-control" formControlName="nextCheckupDate" [(ngModel)]="selectedNextCheckupDate"
-                            required />
+                            class="form-control" formControlName="nextCheckupDate" [(ngModel)]="selectedNextCheckupDate"/>
                         <label mdbLabel class="form-label" for="nextCheckupDateField">Tgl Pemeriksaan
                             Selanjutnya</label>
-                        <mdb-error
-                            *ngIf="nextCheckupDate?.invalid && (nextCheckupDate?.dirty || nextCheckupDate?.touched)">
-                            Tanggal Pemeriksaan Selanjutnya wajib diisi
-                        </mdb-error>
                     </mdb-form-control>
                 </div>
             </div>
