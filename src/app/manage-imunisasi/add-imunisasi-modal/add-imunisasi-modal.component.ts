@@ -43,7 +43,9 @@ export class AddImunisasiModalComponent {
       this.validationForm.get('imunisasiName')?.setValue(this.imunisasi?.namaImunisasi);
       this.validationForm.get('notes')?.setValue(this.imunisasi?.catatanImunisasi);
       this.selectedImunisasiDate = this.datePipe.transform(dayjs(this.imunisasi?.tanggalImunisasi).format('MM-DD-YYYY'), "yyyy-MM-dd")
-      this.selectedNextImunisasiDate = this.datePipe.transform(dayjs(this.imunisasi?.tanggalImunisasiBerikutnya).format('MM-DD-YYYY'), "yyyy-MM-dd")
+      if (this.imunisasi?.tanggalImunisasiBerikutnya) {
+        this.selectedNextImunisasiDate = this.datePipe.transform(dayjs(this.imunisasi?.tanggalImunisasiBerikutnya).format('MM-DD-YYYY'), "yyyy-MM-dd")
+      }
     }
   }
 

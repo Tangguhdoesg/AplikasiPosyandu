@@ -49,7 +49,9 @@ export class AddCheckupModalComponent {
       this.validationForm.get('armCircum')?.setValue(this.checkup?.lingkarLengan);
       this.validationForm.get('notes')?.setValue(this.checkup?.catatan);
       this.selectedCheckupDate = this.datePipe.transform(dayjs(this.checkup?.tanggalCheckup).format('MM-DD-YYYY'), "yyyy-MM-dd")
-      this.selectedNextCheckupDate = this.datePipe.transform(dayjs(this.checkup?.tanggalCheckupBerikutnya).format('MM-DD-YYYY'), "yyyy-MM-dd")
+      if (this.checkup?.tanggalCheckupBerikutnya) {
+        this.selectedNextCheckupDate = this.datePipe.transform(dayjs(this.checkup?.tanggalCheckupBerikutnya).format('MM-DD-YYYY'), "yyyy-MM-dd")
+      }
     }
   }
 
