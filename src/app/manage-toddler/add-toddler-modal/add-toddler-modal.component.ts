@@ -88,7 +88,10 @@ export class AddToddlerModalComponent {
         this.isLoading = false;
         if (err.status === 404) {
           this.showErrorMessage = true;
-          this.errMessage = 'NIK tidak terdaftar dalam sistem.'
+          this.errMessage = 'NIK Orang tua belum terdaftar dalam sistem.'
+        } else if (err.status === 409) {
+          this.showErrorMessage = true;
+          this.errMessage = 'NIK Balita sudah terdaftar dalam sistem.'
         } else {
           this.isError = true;
         }

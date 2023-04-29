@@ -23,6 +23,8 @@ export class AddUserModalComponent implements OnInit{
 
   isLoading: boolean = false;
   isError: boolean = false;
+  showErrorMessage: boolean = false;
+  errMessage: string = '';
 
   constructor(public modalRef: MdbModalRef<AddUserModalComponent>,
               private service: AppServiceService,
@@ -60,6 +62,7 @@ export class AddUserModalComponent implements OnInit{
   }
 
   onSubmit() {
+    this.showErrorMessage = false;
     let u: userPosyanduRequestBody = {
       namaUser: this.validationForm.get('userName')?.value,
       nikUser: this.validationForm.get('nik')?.value,
@@ -85,8 +88,13 @@ export class AddUserModalComponent implements OnInit{
         this.isLoading = false;
         this.modalRef.close('submit'); 
       }, err => {
-        this.isError = true;
         this.isLoading = false;
+        if (err.status === 409) {
+          this.showErrorMessage = true;
+          this.errMessage = 'NIK user sudah terdaftar dalam sistem.'
+        } else {
+          this.isError = true;
+        }
       })
   }
 
