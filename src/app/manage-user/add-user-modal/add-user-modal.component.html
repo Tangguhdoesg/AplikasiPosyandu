@@ -115,7 +115,7 @@
             </mdb-form-control>
           </div>
 
-          <div class="col-md-6 mb-32px">
+          <!-- <div class="col-md-6 mb-32px">
             <mdb-form-control>
               <input
                 mdbValidate
@@ -130,7 +130,19 @@
                 Tipe Pengguna wajib diisi
               </mdb-error>
             </mdb-form-control>
+          </div> -->
+
+          <div class="col-md-6 mb-32px">
+            <div class="d-flex">
+              <span mdbLabel class="form-label dropdown-style" for="phoneNumField">Tipe Pengguna</span>
+              <select class="form-select" style="height: 2.3rem;" formControlName="userType">
+                <option value="0" >Admin</option>
+                <option value="1">Petugas</option>
+                <option value="2">Orang Tua</option>
+              </select>
+            </div>
           </div>
+
         </div>
     
       </form>

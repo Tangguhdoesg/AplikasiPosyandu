@@ -35,7 +35,7 @@ export class AddUserModalComponent implements OnInit{
       dob: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
       phoneNum: new FormControl(null, Validators.required),
-      userType: new FormControl(null, Validators.required)
+      userType: new FormControl(2, Validators.required)
     });
   }
 
@@ -47,19 +47,20 @@ export class AddUserModalComponent implements OnInit{
       this.selectedDate = this.datePipe.transform(dayjs(this.user?.tanggalLahirUser).format('MM-DD-YYYY'), "yyyy-MM-dd")
       this.validationForm.get('address')?.setValue(this.user?.alamatUser);
       this.validationForm.get('phoneNum')?.setValue(this.user?.noTeleponUser);
-      this.validationForm.get('userType')?.setValue(this.setUserType(this.user?.tipeUser));
+      // this.validationForm.get('userType')?.setValue(this.setUserType(this.user?.tipeUser));
+      this.validationForm.get('userType')?.setValue(this.user?.tipeUser);
     }
   }
 
-  setUserType(type: number | undefined) {
-    if (type === 0) {
-      return userPosyanduType.ADMIN;
-    } else if (type === 1) {
-      return userPosyanduType.PETUGAS;
-    } else {
-      return userPosyanduType.ORANGTUA;
-    }
-  }
+  // setUserType(type: number | undefined) {
+  //   if (type === 0) {
+  //     return userPosyanduType.ADMIN;
+  //   } else if (type === 1) {
+  //     return userPosyanduType.PETUGAS;
+  //   } else {
+  //     return userPosyanduType.ORANGTUA;
+  //   }
+  // }
 
   onSubmit() {
     this.showErrorMessage = false;
@@ -69,8 +70,9 @@ export class AddUserModalComponent implements OnInit{
       tanggalLahirUser: this.validationForm.get('dob')?.value,
       noTeleponUser: this.validationForm.get('phoneNum')?.value,
       alamatUser: this.validationForm.get('address')?.value,
-      tipeUser: this.validationForm.get('userType')?.value === userPosyanduType.ADMIN ? 0 :
-                this.validationForm.get('userType')?.value === userPosyanduType.PETUGAS ? 1 : 2
+      tipeUser: this.validationForm.get('userType')?.value
+      // tipeUser: this.validationForm.get('userType')?.value === userPosyanduType.ADMIN ? 0 :
+      //           this.validationForm.get('userType')?.value === userPosyanduType.PETUGAS ? 1 : 2
     };
     if (this.user === undefined) {
       this.addUser(u);

@@ -77,7 +77,7 @@
                 </mdb-error>
               </mdb-form-control>
             </div>
-            <div class="col-md-6 mb-32px">
+            <!-- <div class="col-md-6 mb-32px">
               <mdb-form-control>
                 <input
                   mdbValidate
@@ -92,7 +92,18 @@
                   Jenis Kelamin wajib diisi
                 </mdb-error>
               </mdb-form-control>
+            </div> -->
+
+            <div class="col-md-6 mb-32px">
+              <div class="d-flex">
+                <span mdbLabel class="form-label dropdown-style" for="phoneNumField">Jenis Kelamin</span>
+                <select class="form-select" style="height: 2.3rem;" formControlName="gender">
+                  <option value="Laki - Laki" >Laki - Laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+              </div>
             </div>
+
           </div>
       
           <div class="row">

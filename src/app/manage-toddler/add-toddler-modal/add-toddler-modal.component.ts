@@ -33,7 +33,7 @@ export class AddToddlerModalComponent {
       name: new FormControl(null, Validators.required),
       nik: new FormControl(null, Validators.required),
       parentNik: new FormControl(null, Validators.required),
-      gender: new FormControl(null, Validators.required),
+      gender: new FormControl('Laki - Laki', Validators.required),
       pob: new FormControl(null, Validators.required),
       dob: new FormControl(null, Validators.required),
       hob: new FormControl(null, Validators.required),
