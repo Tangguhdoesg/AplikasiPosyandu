@@ -3,6 +3,7 @@ import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { AppServiceService } from '../app-service.service';
 import { kegiatan } from '../models';
 import { Subject, takeUntil } from 'rxjs';
+import { userPosyanduType } from '../models';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,9 +15,10 @@ export class DashboardComponent {
   allActivity: kegiatan[] = [];
   posterLen: number = 0;
   posterActivity: any[] = [];
-  summaryData: any[] = [];
+  summaryData: any[] = ['-', '-', '-', '-'];
 
   username: string | undefined;
+  userType: string | undefined;
 
   isLoading: boolean = false;
 
@@ -25,7 +27,12 @@ export class DashboardComponent {
 
   ngOnInit() {
     this.username = sessionStorage.getItem('nama')!;
-    this.summaryOfReport();
+    this.userType = sessionStorage.getItem('tipe')!;
+    console.log(this.userType);
+    
+    if (this.userType === userPosyanduType.PETUGAS) {
+      this.summaryOfReport();
+    }
     this.getAllActivity();
   }
 

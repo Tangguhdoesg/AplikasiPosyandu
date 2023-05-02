@@ -13,48 +13,49 @@
     Selamat Datang, {{username}}!
   </h2>
 
-
-  <h4 class="pt-3 text-center">Total data dalam 30 hari</h4>
-  <div class="pt-1 pb-5 row" style="justify-content: space-evenly">
-    <div class="card col-5 col-lg-2 my-3">
-      <div class="card-header text-center">
-        <h5 class="card-title">Checkup</h5>
+  <ng-container *ngIf="userType==='Petugas'">
+    <h4 class="pt-3 text-center">Total data dalam 30 hari</h4>
+    <div class="pt-1 pb-5 row" style="justify-content: space-evenly">
+      <div class="card col-5 col-lg-2 my-3">
+        <div class="card-header text-center">
+          <h5 class="card-title">Checkup</h5>
+        </div>
+        <div class="card-body content-style">
+          <h3 class="card-link">{{summaryData[0]}}</h3>
+        </div>
       </div>
-      <div class="card-body content-style">
-        <h3 class="card-link">{{summaryData[0]}}</h3>
+
+      <div class="card col-5 col-lg-2 my-3">
+        <div class="card-header text-center">
+          <h5 class="card-title">Imunisasi</h5>
+        </div>
+        <div class="card-body content-style">
+          <h3 class="card-link">{{summaryData[1]}}</h3>
+        </div>
+      </div>
+
+      <div class="card col-5 col-lg-2 my-3">
+        <div class="card-header text-center">
+          <h5 class="card-title">Balita Sehat</h5>
+        </div>
+        <div class="card-body content-style">
+          <h3 class="card-link">{{summaryData[2]}}</h3>
+        </div>
+      </div>
+
+      <div class="card col-5 col-lg-2 my-3">
+        <div class="card-header text-center">
+          <h5 class="card-title">Balita Tidak Sehat</h5>
+        </div>
+        <div class="card-body content-style">
+          <h3 class="card-link">{{summaryData[3]}}</h3>
+        </div>
       </div>
     </div>
-
-    <div class="card col-5 col-lg-2 my-3">
-      <div class="card-header text-center">
-        <h5 class="card-title">Imunisasi</h5>
-      </div>
-      <div class="card-body content-style">
-        <h3 class="card-link">{{summaryData[1]}}</h3>
-      </div>
-    </div>
-
-    <div class="card col-5 col-lg-2 my-3">
-      <div class="card-header text-center">
-        <h5 class="card-title">Balita Sehat</h5>
-      </div>
-      <div class="card-body content-style">
-        <h3 class="card-link">{{summaryData[2]}}</h3>
-      </div>
-    </div>
-
-    <div class="card col-5 col-lg-2 my-3">
-      <div class="card-header text-center">
-        <h5 class="card-title">Balita Tidak Sehat</h5>
-      </div>
-      <div class="card-body content-style">
-        <h3 class="card-link">{{summaryData[3]}}</h3>
-      </div>
-    </div>
-  </div>
+  </ng-container>
 
   <div style="justify-content: center; display: flex;">
-    <div style="width: 40%;">
+    <div class="poster-width">
       <ng-container *ngIf="posterLen > 1">
         <mdb-carousel [controls]="true" [indicators]="true" class="my-3">
           <ng-container *ngFor="let item of posterActivity">
@@ -70,5 +71,59 @@
       </ng-container>
     </div>
   </div>
+
+  <ng-container *ngIf="userType==='Orang Tua'">
+    <h4 class="pt-5 text-center">Artikel Kesehatan Balita</h4>
+    <div class="pt-1 pb-5 row" style="justify-content: space-evenly">
+      <div class="card col-11 col-lg-5 my-3">
+        <div class="card-header text-center">
+          <h5 class="card-title">Artikel 1</h5>
+        </div>
+        <div class="card-body content-style">
+          <p class="card-link">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquet tellus sapien, a porttitor ipsum porta eu.</p>
+        </div>
+        <div class="card-body">
+          <a class="card-link">Baca Selengkapnya</a>
+        </div>
+      </div>
+
+      <div class="card col-11 col-lg-5 my-3">
+        <div class="card-header text-center">
+          <h5 class="card-title">Artikel 1</h5>
+        </div>
+        <div class="card-body content-style">
+          <p class="card-link">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquet tellus sapien, a porttitor ipsum porta eu.</p>
+        </div>
+        <div class="card-body">
+          <a class="card-link">Baca Selengkapnya</a>
+        </div>
+      </div>
+
+      <div class="card col-11 col-lg-5 my-3">
+        <div class="card-header text-center">
+          <h5 class="card-title">Artikel 1</h5>
+        </div>
+        <div class="card-body content-style">
+          <p class="card-link">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquet tellus sapien, a porttitor ipsum porta eu.</p>
+        </div>
+        <div class="card-body">
+          <a class="card-link">Baca Selengkapnya</a>
+        </div>
+      </div>
+
+      <div class="card col-11 col-lg-5 my-3">
+        <div class="card-header text-center">
+          <h5 class="card-title">Artikel 1</h5>
+        </div>
+        <div class="card-body content-style">
+          <p class="card-link">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquet tellus sapien, a porttitor ipsum porta eu.</p>
+        </div>
+        <div class="card-body">
+          <a class="card-link">Baca Selengkapnya</a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
 
 </ng-container>
