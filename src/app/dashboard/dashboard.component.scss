@@ -9,5 +9,23 @@ a {
 }
 
 .poster-width {
-    width: 40%;
+    width: 100%;
+}
+
+@media screen and (min-width: 576px) { 
+    .poster-width {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 768px) { 
+    .poster-width {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 992px) { 
+    .poster-width {
+        width: 40%;
+    }
 }
