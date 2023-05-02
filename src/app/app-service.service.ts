@@ -284,4 +284,13 @@ export class AppServiceService {
       );
   }
 
+  summaryOfReport(): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${environment.urlGateway}/report/summary`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
+  }
+
 }
