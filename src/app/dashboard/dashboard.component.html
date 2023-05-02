@@ -13,6 +13,46 @@
     Selamat Datang, {{username}}!
   </h2>
 
+
+  <h4 class="pt-3 text-center">Total data dalam 30 hari</h4>
+  <div class="pt-1 pb-5 row" style="justify-content: space-evenly">
+    <div class="card col-5 col-lg-2 my-3">
+      <div class="card-header text-center">
+        <h5 class="card-title">Checkup</h5>
+      </div>
+      <div class="card-body content-style">
+        <h3 class="card-link">{{summaryData[0]}}</h3>
+      </div>
+    </div>
+
+    <div class="card col-5 col-lg-2 my-3">
+      <div class="card-header text-center">
+        <h5 class="card-title">Imunisasi</h5>
+      </div>
+      <div class="card-body content-style">
+        <h3 class="card-link">{{summaryData[1]}}</h3>
+      </div>
+    </div>
+
+    <div class="card col-5 col-lg-2 my-3">
+      <div class="card-header text-center">
+        <h5 class="card-title">Balita Sehat</h5>
+      </div>
+      <div class="card-body content-style">
+        <h3 class="card-link">{{summaryData[2]}}</h3>
+      </div>
+    </div>
+
+    <div class="card col-5 col-lg-2 my-3">
+      <div class="card-header text-center">
+        <h5 class="card-title">Balita Tidak Sehat</h5>
+      </div>
+      <div class="card-body content-style">
+        <h3 class="card-link">{{summaryData[3]}}</h3>
+      </div>
+    </div>
+  </div>
+
   <div style="justify-content: center; display: flex;">
     <div style="width: 40%;">
       <ng-container *ngIf="posterLen > 1">
