@@ -1,4 +1,5 @@
 export const environment = {
     production: false,
-    urlGateway: 'apiposyandu-production.up.railway.app'
+    // urlGateway: 'http://localhost:8083'
+    urlGateway: 'https://apiposyandu-production.up.railway.app'
 }
