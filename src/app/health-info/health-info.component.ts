@@ -15,6 +15,7 @@ export class HealthInfoComponent {
 
   isLoading: boolean = false;
   isError: boolean = false;
+  isNoData: boolean = false;
 
   optionWeight: any[] = [];
   optionHeight: any[] = [];
@@ -36,6 +37,7 @@ export class HealthInfoComponent {
   getAllUserGraph() {
     this.isLoading = true;
     this.isError = false;
+    this.isNoData = true;
     this.service.getAllUserGraph(sessionStorage.getItem('id'))
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(datas => {
@@ -51,8 +53,12 @@ export class HealthInfoComponent {
         }
         this.isLoading = false;
       }, err => {
-        this.isError = true;
         this.isLoading = false;
+        if (err.status === 404) {
+          this.isNoData = true;
+        } else {
+          this.isError = true;
+        }
       })
   }
 
