@@ -37,13 +37,12 @@ export class HealthInfoComponent {
   getAllUserGraph() {
     this.isLoading = true;
     this.isError = false;
-    this.isNoData = true;
+    this.isNoData = false;
     this.service.getAllUserGraph(sessionStorage.getItem('id'))
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(datas => {
         this.graphData = [...datas];
         this.graphDataLen = datas.length;
-        console.log(this.graphData);
         
         if (this.graphDataLen > 0) {
           this.graphData.forEach(gData => {
