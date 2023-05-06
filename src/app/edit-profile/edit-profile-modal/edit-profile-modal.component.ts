@@ -15,7 +15,9 @@ import { Subject, takeUntil } from 'rxjs';
 export class EditProfileModalComponent {
   destroySubject$: Subject<void> = new Subject();
   isLoading: boolean = false;
-  isError: boolean = false;
+  isError: boolean = false;  
+  showErrorMessage: boolean = false;
+  errMessage: string = '';
 
   user: userPosyandu | null = null;
   selectedDate: any;
@@ -45,6 +47,7 @@ export class EditProfileModalComponent {
   }
 
   onSubmit() {
+    this.showErrorMessage = false;
     let request: userPosyanduRequestBody = {
       namaUser: this.validationForm.get('userName')?.value,
       nikUser: this.validationForm.get('nik')?.value,
@@ -74,8 +77,13 @@ export class EditProfileModalComponent {
         this.isLoading = false;
         this.modalRef.close('submit'); 
       }, err => {
-        this.isError = true;
         this.isLoading = false;
+        if (err.status === 409) {
+          this.showErrorMessage = true;
+          this.errMessage = 'NIK Pengguna atau Nomor Telepon sudah terdaftar dalam sistem.'
+        } else {
+          this.isError = true;
+        }
       })
   }
   
