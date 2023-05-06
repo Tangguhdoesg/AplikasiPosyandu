@@ -53,6 +53,14 @@ export class AddActivityModalComponent {
     if (this.selectedFiles) {
       this.currentFile = this.selectedFiles!.item(0);
     }
+    let currentFileType = this.currentFile?.type;
+    if (this.currentFile) {
+      if (currentFileType !== 'image/jpeg' && currentFileType !== 'image/png') {
+        this.showErrorMessage = true;
+        this.errMessage = 'Format Poster Kegiatan harus berupa jpg/jpeg/png';
+        return;
+      }
+    } 
 
     const formData: FormData = new FormData();
     formData.append('lokasiKegiatan', this.validationForm.get('location')?.value);
