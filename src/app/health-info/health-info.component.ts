@@ -43,7 +43,6 @@ export class HealthInfoComponent {
       .subscribe(datas => {
         this.graphData = [...datas];
         this.graphDataLen = datas.length;
-        console.log(this.graphData);
         
         if (this.graphDataLen > 0) {
           this.graphData.forEach(gData => {
