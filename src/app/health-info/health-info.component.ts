@@ -37,7 +37,7 @@ export class HealthInfoComponent {
   getAllUserGraph() {
     this.isLoading = true;
     this.isError = false;
-    this.isNoData = true;
+    this.isNoData = false;
     this.service.getAllUserGraph(sessionStorage.getItem('id'))
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(datas => {
