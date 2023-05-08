@@ -18,6 +18,8 @@ export class ReportComponent {
   isError: boolean = false;
   showSuccessMessage: boolean = false;
   successMessage: string = 'a';
+  
+  summaryData: any[] = ['-', '-', '-', '-'];
 
   modalRefDownload: MdbModalRef<DownloadModalComponent> | null = null;
   modalRefSend: MdbModalRef<SendModalComponent> | null = null;
@@ -37,7 +39,20 @@ export class ReportComponent {
     private modalService: MdbModalService) { }
 
   ngOnInit(): void {
-
+     this.summaryOfReport();
+  }
+  
+  summaryOfReport() {
+    this.isLoading = true;
+    this.service.summaryOfReport()
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe(data => {
+        this.summaryData = [...data];
+        this.isLoading = false;
+      }, err => {
+        this.summaryData = ['-', '-', '-', '-'];
+        this.isLoading = false;
+      })
   }
 
   openDialogDownload(type: string) {
