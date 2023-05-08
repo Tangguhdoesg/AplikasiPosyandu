@@ -15,7 +15,7 @@ export class SideNavBarComponent implements OnInit {
   list = [
     {
       number: '1',
-      name: 'Halaman Awal',
+      name: 'Dashboard',
       icon: 'fa-solid fa-house',
       path: '/dashboard',
       access: [userPosyanduType.ADMIN, userPosyanduType.PETUGAS, userPosyanduType.ORANGTUA]
