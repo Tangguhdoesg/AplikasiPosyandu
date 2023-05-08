@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
 import { map, Observable } from 'rxjs';
-import { balita, balitaAddEditRequestBody, checkup, checkupAddEditRequestBody, downloadExcelRequestBody, healthInfoGraph, imunisasi, imunisasiAddEditRequestBody, kegiatan, kegiatanAddEditRequestBody, loginRequestBody, sendExcelRequestBody, userPosyandu, userPosyanduRequestBody } from './models';
+import { balita, balitaAddEditRequestBody, checkup, checkupAddEditRequestBody, downloadExcelRequestBody, healthInfoGraph, imunisasi, imunisasiAddEditRequestBody, kegiatan, kegiatanAddEditRequestBody, loginRequestBody, sendExcelRequestBody, totalInfo, userPosyandu, userPosyanduRequestBody } from './models';
 import { environment } from 'environment';
 
 @Injectable({
@@ -284,8 +284,8 @@ export class AppServiceService {
       );
   }
 
-  summaryOfReport(): Observable<any[]> {
-    return this.httpClient.get<any[]>(`${environment.urlGateway}/report/summary`)
+  summaryOfReport(): Observable<totalInfo> {
+    return this.httpClient.get<totalInfo>(`${environment.urlGateway}/report/summary`)
       .pipe(
         map(data => {
           return data;

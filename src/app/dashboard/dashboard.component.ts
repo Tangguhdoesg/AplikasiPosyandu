@@ -15,7 +15,6 @@ export class DashboardComponent {
   allActivity: kegiatan[] = [];
   posterLen: number = 0;
   posterActivity: any[] = [];
-  summaryData: any[] = ['-', '-', '-', '-'];
 
   username: string | undefined;
   userType: string | undefined;
@@ -30,9 +29,6 @@ export class DashboardComponent {
     this.userType = sessionStorage.getItem('tipe')!;
     console.log(this.userType);
     
-    if (this.userType === userPosyanduType.PETUGAS) {
-      this.summaryOfReport();
-    }
     this.getAllActivity();
   }
 
@@ -50,19 +46,6 @@ export class DashboardComponent {
         })
         this.isLoading = false;
       }, err => {
-        this.isLoading = false;
-      })
-  }
-
-  summaryOfReport() {
-    this.isLoading = true;
-    this.service.summaryOfReport()
-      .pipe(takeUntil(this.destroySubject$))
-      .subscribe(data => {
-        this.summaryData = [...data];
-        this.isLoading = false;
-      }, err => {
-        this.summaryData = ['-', '-', '-', '-'];
         this.isLoading = false;
       })
   }

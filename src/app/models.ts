@@ -152,3 +152,9 @@ export interface sendExcelRequestBody {
     tanggalAkhir: string,
     email: string
 }
+
+export interface totalInfo {
+    start: string,
+    end: string,
+    ListNumber: any[]
+}

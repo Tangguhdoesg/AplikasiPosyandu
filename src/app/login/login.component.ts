@@ -29,6 +29,14 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('nama');
+    sessionStorage.removeItem('id');
+    sessionStorage.removeItem('nik');
+    sessionStorage.removeItem('telp');
+    sessionStorage.removeItem('tipe');
+    sessionStorage.removeItem('alamat');
+    sessionStorage.removeItem('lahir');
   }
 
   onSubmit() {

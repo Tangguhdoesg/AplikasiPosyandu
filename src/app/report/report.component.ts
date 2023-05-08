@@ -5,6 +5,7 @@ import { saveAs } from 'file-saver';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { DownloadModalComponent } from './download-modal/download-modal.component';
 import { SendModalComponent } from './send-modal/send-modal.component';
+import { totalInfo } from '../models';
 
 @Component({
   selector: 'app-report',
@@ -19,7 +20,7 @@ export class ReportComponent {
   showSuccessMessage: boolean = false;
   successMessage: string = 'a';
   
-  summaryData: any[] = ['-', '-', '-', '-'];
+  summaryData: totalInfo | undefined;
 
   modalRefDownload: MdbModalRef<DownloadModalComponent> | null = null;
   modalRefSend: MdbModalRef<SendModalComponent> | null = null;
@@ -47,10 +48,12 @@ export class ReportComponent {
     this.service.summaryOfReport()
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
-        this.summaryData = [...data];
+        this.summaryData = data;
         this.isLoading = false;
       }, err => {
-        this.summaryData = ['-', '-', '-', '-'];
+        this.summaryData!.start = '-';
+        this.summaryData!.end = '-';
+        this.summaryData!.ListNumber = ['-', '-', '-', '-'];
         this.isLoading = false;
       })
   }
