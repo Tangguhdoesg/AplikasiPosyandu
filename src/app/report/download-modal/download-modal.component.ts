@@ -35,7 +35,7 @@ export class DownloadModalComponent {
 
   
   ngOnInit(): void {
-    this.modalTitle = this.type === 'checkup' ? 'Download Laporan Checkup' : 'Download Laporan Imunisasi';
+    this.modalTitle = this.type === 'checkup' ? 'Download Report Checkup' : 'Download Report Imunisasi';
   }
 
   onSubmit() {

@@ -32,7 +32,7 @@ export class SendModalComponent {
 
   
   ngOnInit(): void {
-    this.modalTitle = 'Kirim Laporan';
+    this.modalTitle = 'Kirim Report';
   }
 
   onSubmit() {

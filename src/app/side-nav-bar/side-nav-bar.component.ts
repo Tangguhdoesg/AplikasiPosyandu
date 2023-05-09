@@ -36,7 +36,7 @@ export class SideNavBarComponent implements OnInit {
     },
     {
       number: '3',
-      name: 'Laporan',
+      name: 'Report',
       icon: 'fa-solid fa-chart-line',
       path: '/report',
       access: [userPosyanduType.PETUGAS]

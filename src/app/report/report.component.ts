@@ -81,7 +81,7 @@ export class ReportComponent {
     this.modalRefSend.onClose.subscribe((message: any) => {
       if (message === 'submit') {
         this.showSuccessMessage = true;
-        this.successMessage = 'Laporan berhasil dikirim.'
+        this.successMessage = 'Report berhasil dikirim.'
       } else {
         this.showSuccessMessage = false;
       }
