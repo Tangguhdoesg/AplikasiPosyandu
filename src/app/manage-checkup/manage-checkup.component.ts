@@ -5,7 +5,6 @@ import { AppServiceService } from '../app-service.service';
 import { checkup, userPosyanduType } from '../models';
 import { DeleteModalComponent } from '../shared/delete-modal/delete-modal.component';
 import { AddCheckupModalComponent } from './add-checkup-modal/add-checkup-modal.component';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SortService } from '../shared/sort.service';
 
 @Component({
@@ -206,9 +205,4 @@ export class ManageCheckupComponent {
   checkAddEditAccess(): boolean {
     return this.userRole === userPosyanduType.PETUGAS;
   }
-
-  onSearch() {
-    console.log(this.searchValue);
-    return this.searchValue;
-  }  
 }

@@ -23,17 +23,47 @@
         </div>
     </ng-container>
 
+    <div class="input-group rounded mb-4">
+        <div style="width: 250px;">
+            <input type="search" autocomplete="off" [(ngModel)]="searchValue" name="searchValue" class="form-control rounded" placeholder="Cari" aria-label="Cari"/>
+        </div>
+    </div>
+
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
             <tr>
-                <th>Nama Balita</th>
-                <th>NIK Balita</th>
+                <th style="cursor: pointer;" (click)="changeSortNamaBalita()">
+                    Nama Balita
+                    <i *ngIf="sortNamaBalita===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortNamaBalita===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortNikBalita()">
+                    NIK Balita
+                    <i *ngIf="sortNikBalita==1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortNikBalita===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
                 <ng-container *ngIf="checkAddEditAccess()">
-                    <th>Nama Orang Tua</th>
+                    <th style="cursor: pointer;" (click)="changeSortNamaOrangTua()">
+                        Nama Orang Tua
+                        <i *ngIf="sortNamaOrangTua===1" class="fa-solid fa-arrow-up"></i>
+                        <i *ngIf="sortNamaOrangTua===-1" class="fa-solid fa-arrow-down"></i>
+                    </th>
                 </ng-container>
-                <th>Nama Imunisasi</th>
-                <th>Tanggal Imunisasi</th>
-                <th>Tanggal Imunisasi Berikutnya</th>
+                <th style="cursor: pointer;" (click)="changeSortNamaImunisasi()">
+                    Nama Imunisasi
+                    <i *ngIf="sortNamaImunisasi===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortNamaImunisasi===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortTanggalImunisasi()">
+                    Tanggal Imunisasi
+                    <i *ngIf="sortTanggalImunisasi===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortTanggalImunisasi===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortTanggalBerikutnya()">
+                    Tanggal Imunisasi Berikutnya
+                    <i *ngIf="sortTanggalBerikutnya===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortTanggalBerikutnya===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
                 <th>Catatan</th>
                 <ng-container *ngIf="checkAddEditAccess()">
                     <th></th>
