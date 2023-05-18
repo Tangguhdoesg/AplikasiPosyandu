@@ -9,7 +9,7 @@
 <ng-container *ngIf="!isLoading && !isError">
     <div class="my-3">
         <div class="fa-solid fa-stethoscope">
-            <span style="margin-left: 24px;">Pemeriksaan Balita</span>
+            <span style="margin-left: 24px;">Checkup Balita</span>
         </div>
     </div>
 
@@ -23,16 +23,47 @@
         </div>
     </ng-container>
 
+    <div class="input-group rounded mb-4">
+        <div style="width: 250px;">
+            <input type="search" autocomplete="off" [(ngModel)]="searchValue" name="searchValue" class="form-control rounded" placeholder="Cari" aria-label="Cari"/>
+        </div>
+    </div>
+
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
             <tr>
-                <th>Nama Balita</th>
+                <th style="cursor: pointer;" (click)="changeSortNamaBalita()">
+                    Nama Balita
+                    <i *ngIf="sortNamaBalita===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortNamaBalita===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortNikBalita()">
+                    NIK Balita
+                    <i *ngIf="sortNikBalita===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortNikBalita===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
                 <ng-container *ngIf="checkAddEditAccess()">
-                    <th>Nama Orang Tua</th>
+                    <th style="cursor: pointer;" (click)="changeSortNamaOrangTua()">
+                        Nama Orang Tua
+                        <i *ngIf="sortNamaOrangTua===1" class="fa-solid fa-arrow-up"></i>
+                        <i *ngIf="sortNamaOrangTua===-1" class="fa-solid fa-arrow-down"></i>
+                    </th>
                 </ng-container>
-                <th>Umur Balita (bulan)</th>
-                <th>Tanggal Pemeriksaan</th>
-                <th>Tanggal Pemeriksaan Berikutnya</th>
+                <th style="cursor: pointer;" (click)="changeSortUmurBalita()">
+                    Umur Balita (bulan)
+                    <i *ngIf="sortUmurBalita===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortUmurBalita===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th  style="cursor: pointer;" (click)="changeSortTanggalPemeriksaan()">
+                    Tanggal Pemeriksaan
+                    <i *ngIf="sortTanggalPemeriksaan===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortTanggalPemeriksaan===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortTanggalBerikutnya()">
+                    Tanggal Pemeriksaan Berikutnya
+                    <i *ngIf="sortTanggalBerikutnya===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortTanggalBerikutnya===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
                 <th>Tinggi Badan (cm)</th>
                 <th>Berat Badan (kg)</th>
                 <th>Lingkar Kepala (cm)</th>
@@ -44,11 +75,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let checkup of allCheckup">
+            <tr *ngFor="let checkup of allCheckup | filter:searchValue">
                 <td>
                     <div class="d-flex align-items-center">
                         <p class="fw-bold mb-1">{{checkup.namaBalita}}</p>
                     </div>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{checkup.nikBalita}}</p>
                 </td>
                 <ng-container *ngIf="checkAddEditAccess()">
                     <td>

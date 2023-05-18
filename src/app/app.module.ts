@@ -46,6 +46,7 @@ import { EditProfileModalComponent } from './edit-profile/edit-profile-modal/edi
 import { ReportComponent } from './report/report.component';
 import { DownloadModalComponent } from './report/download-modal/download-modal.component';
 import { SendModalComponent } from './report/send-modal/send-modal.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { SendModalComponent } from './report/send-modal/send-modal.component';
     MdbTooltipModule, 
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
-    })
+    }),
+    Ng2SearchPipeModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

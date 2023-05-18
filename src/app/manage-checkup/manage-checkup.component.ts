@@ -5,6 +5,8 @@ import { AppServiceService } from '../app-service.service';
 import { checkup, userPosyanduType } from '../models';
 import { DeleteModalComponent } from '../shared/delete-modal/delete-modal.component';
 import { AddCheckupModalComponent } from './add-checkup-modal/add-checkup-modal.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { SortService } from '../shared/sort.service';
 
 @Component({
   selector: 'app-manage-checkup',
@@ -25,12 +27,94 @@ export class ManageCheckupComponent {
   modalRefDelete: MdbModalRef<DeleteModalComponent> | null = null;
   modalRefAddEdit: MdbModalRef<AddCheckupModalComponent> | null = null;
 
+  searchValue: string = '';
+
+  sortNamaBalita: number = 0;
+  sortNikBalita: number = 0;
+  sortNamaOrangTua: number = 0;
+  sortUmurBalita: number = 0;
+  sortTanggalPemeriksaan: number = 0;
+  sortTanggalBerikutnya: number = 0;
+
   constructor(private service: AppServiceService,
-              private modalService: MdbModalService) {
+              private modalService: MdbModalService,
+              private sortService: SortService) {
   }
 
   ngOnInit(): void {
     this.userRole === userPosyanduType.PETUGAS ? this.getAllCheckup() : this.getAllUserCheckup();
+  }
+
+  changeSortNamaBalita() {
+    this.sortNikBalita = 0;
+    this.sortNamaOrangTua = 0;
+    this.sortUmurBalita = 0;
+    this.sortTanggalPemeriksaan = 0;
+    this.sortTanggalBerikutnya = 0;
+    if (this.sortNamaBalita === 0) this.sortNamaBalita = 1;
+    else if (this.sortNamaBalita === 1) this.sortNamaBalita = -1;
+    else this.sortNamaBalita = 1;
+    this.sortService.sort(this.allCheckup, 'namaBalita', this.sortNamaBalita);
+  }
+
+  changeSortNikBalita() {
+    this.sortNamaBalita = 0;
+    this.sortNamaOrangTua = 0;
+    this.sortUmurBalita = 0;
+    this.sortTanggalPemeriksaan = 0;
+    this.sortTanggalBerikutnya = 0;
+    if (this.sortNikBalita === 0) this.sortNikBalita = 1;
+    else if (this.sortNikBalita === 1) this.sortNikBalita = -1;
+    else this.sortNikBalita = 1;
+    this.sortService.sort(this.allCheckup, 'nikBalita', this.sortNikBalita);
+  }
+
+  changeSortNamaOrangTua() {
+    this.sortNamaBalita = 0;
+    this.sortNikBalita = 0;
+    this.sortUmurBalita = 0;
+    this.sortTanggalPemeriksaan = 0;
+    this.sortTanggalBerikutnya = 0;
+    if (this.sortNamaOrangTua === 0) this.sortNamaOrangTua = 1;
+    else if (this.sortNamaOrangTua === 1) this.sortNamaOrangTua = -1;
+    else this.sortNamaOrangTua = 1;
+    this.sortService.sort(this.allCheckup, 'namaOrangTua', this.sortNamaOrangTua);
+  }
+
+  changeSortUmurBalita() {
+    this.sortNamaBalita = 0;
+    this.sortNikBalita = 0;
+    this.sortNamaOrangTua = 0;
+    this.sortTanggalPemeriksaan = 0;
+    this.sortTanggalBerikutnya = 0;
+    if (this.sortUmurBalita === 0) this.sortUmurBalita = 1;
+    else if (this.sortUmurBalita === 1) this.sortUmurBalita = -1;
+    else this.sortUmurBalita = 1;
+    this.sortService.sort(this.allCheckup, 'umurBalita', this.sortUmurBalita);
+  }
+
+  changeSortTanggalPemeriksaan() {
+    this.sortNamaBalita = 0;
+    this.sortNikBalita = 0;
+    this.sortNamaOrangTua = 0;
+    this.sortUmurBalita = 0;
+    this.sortTanggalBerikutnya = 0;
+    if (this.sortTanggalPemeriksaan === 0) this.sortTanggalPemeriksaan = 1;
+    else if (this.sortTanggalPemeriksaan === 1) this.sortTanggalPemeriksaan = -1;
+    else this.sortTanggalPemeriksaan = 1;
+    this.sortService.sort(this.allCheckup, 'tanggalCheckup', this.sortTanggalPemeriksaan);
+  }
+
+  changeSortTanggalBerikutnya() {
+    this.sortNamaBalita = 0;
+    this.sortNikBalita = 0;
+    this.sortNamaOrangTua = 0;
+    this.sortUmurBalita = 0;
+    this.sortTanggalPemeriksaan = 0;
+    if (this.sortTanggalBerikutnya === 0) this.sortTanggalBerikutnya = 1;
+    else if (this.sortTanggalBerikutnya === 1) this.sortTanggalBerikutnya = -1;
+    else this.sortTanggalBerikutnya = 1;
+    this.sortService.sort(this.allCheckup, 'tanggalCheckupBerikutnya', this.sortTanggalBerikutnya);
   }
 
   getAllUserCheckup() {
@@ -111,4 +195,8 @@ export class ManageCheckupComponent {
     return this.userRole === userPosyanduType.PETUGAS;
   }
 
+  onSearch() {
+    console.log(this.searchValue);
+    return this.searchValue;
+  }  
 }
