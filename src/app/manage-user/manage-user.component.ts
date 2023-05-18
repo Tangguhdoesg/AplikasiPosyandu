@@ -131,6 +131,7 @@ export class ManageUserComponent implements OnInit {
     this.service.getAllUser()
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
+        this.resetSort();
         this.allUsers = [...data];
         this.totalUsersData = data.length;
         this.isLoading = false;
@@ -144,6 +145,7 @@ export class ManageUserComponent implements OnInit {
     this.service.deleteUser(id)
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
+        this.resetSort();
         this.isLoading = false;
         this.getAllUser();
       }, err => {

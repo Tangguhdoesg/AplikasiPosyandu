@@ -23,13 +23,35 @@
         </div>
     </ng-container>
 
+    <div class="input-group rounded mb-4">
+        <div style="width: 250px;">
+            <input type="search" autocomplete="off" [(ngModel)]="searchValue" name="searchValue" class="form-control rounded" placeholder="Cari" aria-label="Cari"/>
+        </div>
+    </div>
+
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
             <tr>
-                <th>Nama Kegiatan</th>
-                <th>Penanggung Jawab</th>
-                <th>Lokasi Kegiatan</th>
-                <th>Tanggal Kegiatan</th>
+                <th style="cursor: pointer;" (click)="changeSortNamaKegiatan()">
+                    Nama Kegiatan
+                    <i *ngIf="sortNamaKegiatan===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortNamaKegiatan===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortPenanggungJawab()">
+                    Penanggung Jawab
+                    <i *ngIf="sortPenanggungJawab===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortPenanggungJawab===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortLokasi()">
+                    Lokasi Kegiatan
+                    <i *ngIf="sortLokasi===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortLokasi===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortTanggalKegiatan()">
+                    Tanggal Kegiatan
+                    <i *ngIf="sortTanggalKegiatan===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortTanggalKegiatan===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
                 <th>Poster</th>
                 <ng-container *ngIf="checkAddEditAccess()">
                     <th></th>
@@ -37,7 +59,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let activity of allActivity">
+            <tr *ngFor="let activity of allActivity | filter:searchValue">
                 <td>
                     <div class="d-flex align-items-center">
                         <p class="fw-bold mb-1">{{activity.namaKegiatan}}</p>
