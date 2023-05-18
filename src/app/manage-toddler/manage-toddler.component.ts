@@ -123,7 +123,6 @@ export class ManageToddlerComponent implements OnInit {
     this.sortJenisKelamin = 0;
     this.sortTempatLahir = 0;
     this.sortTanggalLahir = 0;
-    this.sortTinggiLahir = 0;
     this.sortBeratLahir = 0;
     this.sortNamaOrangTua = 0;
     if (this.sortTinggiLahir === 0) this.sortTinggiLahir = 1;
