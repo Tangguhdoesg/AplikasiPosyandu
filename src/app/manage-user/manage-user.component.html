@@ -21,20 +21,50 @@
         <button class="btn btn-primary" (click)="openDialogAddEditUser()">Tambah Pengguna</button>
     </div>
 
+    <div class="input-group rounded mb-4">
+        <div style="width: 250px;">
+            <input type="search" autocomplete="off" [(ngModel)]="searchValue" name="searchValue" class="form-control rounded" placeholder="Cari" aria-label="Cari"/>
+        </div>
+    </div>
+
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
             <tr>
-                <th>Nama Pengguna</th>
-                <th>NIK</th>
-                <th>No Telepon</th>
-                <th>Tanggal Lahir</th>
-                <th>Alamat Pengguna</th>
-                <th>Tipe Pengguna</th>
+                <th style="cursor: pointer;" (click)="changeSortNama()">
+                    Nama Pengguna
+                    <i *ngIf="sortNama===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortNama===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortNik()">
+                    NIK
+                    <i *ngIf="sortNik===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortNik===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortNoTelp()">
+                    No Telepon
+                    <i *ngIf="sortNoTelp===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortNoTelp===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortTanggalLahir()">
+                    Tanggal Lahir
+                    <i *ngIf="sortTanggalLahir===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortTanggalLahir===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortAlamat()">
+                    Alamat Pengguna
+                    <i *ngIf="sortAlamat===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortAlamat===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortTipe()">
+                    Tipe Pengguna
+                    <i *ngIf="sortTipe===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortTipe===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let user of allUsers">
+            <tr *ngFor="let user of allUsers | filter:searchValue">
                 <td>
                     <div class="d-flex align-items-center">
                         <p class="fw-bold mb-1">{{user.namaUser}}</p>

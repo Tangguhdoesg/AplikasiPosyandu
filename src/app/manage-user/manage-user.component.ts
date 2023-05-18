@@ -7,6 +7,7 @@ import * as dayjs from 'dayjs';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { AddUserModalComponent } from './add-user-modal/add-user-modal.component';
 import { DeleteModalComponent } from '../shared/delete-modal/delete-modal.component';
+import { SortService } from '../shared/sort.service';
 
 @Component({
   selector: 'app-manage-user',
@@ -15,17 +16,7 @@ import { DeleteModalComponent } from '../shared/delete-modal/delete-modal.compon
 })
 export class ManageUserComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
-  allUsers: userPosyandu[] = [
-    //   {"tanggalLahirUser":"2023-02-10T14:22:12.728+00:00",
-    //   "idUser":1,
-    //   "alamatUser":"Rumah Rafli",
-    //   "namaUser":"rafli",
-    //   "tipeUser":0,
-    //   "noTeleponUser":"987654321",
-    //   "nikUser":"1627892910293332",
-    //   "passwordUser": ""
-    // }
-  ];
+  allUsers: userPosyandu[] = [];
   totalUsersData: number = 0;
   isLoading: boolean = false;
   isError: boolean = false;
@@ -34,14 +25,104 @@ export class ManageUserComponent implements OnInit {
 
   modalRef: MdbModalRef<DeleteModalComponent> | null = null;
   modalRefAddEdit: MdbModalRef<AddUserModalComponent> | null = null;
+  
+  searchValue: string = '';
+
+  sortNama: number = 0;
+  sortNik: number = 0;
+  sortNoTelp: number = 0;
+  sortTanggalLahir: number = 0;
+  sortAlamat: number = 0;
+  sortTipe: number = 0;
 
   constructor(private service: AppServiceService,
-              private modalService: MdbModalService) {
-
+              private modalService: MdbModalService,
+              private sortService: SortService) {
   }
 
   ngOnInit(): void {
     this.getAllUser();
+  }
+
+  changeSortNama() {
+    this.sortNik = 0;
+    this.sortNoTelp = 0;
+    this.sortTanggalLahir = 0;
+    this.sortAlamat = 0;
+    this.sortTipe = 0;
+    if (this.sortNama === 0) this.sortNama = 1;
+    else if (this.sortNama === 1) this.sortNama = -1;
+    else this.sortNama = 1;
+    this.sortService.sort(this.allUsers, 'namaUser', this.sortNama);
+  }
+
+  changeSortNik() {
+    this.sortNama = 0;
+    this.sortNoTelp = 0;
+    this.sortTanggalLahir = 0;
+    this.sortAlamat = 0;
+    this.sortTipe = 0;
+    if (this.sortNik === 0) this.sortNik = 1;
+    else if (this.sortNik === 1) this.sortNik = -1;
+    else this.sortNik = 1;
+    this.sortService.sort(this.allUsers, 'nikUser', this.sortNik);
+  }
+
+  changeSortNoTelp() {
+    this.sortNama = 0;
+    this.sortNik = 0;
+    this.sortTanggalLahir = 0;
+    this.sortAlamat = 0;
+    this.sortTipe = 0;
+    if (this.sortNoTelp === 0) this.sortNoTelp = 1;
+    else if (this.sortNoTelp === 1) this.sortNoTelp = -1;
+    else this.sortNoTelp = 1;
+    this.sortService.sort(this.allUsers, 'noTeleponUser', this.sortNoTelp);
+  }
+
+  changeSortTanggalLahir() {
+    this.sortNama = 0;
+    this.sortNik = 0;
+    this.sortNoTelp = 0;
+    this.sortAlamat = 0;
+    this.sortTipe = 0;
+    if (this.sortTanggalLahir === 0) this.sortTanggalLahir = 1;
+    else if (this.sortTanggalLahir === 1) this.sortTanggalLahir = -1;
+    else this.sortTanggalLahir = 1;
+    this.sortService.sort(this.allUsers, 'tanggalLahirUser', this.sortTanggalLahir);
+  }
+
+  changeSortAlamat() {
+    this.sortNama = 0;
+    this.sortNik = 0;
+    this.sortNoTelp = 0;
+    this.sortTanggalLahir = 0;
+    this.sortTipe = 0;
+    if (this.sortAlamat === 0) this.sortAlamat = 1;
+    else if (this.sortAlamat === 1) this.sortAlamat = -1;
+    else this.sortAlamat = 1;
+    this.sortService.sort(this.allUsers, 'alamatUser', this.sortAlamat);
+  }
+
+  changeSortTipe() {
+    this.sortNama = 0;
+    this.sortNik = 0;
+    this.sortNoTelp = 0;
+    this.sortTanggalLahir = 0;
+    this.sortAlamat = 0;
+    if (this.sortTipe === 0) this.sortTipe = 1;
+    else if (this.sortTipe === 1) this.sortTipe = -1;
+    else this.sortTipe = 1;
+    this.sortService.sort(this.allUsers, 'tipeUser', this.sortTipe);
+  }
+
+  resetSort() {
+    this.sortNama = 0;
+    this.sortNik = 0;
+    this.sortNoTelp = 0;
+    this.sortTanggalLahir = 0;
+    this.sortAlamat = 0;
+    this.sortTipe = 0;
   }
 
   getAllUser() {
