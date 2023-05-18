@@ -22,24 +22,62 @@
         </div>
     </ng-container>
 
+    <div class="input-group rounded mb-4">
+        <div style="width: 250px;">
+            <input type="search" autocomplete="off" [(ngModel)]="searchValue" name="searchValue" class="form-control rounded" placeholder="Cari" aria-label="Cari"/>
+        </div>
+    </div>
+
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
             <tr>
-                <th>Nama Balita</th>
-                <th>NIK Balita</th>
-                <th>Jenis Kelamin</th>
-                <th>Tempat Lahir</th>
-                <th>Tanggal Lahir</th>
-                <th>Tinggi Lahir (cm)</th>
-                <th>Berat Lahir (kg)</th>
+                <th style="cursor: pointer;" (click)="changeSortNamaBalita()">
+                    Nama Balita
+                    <i *ngIf="sortNamaBalita===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortNamaBalita===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortNikBalita()">
+                    NIK Balita
+                    <i *ngIf="sortNikBalita===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortNikBalita===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortJenisKelamin()">
+                    Jenis Kelamin
+                    <i *ngIf="sortJenisKelamin===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortJenisKelamin===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortTempatLahir()">
+                    Tempat Lahir
+                    <i *ngIf="sortTempatLahir===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortTempatLahir===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortTanggalLahir()">
+                    Tanggal Lahir
+                    <i *ngIf="sortTanggalLahir===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortTanggalLahir===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortTinggiLahir()">
+                    Tinggi Lahir (cm)
+                    <i *ngIf="sortTinggiLahir===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortTinggiLahir===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortBeratLahir()">
+                    Berat Lahir (kg)
+                    <i *ngIf="sortBeratLahir===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortBeratLahir===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
                 <ng-container *ngIf="checkAddEditAccess()">
-                    <th>Nama Orang Tua</th>
+                    <th style="cursor: pointer;" (click)="changeSortNamaOrangTua()">
+                        Nama Orang Tua
+                        <i *ngIf="sortNamaOrangTua===1" class="fa-solid fa-arrow-up"></i>
+                        <i *ngIf="sortNamaOrangTua===-1" class="fa-solid fa-arrow-down"></i>
+                    </th>
                     <th></th>
                 </ng-container>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let toddler of allToddlers">
+            <tr *ngFor="let toddler of allToddlers | filter:searchValue">
                 <td>
                     <div class="d-flex align-items-center">
                         <p class="fw-bold mb-1">{{toddler.namaBalita}}</p>
