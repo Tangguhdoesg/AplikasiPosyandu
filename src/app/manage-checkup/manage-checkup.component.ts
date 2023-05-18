@@ -117,12 +117,22 @@ export class ManageCheckupComponent {
     this.sortService.sort(this.allCheckup, 'tanggalCheckupBerikutnya', this.sortTanggalBerikutnya);
   }
 
+  resetSort() {
+    this.sortNamaBalita = 0;
+    this.sortNikBalita = 0;
+    this.sortNamaOrangTua = 0;
+    this.sortUmurBalita = 0;
+    this.sortTanggalPemeriksaan = 0;
+    this.sortTanggalBerikutnya = 0;
+  }
+
   getAllUserCheckup() {
     this.isLoading = true;
     this.isError = false;
     this.service.getAllUserCheckup(sessionStorage.getItem('id'))
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
+        this.resetSort();
         this.allCheckup = [...data];
         this.totalCheckupData = data.length;
         this.isLoading = false;
@@ -138,6 +148,7 @@ export class ManageCheckupComponent {
     this.service.getAllCheckup()
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
+        this.resetSort();
         this.allCheckup = [...data];
         this.totalCheckupData = data.length;
         this.isLoading = false;
@@ -151,6 +162,7 @@ export class ManageCheckupComponent {
     this.service.deleteCheckup(id)
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(data => {
+        this.resetSort();
         this.isLoading = false;
         this.getAllCheckup();
       }, err => {
