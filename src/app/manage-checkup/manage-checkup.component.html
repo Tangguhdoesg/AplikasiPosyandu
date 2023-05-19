@@ -64,10 +64,26 @@
                     <i *ngIf="sortTanggalBerikutnya===1" class="fa-solid fa-arrow-up"></i>
                     <i *ngIf="sortTanggalBerikutnya===-1" class="fa-solid fa-arrow-down"></i>
                 </th>
-                <th>Tinggi Badan (cm)</th>
-                <th>Berat Badan (kg)</th>
-                <th>Lingkar Kepala (cm)</th>
-                <th>Lingkar Lengan (cm)</th>
+                <th style="cursor: pointer;" (click)="changeSortTinggiBadan()">
+                    Tinggi Badan (cm)
+                    <i *ngIf="sortTinggiBadan===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortTinggiBadan===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortBeratBadan()">
+                    Berat Badan (kg)
+                    <i *ngIf="sortBeratBadan===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortBeratBadan===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortLingkarKepala()">
+                    Lingkar Kepala (cm)
+                    <i *ngIf="sortLingkarKepala===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortLingkarKepala===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer;" (click)="changeSortLingkarLengan()">
+                    Lingkar Lengan (cm)
+                    <i *ngIf="sortLingkarLengan===1" class="fa-solid fa-arrow-up"></i>
+                    <i *ngIf="sortLingkarLengan===-1" class="fa-solid fa-arrow-down"></i>
+                </th>
                 <th>Catatan</th>
                 <ng-container *ngIf="checkAddEditAccess()">
                     <th></th>

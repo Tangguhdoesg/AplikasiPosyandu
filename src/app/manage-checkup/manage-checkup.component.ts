@@ -34,6 +34,10 @@ export class ManageCheckupComponent {
   sortUmurBalita: number = 0;
   sortTanggalPemeriksaan: number = 0;
   sortTanggalBerikutnya: number = 0;
+  sortTinggiBadan: number = 0;
+  sortBeratBadan: number = 0;
+  sortLingkarKepala: number = 0;
+  sortLingkarLengan: number = 0;
 
   constructor(private service: AppServiceService,
               private modalService: MdbModalService,
@@ -50,6 +54,10 @@ export class ManageCheckupComponent {
     this.sortUmurBalita = 0;
     this.sortTanggalPemeriksaan = 0;
     this.sortTanggalBerikutnya = 0;
+    this.sortTinggiBadan = 0;
+    this.sortBeratBadan = 0;
+    this.sortLingkarKepala = 0;
+    this.sortLingkarLengan = 0;
     if (this.sortNamaBalita === 0) this.sortNamaBalita = 1;
     else if (this.sortNamaBalita === 1) this.sortNamaBalita = -1;
     else this.sortNamaBalita = 1;
@@ -62,6 +70,10 @@ export class ManageCheckupComponent {
     this.sortUmurBalita = 0;
     this.sortTanggalPemeriksaan = 0;
     this.sortTanggalBerikutnya = 0;
+    this.sortTinggiBadan = 0;
+    this.sortBeratBadan = 0;
+    this.sortLingkarKepala = 0;
+    this.sortLingkarLengan = 0;
     if (this.sortNikBalita === 0) this.sortNikBalita = 1;
     else if (this.sortNikBalita === 1) this.sortNikBalita = -1;
     else this.sortNikBalita = 1;
@@ -74,6 +86,10 @@ export class ManageCheckupComponent {
     this.sortUmurBalita = 0;
     this.sortTanggalPemeriksaan = 0;
     this.sortTanggalBerikutnya = 0;
+    this.sortTinggiBadan = 0;
+    this.sortBeratBadan = 0;
+    this.sortLingkarKepala = 0;
+    this.sortLingkarLengan = 0;
     if (this.sortNamaOrangTua === 0) this.sortNamaOrangTua = 1;
     else if (this.sortNamaOrangTua === 1) this.sortNamaOrangTua = -1;
     else this.sortNamaOrangTua = 1;
@@ -86,6 +102,10 @@ export class ManageCheckupComponent {
     this.sortNamaOrangTua = 0;
     this.sortTanggalPemeriksaan = 0;
     this.sortTanggalBerikutnya = 0;
+    this.sortTinggiBadan = 0;
+    this.sortBeratBadan = 0;
+    this.sortLingkarKepala = 0;
+    this.sortLingkarLengan = 0;
     if (this.sortUmurBalita === 0) this.sortUmurBalita = 1;
     else if (this.sortUmurBalita === 1) this.sortUmurBalita = -1;
     else this.sortUmurBalita = 1;
@@ -98,6 +118,10 @@ export class ManageCheckupComponent {
     this.sortNamaOrangTua = 0;
     this.sortUmurBalita = 0;
     this.sortTanggalBerikutnya = 0;
+    this.sortTinggiBadan = 0;
+    this.sortBeratBadan = 0;
+    this.sortLingkarKepala = 0;
+    this.sortLingkarLengan = 0;
     if (this.sortTanggalPemeriksaan === 0) this.sortTanggalPemeriksaan = 1;
     else if (this.sortTanggalPemeriksaan === 1) this.sortTanggalPemeriksaan = -1;
     else this.sortTanggalPemeriksaan = 1;
@@ -110,10 +134,78 @@ export class ManageCheckupComponent {
     this.sortNamaOrangTua = 0;
     this.sortUmurBalita = 0;
     this.sortTanggalPemeriksaan = 0;
+    this.sortTinggiBadan = 0;
+    this.sortBeratBadan = 0;
+    this.sortLingkarKepala = 0;
+    this.sortLingkarLengan = 0;
     if (this.sortTanggalBerikutnya === 0) this.sortTanggalBerikutnya = 1;
     else if (this.sortTanggalBerikutnya === 1) this.sortTanggalBerikutnya = -1;
     else this.sortTanggalBerikutnya = 1;
     this.sortService.sort(this.allCheckup, 'tanggalCheckupBerikutnya', this.sortTanggalBerikutnya);
+  }
+
+  changeSortTinggiBadan() {
+    this.sortNamaBalita = 0;
+    this.sortNikBalita = 0;
+    this.sortNamaOrangTua = 0;
+    this.sortUmurBalita = 0;
+    this.sortTanggalPemeriksaan = 0;
+    this.sortTanggalBerikutnya = 0;
+    this.sortBeratBadan = 0;
+    this.sortLingkarKepala = 0;
+    this.sortLingkarLengan = 0;
+    if (this.sortTinggiBadan === 0) this.sortTinggiBadan = 1;
+    else if (this.sortTinggiBadan === 1) this.sortTinggiBadan = -1;
+    else this.sortTinggiBadan = 1;
+    this.sortService.sort(this.allCheckup, 'tinggiBadan', this.sortTinggiBadan);
+  }
+
+  changeSortBeratBadan() {
+    this.sortNamaBalita = 0;
+    this.sortNikBalita = 0;
+    this.sortNamaOrangTua = 0;
+    this.sortUmurBalita = 0;
+    this.sortTanggalPemeriksaan = 0;
+    this.sortTanggalBerikutnya = 0;
+    this.sortTinggiBadan = 0;
+    this.sortLingkarKepala = 0;
+    this.sortLingkarLengan = 0;
+    if (this.sortBeratBadan === 0) this.sortBeratBadan = 1;
+    else if (this.sortBeratBadan === 1) this.sortBeratBadan = -1;
+    else this.sortBeratBadan = 1;
+    this.sortService.sort(this.allCheckup, 'beratBadan', this.sortBeratBadan);
+  }
+
+  changeSortLingkarKepala() {
+    this.sortNamaBalita = 0;
+    this.sortNikBalita = 0;
+    this.sortNamaOrangTua = 0;
+    this.sortUmurBalita = 0;
+    this.sortTanggalPemeriksaan = 0;
+    this.sortTanggalBerikutnya = 0;
+    this.sortTinggiBadan = 0;
+    this.sortBeratBadan = 0;
+    this.sortLingkarLengan = 0;
+    if (this.sortLingkarKepala === 0) this.sortLingkarKepala = 1;
+    else if (this.sortLingkarKepala === 1) this.sortLingkarKepala = -1;
+    else this.sortLingkarKepala = 1;
+    this.sortService.sort(this.allCheckup, 'lingkarKepala', this.sortLingkarKepala);
+  }
+
+  changeSortLingkarLengan() {
+    this.sortNamaBalita = 0;
+    this.sortNikBalita = 0;
+    this.sortNamaOrangTua = 0;
+    this.sortUmurBalita = 0;
+    this.sortTanggalPemeriksaan = 0;
+    this.sortTanggalBerikutnya = 0;
+    this.sortTinggiBadan = 0;
+    this.sortBeratBadan = 0;
+    this.sortLingkarKepala = 0;
+    if (this.sortLingkarLengan === 0) this.sortLingkarLengan = 1;
+    else if (this.sortLingkarLengan === 1) this.sortLingkarLengan = -1;
+    else this.sortLingkarLengan = 1;
+    this.sortService.sort(this.allCheckup, 'lingkarLengan', this.sortLingkarLengan);
   }
 
   resetSort() {
@@ -123,6 +215,10 @@ export class ManageCheckupComponent {
     this.sortUmurBalita = 0;
     this.sortTanggalPemeriksaan = 0;
     this.sortTanggalBerikutnya = 0;
+    this.sortTinggiBadan = 0;
+    this.sortBeratBadan = 0;
+    this.sortLingkarKepala = 0;
+    this.sortLingkarLengan = 0;
   }
 
   getAllUserCheckup() {

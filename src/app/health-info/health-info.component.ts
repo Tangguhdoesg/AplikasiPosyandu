@@ -136,7 +136,7 @@ export class HealthInfoComponent {
   setHeigthGraph(data: healthInfoGraph) {
     this.optionHeight.push({
       title: {
-        text: 'Panjang Badan '+ data.namaBalita
+        text: 'Tinggi Badan '+ data.namaBalita
       },
       tooltip: {
         trigger: 'axis',
@@ -165,7 +165,7 @@ export class HealthInfoComponent {
         }
       ],
       yAxis: {
-        name: 'Panjang badan (cm)',
+        name: 'Tinggi badan (cm)',
         type: 'value'
       },
       series: [
